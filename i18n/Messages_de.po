@@ -1,0 +1,62 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: YajHFC outlook plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-10-23 20:51+0200\n"
+"PO-Revision-Date: 2011-10-23 15:50+0100\n"
+"Last-Translator: Jonas Wolz <jonas@yajhfc.de>\n"
+"Language-Team: German <support@yajhfc.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: German\n"
+
+#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\ConnectionDialog.java:60
+#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\ConnectionDialog.java:65
+msgid "Outlook phonebook"
+msgstr "Outlook-Telefonbuch"
+
+#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\ConnectionDialog.java:115
+msgid "Read email address and comment"
+msgstr "E-Mail-Adresse und Kommentar einlesen"
+
+#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\ConnectionDialog.java:117
+msgid "Choose folder"
+msgstr "Ordner wähen"
+
+#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\ConnectionDialog.java:139
+msgid "Chosen folder:"
+msgstr "Gewählter Ordner"
+
+#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\ConnectionDialog.java:319
+msgid "Outlook folders"
+msgstr "Outlookordner"
+
+#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\OutlookPhonebook.java:29
+msgid "Microsoft Outlook contacts"
+msgstr "Microsoft Outlook Kontakte"
+
+#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\OutlookPhonebook.java:30
+msgid "Phone book reading it entries from Microsoft Outlook contacts"
+msgstr "Telefonbich, das seine Einträge aus Microsoft Outlook Kontakten liest"
+
+#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\OutlookPhonebook.java:147
+msgid "Cannot connect to Outlook"
+msgstr "Kann nicht mit Outlook verbinden"
+
+#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\OutlookPhonebook.java:201
+msgid "Business"
+msgstr "Geschäftlich"
+
+#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\OutlookPhonebook.java:204
+msgid "Home"
+msgstr "Privat"
+
+#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\OutlookPhonebook.java:207
+msgid "Other"
+msgstr "Weitere"

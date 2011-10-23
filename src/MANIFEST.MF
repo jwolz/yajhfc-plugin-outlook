@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+YajHFC-Plugin-InitClass: yajhfc.phonebook.outlook.EntryPoint
+Class-Path: jacob/jacob.jar
+

@@ -1,0 +1,62 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-10-23 20:51+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\ConnectionDialog.java:60
+#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\ConnectionDialog.java:65
+msgid "Outlook phonebook"
+msgstr ""
+
+#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\ConnectionDialog.java:115
+msgid "Read email address and comment"
+msgstr ""
+
+#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\ConnectionDialog.java:117
+msgid "Choose folder"
+msgstr ""
+
+#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\ConnectionDialog.java:139
+msgid "Chosen folder:"
+msgstr ""
+
+#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\ConnectionDialog.java:319
+msgid "Outlook folders"
+msgstr ""
+
+#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\OutlookPhonebook.java:29
+msgid "Microsoft Outlook contacts"
+msgstr ""
+
+#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\OutlookPhonebook.java:30
+msgid "Phone book reading it entries from Microsoft Outlook contacts"
+msgstr ""
+
+#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\OutlookPhonebook.java:147
+msgid "Cannot connect to Outlook"
+msgstr ""
+
+#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\OutlookPhonebook.java:201
+msgid "Business"
+msgstr ""
+
+#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\OutlookPhonebook.java:204
+msgid "Home"
+msgstr ""
+
+#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\OutlookPhonebook.java:207
+msgid "Other"
+msgstr ""

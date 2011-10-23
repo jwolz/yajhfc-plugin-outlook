@@ -1,5 +1,7 @@
 package yajhfc.phonebook.outlook;
 
+import java.util.Map;
+
 import yajhfc.phonebook.PBEntryField;
 import yajhfc.phonebook.PhoneBook;
 import yajhfc.phonebook.SimplePhoneBookEntry;
@@ -11,18 +13,20 @@ public class OutlookPhoneBookEntry extends SimplePhoneBookEntry {
 	
 	
 	protected final OutlookPhonebook parent;
+	protected final String suffix;
 
 	protected OutlookPhoneBookEntry(OutlookPhonebook parent,
-			_ContactItem contactItem) {
+			_ContactItem contactItem, Map<PBEntryField,String> propertyMap, String suffix) {
 		super();
 		this.parent = parent;
-		readContact(contactItem);
+		this.suffix = suffix;
+		readContact(contactItem, propertyMap);
 	}
 
-	protected void readContact(_ContactItem contact) {
+	protected void readContact(_ContactItem contact, Map<PBEntryField,String> propertyMap) {
 		for (PBEntryField field : PBEntryField.values()) {
-			String olProp = parent.settings.getMappingFor(field);
-			if (olProp != null && !olProp.equals(OutlookSettings.noField)) {
+			String olProp = propertyMap.get(field);
+			if (olProp != null) {
 				setFieldUndirty(field, Dispatch.get(contact, olProp).toString());
 			} else {
 				setFieldUndirty(field, "");
@@ -36,18 +40,26 @@ public class OutlookPhoneBookEntry extends SimplePhoneBookEntry {
 	public PhoneBook getParent() {
 		return parent;
 	}
+	
+	@Override
+	public String toString() {
+		if (suffix != null) {
+			return super.toString() + " (" + suffix + ")";
+		} else {
+			return super.toString();
+		}
+	}
 
 	@Override
 	public void delete() {
-		// TODO Auto-generated method stub
-		
+		// Not modifiable
 	}
 
 	@Override
 	public void commit() {
-		// TODO Auto-generated method stub
-		
+		//  Not modifiable
 	}
 
+	
 
 }

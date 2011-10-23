@@ -4,5 +4,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="lib" path="C:/Users/jonas/java/jacob-1.16-M1/jacob.jar" sourcepath="C:/Users/jonas/java/jacob-1.16-M1/src/src"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/yajhfc"/>
+	<classpathentry kind="lib" path="C:/Users/jonas/java/TableLayout-bin-jdk1.5-2007-04-21.jar" sourcepath="/home/jonas/java/TableLayout-2007-04/TableLayout-src-2007-04-21.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

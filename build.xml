@@ -1,0 +1,135 @@
+<project name="yajhfc-plugin-example" default="dist" basedir=".">
+	<description>
+        YajHFC Example Plugin build file
+        </description>
+	<!-- set global properties for this build -->
+	<property name="src" location="src"/>
+	<property name="build.compiler" value="modern"/>
+
+	<property file="build.properties"/>
+	<property name="yajhfc-jar" location="../yajhfc/build/yajhfc.jar"/>
+
+	<property name="build" location="build"/>
+	<property name="jar-output" location="${build}/yajhfc-outlook-pb-plugin.jar"/>
+	<property name="srczip-output" location="${build}/yajhfc-outlook-pb-plugin.zip"/>
+	<property name="gettext-path" location="C:\Program Files (x86)\GnuWin32\bin"/>
+	<property name="jacob-path" location="C:\Users\jonas\java\jacob-1.16-M1"/>
+	<property name="jacob-jar" location="${jacob-path}/jacob.jar"/>
+
+	<property environment="env"/>
+	
+	<target name="init">
+	
+		<fail message="YajHFC jar not found. Edit build.properties to specify the correct location.">
+			<condition>
+				<not>
+				<available file="${yajhfc-jar}"/>
+				</not>
+			</condition>
+		</fail>
+
+		<!-- Find out if we have valid, precompiled translations -->
+		<uptodate property="i18n.havePrecompiled">
+			<srcfiles dir="i18n" includes="*_*.po"/>
+			<compositemapper>
+				<mapper type="glob" from="*.po" to="bin/yajhfc/phonebook/outlook/i18n/*.class" />
+				<mapper type="glob" from="*.po" to="bin/yajhfc/phonebook/outlook/i18n/*$1.class" />
+			</compositemapper>
+		</uptodate>
+		
+		<!-- Create the time stamp -->
+		<tstamp/>
+		<!-- Create the build directory structure used by compile -->
+		<mkdir dir="${build}"/>
+		
+
+	</target>
+
+	<target name="compile" depends="init" description="compile the source code" >
+		<!-- Compile the java code from ${src} into ${build} -->
+		<javac srcdir="${src}" includes="**/*.java" destdir="${build}" source="1.5" target="1.5" encoding="utf-8" debug="true" debuglevel="lines,source">
+			<classpath>
+				<pathelement path="${classpath}"/>
+				<pathelement location="${yajhfc-jar}"/>
+				<pathelement location="${jacob-jar}"/>
+			</classpath>
+		</javac>
+
+	</target>
+
+	<target name="i18n" unless="i18n.havePrecompiled" depends="init" description="compile the translations">
+		<mkdir dir="i18n/bin"/>
+		<apply executable="${gettext-path}\msgfmt" dir="i18n" parallel="false" relative="true">
+			<env key="Path" value="${env.Path};${java.home}\bin;${java.home}\..\bin"/>
+			
+			<arg value="--java2"/>
+			<arg value="-dbin"/>
+			<arg value="--resource=yajhfc.phonebook.outlook.i18n.Messages"/>
+			<targetfile prefix="--locale="/>
+			<srcfile/>
+			
+			<fileset dir="i18n" includes="*_*.po"/>
+			<mapper type="regexp" from="Messages_(.+)\.po$" to="\1" />
+			<!-- <compositemapper>
+				<mapper type="glob" from="M*.po" to="bin/yajhfc/phonebook/outlook/i18n/M*.class" />
+				<mapper type="glob" from="M*.po" to="bin/yajhfc/phonebook/outlook/i18n/M*$1.class" />
+			</compositemapper> -->
+		</apply>
+	</target>
+	
+
+	<target name="merge-po" description="Run xgettext and merge po files">	
+		<fileset id="i18n.srcfiles" dir="${src}" includes="**/*.java"/>
+		<pathconvert pathsep="${line.separator}" property="i18n.srcfiles.lines" refid="i18n.srcfiles" />
+		
+		<apply executable="${gettext-path}/xgettext" dir="i18n" parallel="true" addsourcefile="false">
+			
+			<arg value="-k_"/>
+			<arg value="--from-code=utf-8"/>
+			
+			<arg value="-oMessages.po"/>
+			<arg value="-f-"/>
+			<!-- <srcfile prefix="../${src}/"/>-->
+			<redirector inputstring="${i18n.srcfiles.lines}" />
+			
+			<fileset refid="i18n.srcfiles"/>
+			<mergemapper to="i18n/Messages.po"/>
+		</apply>
+		<apply executable="${gettext-path}\\msgmerge" dir="i18n" parallel="false">
+			
+			<arg value="-N"/>
+			<arg value="-U"/>
+			<srcfile/>
+			<arg value="Messages.po"/>
+			
+			<fileset dir="i18n" includes="*_*.po"/>
+			<identitymapper/>
+		</apply>
+	</target>
+
+	<target name="dist" depends="compile,i18n" description="generate the distribution" >
+		<jar jarfile="${jar-output}" manifest="${src}/MANIFEST.MF">
+			<fileset dir="${build}" includes="yajhfc/**,com/**"/>
+		</jar>
+	</target>
+
+	<target name="sourcedist" depends="init" description="generate the source distribution" >
+		<zip destfile="${srczip-output}">
+			<zipfileset dir=".">
+				<exclude name="bin/"/>
+				<exclude name="build/"/>
+				<exclude name="**/*.jar"/>
+				<exclude name="**/*.log"/>
+				<exclude name="**/*~"/>
+			</zipfileset>
+		</zip>
+	</target>
+
+	<target name="fulldist" depends="dist,sourcedist" description="generate both source and binary distributions"/>
+
+	<target name="clean" description="clean up" >
+		<!-- Delete the ${build} directory tree and the jar file -->
+		<delete dir="${build}"/>
+		<delete file="${jar-output}"/>
+	</target>
+</project>
