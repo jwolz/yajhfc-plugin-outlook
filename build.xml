@@ -10,8 +10,10 @@
 	<property name="yajhfc-jar" location="../yajhfc/build/yajhfc.jar"/>
 
 	<property name="build" location="build"/>
+	<property name="dist-extra" location="dist"/>
 	<property name="jar-output" location="${build}/yajhfc-outlook-pb-plugin.jar"/>
-	<property name="srczip-output" location="${build}/yajhfc-outlook-pb-plugin.zip"/>
+	<property name="srczip-output" location="${build}/yajhfc-outlook-pb-plugin-src.zip"/>
+	<property name="binzip-output" location="${build}/yajhfc-outlook-pb-plugin.zip"/> 
 	<property name="gettext-path" location="C:\Program Files (x86)\GnuWin32\bin"/>
 	<property name="jacob-path" location="C:\Users\jonas\java\jacob-1.16-M1"/>
 	<property name="jacob-jar" location="${jacob-path}/jacob.jar"/>
@@ -110,7 +112,18 @@
 	<target name="dist" depends="compile,i18n" description="generate the distribution" >
 		<jar jarfile="${jar-output}" manifest="${src}/MANIFEST.MF">
 			<fileset dir="${build}" includes="yajhfc/**,com/**"/>
+			<fileset dir="i18n/bin" includes="**/*.class"/>
 		</jar>
+		
+		<zip destfile="${binzip-output}"> 
+			<zipfileset dir="${dist-extra}" />
+			<zipfileset dir="${build}" includes="*.jar" />  
+			<zipfileset dir="${jacob-path}" prefix="jacob" casesensitive="no">
+				<include name="*.jar"/>
+				<include name="*.dll"/>
+				<include name="*.txt"/>
+			</zipfileset>
+		</zip>  
 	</target>
 
 	<target name="sourcedist" depends="init" description="generate the source distribution" >
