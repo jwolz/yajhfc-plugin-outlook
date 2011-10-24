@@ -8,6 +8,8 @@ import java.awt.Dialog;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -47,7 +49,7 @@ public class ConnectionDialog extends JDialog {
 	JTree folderTree;
 	Action actSetFolder, actOK;
 	JTextField textSelectedFolder;
-	JCheckBox checkAccessEMailAndBody;
+	JCheckBox checkAccessEMailAndBody, checkAccessDistList, checkResolveDistList;
 	
 	OutlookTreeNode selectedNode = null, rootNode;
 	
@@ -69,7 +71,7 @@ public class ConnectionDialog extends JDialog {
 	private void initialize() {
 		double[][] dLay = {
 			{border, TableLayout.FILL, border, 0.5, border},
-			{border, TableLayout.PREFERRED, border, TableLayout.PREFERRED, TableLayout.PREFERRED, border, TableLayout.PREFERRED, border, TableLayout.PREFERRED, TableLayout.FILL, border, TableLayout.PREFERRED, border, TableLayout.PREFERRED,  border}
+			{border, TableLayout.PREFERRED, border, TableLayout.PREFERRED, TableLayout.PREFERRED, border, TableLayout.PREFERRED, border, TableLayout.PREFERRED, border, TableLayout.PREFERRED, border, TableLayout.PREFERRED, TableLayout.FILL, border, TableLayout.PREFERRED, border, TableLayout.PREFERRED,  border}
 		};
 		
 		try {
@@ -113,6 +115,15 @@ public class ConnectionDialog extends JDialog {
 		textSelectedFolder.setEditable(false);
 		
 		checkAccessEMailAndBody = new JCheckBox(_("Read email address and comment"));
+		checkAccessDistList = new JCheckBox(_("Read distribution lists"));
+		checkAccessDistList.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				checkResolveDistList.setEnabled(checkAccessDistList.isSelected());
+			}
+		});
+		checkResolveDistList = new JCheckBox(_("Resolve distribution list items to full contacts"));
+		checkResolveDistList.setEnabled(false);
 		
 		actSetFolder = new ExcDialogAbstractAction(_("Choose folder")) {
 			@Override
@@ -135,13 +146,15 @@ public class ConnectionDialog extends JDialog {
 		
 		JPanel contentPane = new JPanel(new TableLayout(dLay));
 		contentPane.add(new JLabel("Please select which Outlook folder should be used as data source for this phonebook"), "1,1,3,1,c,c");
-		contentPane.add(new JScrollPane(folderTree), "1,3,1,13,f,f");
+		contentPane.add(new JScrollPane(folderTree), "1,3,1,17,f,f");
 		Utils.addWithLabel(contentPane, textSelectedFolder, _("Chosen folder:"), "3,4");
 		contentPane.add(new JButton(actSetFolder), "3,6");
 		contentPane.add(checkAccessEMailAndBody, "3,8");
+		contentPane.add(checkAccessDistList, "3,10");
+		contentPane.add(checkResolveDistList, "3,12");
 		
-		contentPane.add(new JButton(actOK), "3,11");
-		contentPane.add(new JButton(actCancel), "3,13");
+		contentPane.add(new JButton(actOK), "3,15");
+		contentPane.add(new JButton(actCancel), "3,17");
 	
 		setContentPane(contentPane);
 		pack();
@@ -234,12 +247,16 @@ public class ConnectionDialog extends JDialog {
 		}
 		
 		checkAccessEMailAndBody.setSelected(source.accessEMailAndBody);
+		checkAccessDistList.setSelected(source.accessDistributionLists);
+		checkResolveDistList.setSelected(source.resolveDistributionLists);
 	}
 	
 	protected void writeToConnectionSettings(OutlookSettings dest) {
 		dest.folderID = selectedNode.folder.getEntryID();
 		dest.storeID = selectedNode.folder.getStoreID();
 		dest.accessEMailAndBody = checkAccessEMailAndBody.isSelected();
+		dest.accessDistributionLists = checkAccessDistList.isSelected();
+		dest.resolveDistributionLists = checkResolveDistList.isSelected();
 	}
 	
     /**

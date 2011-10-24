@@ -139,7 +139,7 @@ public class _NameSpace extends Dispatch {
 	 * @param entryIDStore an input-parameter of type Variant
 	 * @return the result is of type Object
 	 */
-	public Object getItemFromID(String entryIDItem, Variant entryIDStore) {
+	public Variant getItemFromID(String entryIDItem, Variant entryIDStore) {
 		return Dispatch.call(this, "GetItemFromID", entryIDItem, entryIDStore);
 	}
 
@@ -148,7 +148,7 @@ public class _NameSpace extends Dispatch {
 	 * @param entryIDItem an input-parameter of type String
 	 * @return the result is of type Object
 	 */
-	public Object getItemFromID(String entryIDItem) {
+	public Variant getItemFromID(String entryIDItem) {
 		return Dispatch.call(this, "GetItemFromID", entryIDItem);
 	}
 

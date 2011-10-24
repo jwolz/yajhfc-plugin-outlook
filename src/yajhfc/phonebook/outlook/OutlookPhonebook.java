@@ -8,7 +8,9 @@ import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
+import yajhfc.Utils;
 import yajhfc.phonebook.PBEntryField;
 import yajhfc.phonebook.PhoneBook;
 import yajhfc.phonebook.PhoneBookEntry;
@@ -18,12 +20,17 @@ import yajhfc.util.ExceptionDialog;
 import com.jacob.com.Dispatch;
 import com.jacob.com.Variant;
 import com.jacobgen.ms.outlook.MAPIFolder;
+import com.jacobgen.ms.outlook.OlObjectClass;
 import com.jacobgen.ms.outlook._Application;
 import com.jacobgen.ms.outlook._ContactItem;
+import com.jacobgen.ms.outlook._DistListItem;
 import com.jacobgen.ms.outlook._Items;
 import com.jacobgen.ms.outlook._NameSpace;
 
 public class OutlookPhonebook extends PhoneBook {
+	
+	private static final Logger log = Logger.getLogger(OutlookPhonebook.class.getName());
+	protected static final Object outlookLock = new Object();
 	
 	public static String PB_Prefix = "outlook";      // The prefix of this Phonebook type's descriptor
 	public static String PB_DisplayName = _("Microsoft Outlook contacts"); // A user-readable name for this Phonebook type
@@ -40,12 +47,14 @@ public class OutlookPhonebook extends PhoneBook {
 	protected final Map<PBEntryField,String> propertyMap_Business  = new EnumMap<PBEntryField,String>(PBEntryField.class);
 	protected final Map<PBEntryField,String> propertyMap_Other  = new EnumMap<PBEntryField,String>(PBEntryField.class);
 	
-	protected List<OutlookPhoneBookEntry> entries = new ArrayList<OutlookPhoneBookEntry>();
+	protected List<PhoneBookEntry> entries = new ArrayList<PhoneBookEntry>();
 	protected List<PhoneBookEntry> entryView = Collections.<PhoneBookEntry>unmodifiableList(entries);
 	
 	protected OutlookSettings settings;
 	protected boolean open;
 	protected String folderName;
+
+	protected _NameSpace nameSpace;
 	
 	public OutlookPhonebook(Dialog parent) {
 		super(parent);
@@ -167,47 +176,92 @@ public class OutlookPhonebook extends PhoneBook {
 	@Override
 	protected void openInternal(String descriptorWithoutPrefix)
 			throws PhoneBookException {
+		log.fine("Loading settings...");
 		settings = new OutlookSettings();
 		settings.loadFromString(descriptorWithoutPrefix);
 		
+		log.fine("Loading mappings...");
 		loadBusinessAddressMapping(propertyMap_Business);
 		loadHomeAddressMapping(propertyMap_Home);
 		loadOtherAddressMapping(propertyMap_Other);
-		
-		_Application app = new _Application("Outlook.Application");
-		_NameSpace ns = app.getNamespace("MAPI");
-		
-		MAPIFolder contacts = ns.getFolderFromID(settings.folderID, new Variant(settings.storeID));
-		folderName = contacts.getName();
-		_Items cl = contacts.getItems();
-		entries.clear();
-		for (int i=1; i<=cl.getCount(); i++) {
-			_ContactItem ci = new _ContactItem(cl.item(i).getDispatch());
-			int numAddresses = 0;
-			boolean haveBusiness = false, haveHome = false, haveOther = false;
-			if (haveAddress(ci, propertyMap_Business)) {
-				haveBusiness = true;
-				numAddresses++;
+
+		try {
+			synchronized (outlookLock) { // Serialize access to Outlook to avoid message filter error
+				log.fine("Creating Application...");
+				_Application app = new _Application("Outlook.Application");
+				log.fine("Got Application, getting MAPI namespace");
+				nameSpace = app.getNamespace("MAPI");
+
+				if (Utils.debugMode)
+					log.fine("Getting contact folder with folderID=" + settings.folderID + " and storeID=" + settings.storeID);
+				MAPIFolder contacts = nameSpace.getFolderFromID(settings.folderID, new Variant(settings.storeID));
+				folderName = contacts.getName();
+
+				if (Utils.debugMode)
+					log.fine("Got folder name \"" + folderName + "\", reading items now...");
+				_Items cl = contacts.getItems();
+				entries.clear();
+				for (int i=1; i<=cl.getCount(); i++) {
+					Dispatch item = cl.item(i).getDispatch();
+					int itemClass = Dispatch.get(item, "Class").getInt();
+					if (Utils.debugMode) {
+						log.fine("Item #" + i + ": itemClass=" + itemClass);
+					}
+					switch (itemClass) {
+					case OlObjectClass.olContact:
+						if (Utils.debugMode) {
+							log.fine("Item #" + i + ": is a ContactItem");
+						}
+
+						_ContactItem ci = new _ContactItem(item);
+						int numAddresses = 0;
+						boolean haveBusiness = false, haveHome = false, haveOther = false;
+						if (haveAddress(ci, propertyMap_Business)) {
+							haveBusiness = true;
+							numAddresses++;
+						}
+						if (haveAddress(ci, propertyMap_Home)) {
+							haveHome = true;
+							numAddresses++;
+						}
+						if (haveAddress(ci, propertyMap_Other)) {
+							haveOther = true;
+							numAddresses++;
+						}
+						if (Utils.debugMode) {
+							log.fine(ci.getFullName() + ": numAddresses=" + numAddresses + "; haveBusiness=" + haveBusiness + "; haveHome=" + haveHome+ "; haveOther=" + haveOther);
+						}
+						if (haveBusiness || numAddresses == 0) {
+							entries.add(new OutlookPhoneBookEntry(this, ci, propertyMap_Business, (numAddresses > 1) ? _("Business") : null));	
+						}
+						if (haveHome) {
+							entries.add(new OutlookPhoneBookEntry(this, ci, propertyMap_Home, (numAddresses > 1) ? _("Home") : null));	
+						}
+						if (haveOther) {
+							entries.add(new OutlookPhoneBookEntry(this, ci, propertyMap_Other, (numAddresses > 1) ? _("Other") : null));	
+						}
+						break;
+					case OlObjectClass.olDistributionList:
+						if (Utils.debugMode) {
+							log.fine("Item #" + i + ": is a DistListItem");
+						}
+						if (settings.accessDistributionLists) {
+							_DistListItem dl = new _DistListItem(item);
+							entries.add(new OutlookDistList(this, dl));
+						} else {
+							log.info(folderName + ": Ignoring item #" + i + " because it is a DistListItem");
+						}
+						break;
+					default:
+						log.info(folderName + " item #" + i + ": has a unhandled class: " + itemClass);
+					}
+				}
 			}
-			if (haveAddress(ci, propertyMap_Home)) {
-				haveHome = true;
-				numAddresses++;
-			}
-			if (haveAddress(ci, propertyMap_Other)) {
-				haveOther = true;
-				numAddresses++;
-			}
-			if (haveBusiness || numAddresses == 0) {
-				entries.add(new OutlookPhoneBookEntry(this, ci, propertyMap_Business, (numAddresses > 1) ? _("Business") : null));	
-			}
-			if (haveHome) {
-				entries.add(new OutlookPhoneBookEntry(this, ci, propertyMap_Home, (numAddresses > 1) ? _("Home") : null));	
-			}
-			if (haveOther) {
-				entries.add(new OutlookPhoneBookEntry(this, ci, propertyMap_Other, (numAddresses > 1) ? _("Other") : null));	
-			}
+			log.fine("Successfully loaded phone book");
+			open = true;
+		} catch (UnsatisfiedLinkError ule) {
+			throw new PhoneBookException("Cannot initialize COM connection to Outlook: " + ule.getMessage(), ule, false);
 		}
-		open = true;
 	}
 	
 	protected boolean haveAddress(_ContactItem ci, Map<PBEntryField,String> propertyMap) {

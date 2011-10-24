@@ -6,5 +6,7 @@ public class OutlookSettings extends AbstractConnectionSettings {
 	public String folderID;
 	public String storeID;
 	
-	public boolean accessEMailAndBody;
+	public boolean accessEMailAndBody = false;
+	public boolean accessDistributionLists = true;
+	public boolean resolveDistributionLists = true;
 }

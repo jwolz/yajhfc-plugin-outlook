@@ -24,6 +24,7 @@ public class OutlookPhoneBookEntry extends SimplePhoneBookEntry {
 	}
 
 	protected void readContact(_ContactItem contact, Map<PBEntryField,String> propertyMap) {
+		//System.out.println(contact.getFullName() + ": " + contact.getEntryID());
 		for (PBEntryField field : PBEntryField.values()) {
 			String olProp = propertyMap.get(field);
 			if (olProp != null) {
@@ -34,7 +35,7 @@ public class OutlookPhoneBookEntry extends SimplePhoneBookEntry {
 		}
 		setDirty(false);
 	}
-	
+
 	
 	@Override
 	public PhoneBook getParent() {

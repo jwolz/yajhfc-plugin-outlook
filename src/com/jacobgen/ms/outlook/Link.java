@@ -83,7 +83,7 @@ public class Link extends Dispatch {
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 * @return the result is of type Object
 	 */
-	public Object getItem() {
+	public Variant getItem() {
 		return Dispatch.get(this, "Item");
 	}
 
