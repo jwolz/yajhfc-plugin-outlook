@@ -148,6 +148,7 @@
 			<zipfileset dir=".">
 				<exclude name="bin/"/>
 				<exclude name="build/"/>
+				<exclude name="setup/Output/"/>
 				<exclude name="**/*.jar"/>
 				<exclude name="**/*.log"/>
 				<exclude name="**/*~"/>
