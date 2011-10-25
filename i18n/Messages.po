@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-23 20:51+0200\n"
+"POT-Creation-Date: 2011-10-25 12:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,47 +16,61 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\ConnectionDialog.java:60
-#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\ConnectionDialog.java:65
+#: C:\Users\jonas\workspace\yajhfc-plugin-outlook\src\yajhfc\phonebook\outlook\ConnectionDialog.java:78
+#: C:\Users\jonas\workspace\yajhfc-plugin-outlook\src\yajhfc\phonebook\outlook\ConnectionDialog.java:83
 msgid "Outlook phonebook"
 msgstr ""
 
-#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\ConnectionDialog.java:115
+#: C:\Users\jonas\workspace\yajhfc-plugin-outlook\src\yajhfc\phonebook\outlook\ConnectionDialog.java:133
 msgid "Read email address and comment"
 msgstr ""
 
-#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\ConnectionDialog.java:117
+#: C:\Users\jonas\workspace\yajhfc-plugin-outlook\src\yajhfc\phonebook\outlook\ConnectionDialog.java:134
+msgid "Read distribution lists"
+msgstr ""
+
+#: C:\Users\jonas\workspace\yajhfc-plugin-outlook\src\yajhfc\phonebook\outlook\ConnectionDialog.java:141
+msgid "Resolve distribution list items to full contacts"
+msgstr ""
+
+#: C:\Users\jonas\workspace\yajhfc-plugin-outlook\src\yajhfc\phonebook\outlook\ConnectionDialog.java:144
 msgid "Choose folder"
 msgstr ""
 
-#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\ConnectionDialog.java:139
+#: C:\Users\jonas\workspace\yajhfc-plugin-outlook\src\yajhfc\phonebook\outlook\ConnectionDialog.java:164
+msgid ""
+"Please select which Outlook folder should be used as data source for this "
+"phonebook"
+msgstr ""
+
+#: C:\Users\jonas\workspace\yajhfc-plugin-outlook\src\yajhfc\phonebook\outlook\ConnectionDialog.java:166
 msgid "Chosen folder:"
 msgstr ""
 
-#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\ConnectionDialog.java:319
+#: C:\Users\jonas\workspace\yajhfc-plugin-outlook\src\yajhfc\phonebook\outlook\ConnectionDialog.java:352
 msgid "Outlook folders"
 msgstr ""
 
-#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\OutlookPhonebook.java:29
+#: C:\Users\jonas\workspace\yajhfc-plugin-outlook\src\yajhfc\phonebook\outlook\OutlookPhonebook.java:52
 msgid "Microsoft Outlook contacts"
 msgstr ""
 
-#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\OutlookPhonebook.java:30
+#: C:\Users\jonas\workspace\yajhfc-plugin-outlook\src\yajhfc\phonebook\outlook\OutlookPhonebook.java:53
 msgid "Phone book reading it entries from Microsoft Outlook contacts"
 msgstr ""
 
-#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\OutlookPhonebook.java:147
+#: C:\Users\jonas\workspace\yajhfc-plugin-outlook\src\yajhfc\phonebook\outlook\OutlookPhonebook.java:172
 msgid "Cannot connect to Outlook"
 msgstr ""
 
-#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\OutlookPhonebook.java:201
+#: C:\Users\jonas\workspace\yajhfc-plugin-outlook\src\yajhfc\phonebook\outlook\OutlookPhonebook.java:251
 msgid "Business"
 msgstr ""
 
-#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\OutlookPhonebook.java:204
+#: C:\Users\jonas\workspace\yajhfc-plugin-outlook\src\yajhfc\phonebook\outlook\OutlookPhonebook.java:254
 msgid "Home"
 msgstr ""
 
-#: C:\Users\jonas\workspace\jacob-test\src\yajhfc\phonebook\outlook\OutlookPhonebook.java:207
+#: C:\Users\jonas\workspace\yajhfc-plugin-outlook\src\yajhfc\phonebook\outlook\OutlookPhonebook.java:257
 msgid "Other"
 msgstr ""

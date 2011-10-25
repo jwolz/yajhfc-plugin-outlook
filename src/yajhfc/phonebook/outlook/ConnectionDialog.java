@@ -1,5 +1,21 @@
 package yajhfc.phonebook.outlook;
-
+/*
+ * YAJHFC - Yet another Java Hylafax client
+ * Copyright (C) 2011 Jonas Wolz <info@yajhfc.de>
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 import static yajhfc.phonebook.outlook.EntryPoint._;
 import info.clearthought.layout.TableLayout;
 
@@ -145,7 +161,7 @@ public class ConnectionDialog extends JDialog {
 		CancelAction actCancel = new CancelAction(this);
 		
 		JPanel contentPane = new JPanel(new TableLayout(dLay));
-		contentPane.add(new JLabel("Please select which Outlook folder should be used as data source for this phonebook"), "1,1,3,1,c,c");
+		contentPane.add(new JLabel(_("Please select which Outlook folder should be used as data source for this phonebook")), "1,1,3,1,c,c");
 		contentPane.add(new JScrollPane(folderTree), "1,3,1,17,f,f");
 		Utils.addWithLabel(contentPane, textSelectedFolder, _("Chosen folder:"), "3,4");
 		contentPane.add(new JButton(actSetFolder), "3,6");

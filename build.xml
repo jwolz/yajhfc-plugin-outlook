@@ -33,10 +33,11 @@
 		<!-- Find out if we have valid, precompiled translations -->
 		<uptodate property="i18n.havePrecompiled">
 			<srcfiles dir="i18n" includes="*_*.po"/>
-			<compositemapper>
+			<!-- changed to .properties <compositemapper>
 				<mapper type="glob" from="*.po" to="bin/yajhfc/phonebook/outlook/i18n/*.class" />
 				<mapper type="glob" from="*.po" to="bin/yajhfc/phonebook/outlook/i18n/*$1.class" />
-			</compositemapper>
+			</compositemapper> -->
+			<mapper type="glob" from="*.po" to="bin/yajhfc/phonebook/outlook/i18n/*.properties" />
 		</uptodate>
 		
 		<!-- Create the time stamp -->
@@ -60,23 +61,35 @@
 	</target>
 
 	<target name="i18n" unless="i18n.havePrecompiled" depends="init" description="compile the translations">
-		<mkdir dir="i18n/bin"/>
-		<apply executable="${gettext-path}\msgfmt" dir="i18n" parallel="false" relative="true">
+		<mkdir dir="i18n/bin/yajhfc/phonebook/outlook/i18n"/>
+		<apply executable="${gettext-path}/msgcat" dir="i18n" parallel="false">
+			
+			<arg value="--properties-output"/>
+			<srcfile/>
+			
+			<fileset dir="i18n" includes="*_*.po"/>
+			<mapper type="glob" id="properties-out" from="*.po" to="i18n/bin/yajhfc/phonebook/outlook/i18n/*.properties" />
+			<redirector>
+			   <outputmapper refid="properties-out"/>
+			</redirector>
+		</apply> 
+		<!-- After decommenting, replace "##" with "- -"
+		 <apply executable="${gettext-path}\msgfmt" dir="i18n" parallel="false" relative="true">
 			<env key="Path" value="${env.Path};${java.home}\bin;${java.home}\..\bin"/>
 			
-			<arg value="--java2"/>
+			<arg value="##java2"/>
 			<arg value="-dbin"/>
-			<arg value="--resource=yajhfc.phonebook.outlook.i18n.Messages"/>
-			<targetfile prefix="--locale="/>
+			<arg value="##resource=yajhfc.phonebook.outlook.i18n.Messages"/>
+			<targetfile prefix="##locale="/>
 			<srcfile/>
 			
 			<fileset dir="i18n" includes="*_*.po"/>
 			<mapper type="regexp" from="Messages_(.+)\.po$" to="\1" />
-			<!-- <compositemapper>
+			<!## <compositemapper>
 				<mapper type="glob" from="M*.po" to="bin/yajhfc/phonebook/outlook/i18n/M*.class" />
 				<mapper type="glob" from="M*.po" to="bin/yajhfc/phonebook/outlook/i18n/M*$1.class" />
-			</compositemapper> -->
-		</apply>
+			</compositemapper> ##>
+		</apply> -->
 	</target>
 	
 
@@ -112,17 +125,21 @@
 	<target name="dist" depends="compile,i18n" description="generate the distribution" >
 		<jar jarfile="${jar-output}" manifest="${src}/MANIFEST.MF">
 			<fileset dir="${build}" includes="yajhfc/**,com/**"/>
-			<fileset dir="i18n/bin" includes="**/*.class"/>
+			<fileset dir="i18n/bin" includes="**/*.class,**/*.properties"/>
 		</jar>
 		
 		<zip destfile="${binzip-output}"> 
 			<zipfileset dir="${dist-extra}" />
+			<zipfileset dir="." includes="COPYING" />
 			<zipfileset dir="${build}" includes="*.jar" />  
-			<zipfileset dir="${jacob-path}" prefix="jacob" casesensitive="no">
+			<zipfileset dir="${jacob-path}" prefix="lib" casesensitive="no">
 				<include name="*.jar"/>
 				<include name="*.dll"/>
-				<include name="*.txt"/>
 			</zipfileset>
+			<mappedresources>
+			   <fileset dir="${jacob-path}" includes="*.txt" casesensitive="no"/>
+			   <globmapper from="*" to="lib/jacob-*"/>
+			</mappedresources>
 		</zip>  
 	</target>
 
