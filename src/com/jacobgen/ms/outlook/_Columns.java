@@ -6,7 +6,7 @@ package com.jacobgen.ms.outlook;
 
 import com.jacob.com.*;
 
-public class _Columns extends Dispatch {
+public class _Columns extends CachingDispatch {
 
 	public static final String componentName = "Outlook._Columns";
 
@@ -36,7 +36,7 @@ public class _Columns extends Dispatch {
 	 * @return the result is of type _Application
 	 */
 	public _Application getApplication() {
-		return new _Application(Dispatch.get(this, "Application").toDispatch());
+		return new _Application(Dispatch.get(this, getIDOfName("Application")).toDispatch());
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class _Columns extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getClass1() {
-		return Dispatch.get(this, "Class").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("Class")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class _Columns extends Dispatch {
 	 * @return the result is of type _NameSpace
 	 */
 	public _NameSpace getSession() {
-		return new _NameSpace(Dispatch.get(this, "Session").toDispatch());
+		return new _NameSpace(Dispatch.get(this, getIDOfName("Session")).toDispatch());
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class _Columns extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Object getParent() {
-		return Dispatch.get(this, "Parent");
+		return Dispatch.get(this, getIDOfName("Parent"));
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class _Columns extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getCount() {
-		return Dispatch.get(this, "Count").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("Count")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class _Columns extends Dispatch {
 	 * @return the result is of type _Column
 	 */
 	public _Column item(Variant index) {
-		return new _Column(Dispatch.call(this, "Item", index).toDispatch());
+		return new _Column(Dispatch.call(this, getIDOfName("Item"), index).toDispatch());
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class _Columns extends Dispatch {
 	 * @return the result is of type Column
 	 */
 	public Column add(String name) {
-		return new Column(Dispatch.call(this, "Add", name).toDispatch());
+		return new Column(Dispatch.call(this, getIDOfName("Add"), name).toDispatch());
 	}
 
 	/**
@@ -94,14 +94,14 @@ public class _Columns extends Dispatch {
 	 * @param index an input-parameter of type Variant
 	 */
 	public void remove(Variant index) {
-		Dispatch.call(this, "Remove", index);
+		Dispatch.call(this, getIDOfName("Remove"), index);
 	}
 
 	/**
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 */
 	public void removeAll() {
-		Dispatch.call(this, "RemoveAll");
+		Dispatch.call(this, getIDOfName("RemoveAll"));
 	}
 
 }

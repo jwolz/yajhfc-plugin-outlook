@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -105,24 +106,23 @@ public class OutlookDistList extends DefaultPhoneBookEntry implements
 			if (domain.startsWith("+")) {
 				// If the domain starts with a + (as in +49 12345), assume it is a fax number
 				if (domain.endsWith(ci.getBusinessFaxNumber())) {
-					return new OutlookPhoneBookEntry(parent, ci, parent.propertyMap_Business, null);
+					return createFullEntry(ci, parent.propertyMap_Business);
 				} else if (domain.endsWith(ci.getHomeFaxNumber())) {
-					return new OutlookPhoneBookEntry(parent, ci, parent.propertyMap_Home, null);
+					return createFullEntry(ci, parent.propertyMap_Home);
 				} else if (domain.endsWith(ci.getOtherFaxNumber())) {
-					return new OutlookPhoneBookEntry(parent, ci, parent.propertyMap_Other, null);
+					return createFullEntry(ci, parent.propertyMap_Other);
 				} else {
 					log.info("Could not find fax number '" + domain + "', using no mapping.");
 					return new OlRecipientPhoneBookEntry(parent, rec);
 				}
 			} else {
 				// Assume it is a mail address
-				// If the domain starts with a + (as in +49 12345), assume it is a fax number
 				if (address.endsWith(ci.getEmail1Address())) {
-					return new OutlookPhoneBookEntry(parent, ci, parent.propertyMap_Business, null);
+					return createFullEntry(ci, parent.propertyMap_Business);
 				} else if (address.endsWith(ci.getEmail2Address())) {
-					return new OutlookPhoneBookEntry(parent, ci, parent.propertyMap_Home, null);
+					return createFullEntry(ci, parent.propertyMap_Home);
 				} else if (address.endsWith(ci.getEmail3Address())) {
-					return new OutlookPhoneBookEntry(parent, ci, parent.propertyMap_Other, null);
+					return createFullEntry(ci, parent.propertyMap_Other);
 				} else {
 					log.info("Could not find email '" + address + "', using no mapping.");
 					return new OlRecipientPhoneBookEntry(parent, rec);
@@ -132,6 +132,13 @@ public class OutlookDistList extends DefaultPhoneBookEntry implements
 			log.info("Unknown address in recipient, using no mapping.");
 			return new OlRecipientPhoneBookEntry(parent, rec);
 		}
+	}
+
+
+	private OutlookPhoneBookEntry createFullEntry(_ContactItem ci, Map<PBEntryField,String> fieldMap) {
+		OutlookPhoneBookEntry outlookPhoneBookEntry = new OutlookPhoneBookEntry(parent, ci, fieldMap);
+		outlookPhoneBookEntry.loadFully();
+		return outlookPhoneBookEntry;
 	}
 	
 	@Override

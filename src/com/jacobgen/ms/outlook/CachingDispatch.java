@@ -19,7 +19,7 @@ public class CachingDispatch extends Dispatch {
 		if (idOfName == null) {
 			idOfName = Dispatch.getIDOfName(this, name);
 			classMap.put(name, idOfName);
-			System.out.println(name + " -> " + idOfName);
+			//System.out.println(name + " -> " + idOfName);
 		}
 		return idOfName;
 	}

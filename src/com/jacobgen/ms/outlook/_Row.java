@@ -6,7 +6,7 @@ package com.jacobgen.ms.outlook;
 
 import com.jacob.com.*;
 
-public class _Row extends Dispatch {
+public class _Row extends CachingDispatch {
 
 	public static final String componentName = "Outlook._Row";
 
@@ -36,7 +36,7 @@ public class _Row extends Dispatch {
 	 * @return the result is of type _Application
 	 */
 	public _Application getApplication() {
-		return new _Application(Dispatch.get(this, "Application").toDispatch());
+		return new _Application(Dispatch.get(this, getIDOfName("Application")).toDispatch());
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class _Row extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getClass1() {
-		return Dispatch.get(this, "Class").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("Class")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class _Row extends Dispatch {
 	 * @return the result is of type _NameSpace
 	 */
 	public _NameSpace getSession() {
-		return new _NameSpace(Dispatch.get(this, "Session").toDispatch());
+		return new _NameSpace(Dispatch.get(this, getIDOfName("Session")).toDispatch());
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class _Row extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Object getParent() {
-		return Dispatch.get(this, "Parent");
+		return Dispatch.get(this, getIDOfName("Parent"));
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class _Row extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String binaryToString(Variant index) {
-		return Dispatch.call(this, "BinaryToString", index).toString();
+		return Dispatch.call(this, getIDOfName("BinaryToString"), index).toString();
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class _Row extends Dispatch {
 	 * @return the result is of type Variant
 	 */
 	public Variant getValues() {
-		return Dispatch.call(this, "GetValues");
+		return Dispatch.call(this, getIDOfName("GetValues"));
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class _Row extends Dispatch {
 	 * @return the result is of type Variant
 	 */
 	public Variant item(Variant index) {
-		return Dispatch.call(this, "Item", index);
+		return Dispatch.call(this, getIDOfName("Item"), index);
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class _Row extends Dispatch {
 	 * @return the result is of type java.util.Date
 	 */
 	public java.util.Date localTimeToUTC(Variant index) {
-		return Dispatch.call(this, "LocalTimeToUTC", index).getJavaDate();
+		return Dispatch.call(this, getIDOfName("LocalTimeToUTC"), index).getJavaDate();
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class _Row extends Dispatch {
 	 * @return the result is of type java.util.Date
 	 */
 	public java.util.Date uTCToLocalTime(Variant index) {
-		return Dispatch.call(this, "UTCToLocalTime", index).getJavaDate();
+		return Dispatch.call(this, getIDOfName("UTCToLocalTime"), index).getJavaDate();
 	}
 
 }

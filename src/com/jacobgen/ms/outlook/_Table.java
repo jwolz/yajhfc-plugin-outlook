@@ -6,7 +6,7 @@ package com.jacobgen.ms.outlook;
 
 import com.jacob.com.*;
 
-public class _Table extends Dispatch {
+public class _Table extends CachingDispatch {
 
 	public static final String componentName = "Outlook._Table";
 
@@ -36,7 +36,7 @@ public class _Table extends Dispatch {
 	 * @return the result is of type _Application
 	 */
 	public _Application getApplication() {
-		return new _Application(Dispatch.get(this, "Application").toDispatch());
+		return new _Application(Dispatch.get(this, getIDOfName("Application")).toDispatch());
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class _Table extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getClass1() {
-		return Dispatch.get(this, "Class").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("Class")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class _Table extends Dispatch {
 	 * @return the result is of type _NameSpace
 	 */
 	public _NameSpace getSession() {
-		return new _NameSpace(Dispatch.get(this, "Session").toDispatch());
+		return new _NameSpace(Dispatch.get(this, getIDOfName("Session")).toDispatch());
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class _Table extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Object getParent() {
-		return Dispatch.get(this, "Parent");
+		return Dispatch.get(this, getIDOfName("Parent"));
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class _Table extends Dispatch {
 	 * @return the result is of type Row
 	 */
 	public Row findRow(String filter) {
-		return new Row(Dispatch.call(this, "FindRow", filter).toDispatch());
+		return new Row(Dispatch.call(this, getIDOfName("FindRow"), filter).toDispatch());
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class _Table extends Dispatch {
 	 * @return the result is of type Row
 	 */
 	public Row findNextRow() {
-		return new Row(Dispatch.call(this, "FindNextRow").toDispatch());
+		return new Row(Dispatch.call(this, getIDOfName("FindNextRow")).toDispatch());
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class _Table extends Dispatch {
 	 * @return the result is of type Variant
 	 */
 	public Variant getArray(int maxRows) {
-		return Dispatch.call(this, "GetArray", new Variant(maxRows));
+		return Dispatch.call(this, getIDOfName("GetArray"), new Variant(maxRows));
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class _Table extends Dispatch {
 	 * @return the result is of type Row
 	 */
 	public Row getNextRow() {
-		return new Row(Dispatch.call(this, "GetNextRow").toDispatch());
+		return new Row(Dispatch.call(this, getIDOfName("GetNextRow")).toDispatch());
 	}
 
 	/**
@@ -102,14 +102,14 @@ public class _Table extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getRowCount() {
-		return Dispatch.call(this, "GetRowCount").changeType(Variant.VariantInt).getInt();
+		return Dispatch.call(this, getIDOfName("GetRowCount")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 */
 	public void moveToStart() {
-		Dispatch.call(this, "MoveToStart");
+		Dispatch.call(this, getIDOfName("MoveToStart"));
 	}
 
 	/**
@@ -118,7 +118,7 @@ public class _Table extends Dispatch {
 	 * @return the result is of type Table
 	 */
 	public Table restrict(String filter) {
-		return new Table(Dispatch.call(this, "Restrict", filter).toDispatch());
+		return new Table(Dispatch.call(this, getIDOfName("Restrict"), filter).toDispatch());
 	}
 
 	/**
@@ -127,7 +127,7 @@ public class _Table extends Dispatch {
 	 * @param descending an input-parameter of type Variant
 	 */
 	public void sort(String sortProperty, Variant descending) {
-		Dispatch.call(this, "Sort", sortProperty, descending);
+		Dispatch.call(this, getIDOfName("Sort"), sortProperty, descending);
 	}
 
 	/**
@@ -135,7 +135,7 @@ public class _Table extends Dispatch {
 	 * @param sortProperty an input-parameter of type String
 	 */
 	public void sort(String sortProperty) {
-		Dispatch.call(this, "Sort", sortProperty);
+		Dispatch.call(this, getIDOfName("Sort"), sortProperty);
 	}
 
 
@@ -144,7 +144,7 @@ public class _Table extends Dispatch {
 	 * @return the result is of type Columns
 	 */
 	public Columns getColumns() {
-		return new Columns(Dispatch.get(this, "Columns").toDispatch());
+		return new Columns(Dispatch.get(this, getIDOfName("Columns")).toDispatch());
 	}
 
 	/**
@@ -152,7 +152,7 @@ public class _Table extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getEndOfTable() {
-		return Dispatch.get(this, "EndOfTable").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("EndOfTable")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 }

@@ -22,6 +22,7 @@ import java.awt.Dialog;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -34,9 +35,12 @@ import yajhfc.phonebook.PhoneBookException;
 import yajhfc.util.ExceptionDialog;
 
 import com.jacob.com.Dispatch;
+import com.jacob.com.SafeArray;
 import com.jacob.com.Variant;
+import com.jacobgen.ms.outlook.Columns;
 import com.jacobgen.ms.outlook.MAPIFolder;
 import com.jacobgen.ms.outlook.OlObjectClass;
+import com.jacobgen.ms.outlook.Table;
 import com.jacobgen.ms.outlook._Application;
 import com.jacobgen.ms.outlook._ContactItem;
 import com.jacobgen.ms.outlook._DistListItem;
@@ -72,6 +76,9 @@ public class OutlookPhonebook extends PhoneBook {
 	protected String folderName;
 
 	protected _NameSpace nameSpace;
+	protected _Application app;
+	
+	private boolean useOl2007Api;
 	
 	public OutlookPhonebook(Dialog parent) {
 		super(parent);
@@ -218,7 +225,20 @@ public class OutlookPhonebook extends PhoneBook {
 		try {
 			synchronized (outlookLock) { // Serialize access to Outlook to avoid message filter error
 				log.fine("Creating Application...");
-				_Application app = new _Application("Outlook.Application");
+				app = new _Application("Outlook.Application");
+				
+				String appVersion = app.getVersion();
+				log.info("Outlook version is " + appVersion);
+				
+				int pos = appVersion.indexOf('.');
+				int major = -1;
+				if (pos >= 0) {
+					major = Integer.parseInt(appVersion.substring(0, pos));
+				}
+				useOl2007Api = (major >= 12); // Outlook 2007 has 12.0.0.6562; 2003 is 11....
+				
+				log.fine("Use Outlook 2007+ API: " + useOl2007Api);
+				
 				log.fine("Got Application, getting MAPI namespace");
 				nameSpace = app.getNamespace("MAPI");
 
@@ -229,62 +249,11 @@ public class OutlookPhonebook extends PhoneBook {
 
 				if (Utils.debugMode)
 					log.fine("Got folder name \"" + folderName + "\", reading items now...");
-				_Items cl = contacts.getItems();
-				entries.clear();
-				for (int i=1; i<=cl.getCount(); i++) {
-					Dispatch item = cl.item(i).getDispatch();
-					int itemClass = Dispatch.get(item, "Class").getInt();
-					if (Utils.debugMode) {
-						log.fine("Item #" + i + ": itemClass=" + itemClass);
-					}
-					switch (itemClass) {
-					case OlObjectClass.olContact:
-						if (Utils.debugMode) {
-							log.fine("Item #" + i + ": is a ContactItem");
-						}
-
-						_ContactItem ci = new _ContactItem(item);
-						int numAddresses = 0;
-						boolean haveBusiness = false, haveHome = false, haveOther = false;
-						if (haveAddress(ci, propertyMap_Business)) {
-							haveBusiness = true;
-							numAddresses++;
-						}
-						if (haveAddress(ci, propertyMap_Home)) {
-							haveHome = true;
-							numAddresses++;
-						}
-						if (haveAddress(ci, propertyMap_Other)) {
-							haveOther = true;
-							numAddresses++;
-						}
-						if (Utils.debugMode) {
-							log.fine(ci.getFullName() + ": numAddresses=" + numAddresses + "; haveBusiness=" + haveBusiness + "; haveHome=" + haveHome+ "; haveOther=" + haveOther);
-						}
-						if (haveBusiness || numAddresses == 0) {
-							entries.add(new OutlookPhoneBookEntry(this, ci, propertyMap_Business, (numAddresses > 1) ? _("Business") : null));	
-						}
-						if (haveHome) {
-							entries.add(new OutlookPhoneBookEntry(this, ci, propertyMap_Home, (numAddresses > 1) ? _("Home") : null));	
-						}
-						if (haveOther) {
-							entries.add(new OutlookPhoneBookEntry(this, ci, propertyMap_Other, (numAddresses > 1) ? _("Other") : null));	
-						}
-						break;
-					case OlObjectClass.olDistributionList:
-						if (Utils.debugMode) {
-							log.fine("Item #" + i + ": is a DistListItem");
-						}
-						if (settings.accessDistributionLists) {
-							_DistListItem dl = new _DistListItem(item);
-							entries.add(new OutlookDistList(this, dl));
-						} else {
-							log.info(folderName + ": Ignoring item #" + i + " because it is a DistListItem");
-						}
-						break;
-					default:
-						log.info(folderName + " item #" + i + ": has a unhandled class: " + itemClass);
-					}
+				
+				if (useOl2007Api) {
+					loadOutlook2007(contacts);
+				} else {
+					loadPreOutlook2007(contacts);
 				}
 			}
 			log.fine("Successfully loaded phone book");
@@ -292,24 +261,191 @@ public class OutlookPhonebook extends PhoneBook {
 		} catch (UnsatisfiedLinkError ule) {
 			throw new PhoneBookException("Cannot initialize COM connection to Outlook: " + ule.getMessage(), ule, false);
 		}
-	}
-	
-	protected boolean haveAddress(_ContactItem ci, Map<PBEntryField,String> propertyMap) {
-		for (PBEntryField field : addressFields) {
-			String olProp = propertyMap.get(field);
-			if (olProp != null) {
-				String s = Dispatch.get(ci, ci.getIDOfName(olProp)).toString();
-				if (s != null && s.length() > 0) {
-					return true;
-				}
-			}
-		}
-		return false;
+		nameSpace = null;
+		app = null;
 	}
 
+
+	private void loadOutlook2007(MAPIFolder contacts) {
+		log.info("Loading contacts using Outlook 2007+ API...");
+		entries.clear();
+		
+		// Build the list of needed fields
+		Map<String,Integer> columnMap = new HashMap<String,Integer>();
+		Integer dummy = Integer.valueOf(-1);
+		for (String col : propertyMap_Business.values()) {
+			columnMap.put(col, dummy);
+		}
+		for (String col : propertyMap_Home.values()) {
+			columnMap.put(col, dummy);
+		}
+		for (String col : propertyMap_Other.values()) {
+			columnMap.put(col, dummy);
+		}
+		
+		String[] columns = columnMap.keySet().toArray(new String[columnMap.keySet().size()]);
+		Table tbl = contacts.getTable(new Variant("[MessageClass] = \"IPM.Contact\""));
+		Columns cols = tbl.getColumns();
+		cols.removeAll();
+		for (int i = 0; i < columns.length; i++) {
+			cols.add(columns[i]);
+			columnMap.put(columns[i], i);
+		}
+		
+		if (Utils.debugMode) {
+			log.fine("Union of used columns is: " + columnMap);
+		}
+		
+		// Build index maps:
+		Map<PBEntryField,Integer> indexMap_Business = buildIndexMap(propertyMap_Business, columnMap);
+		Map<PBEntryField,Integer> indexMap_Home = buildIndexMap(propertyMap_Home, columnMap);
+		Map<PBEntryField,Integer> indexMap_Other = buildIndexMap(propertyMap_Other, columnMap);
+		
+		int rowCount = tbl.getRowCount();
+		if (Utils.debugMode) {
+			log.fine("Row count: " + rowCount);
+		}
+		SafeArray tableArray = tbl.getArray(rowCount).toSafeArray(true);
+		if (Utils.debugMode) {
+			log.fine("Got an array: rows=["  + tableArray.getLBound(1) + ".." + tableArray.getUBound(1) + "]; cols=["  + tableArray.getLBound(2) + ".." + tableArray.getUBound(2) + "]");
+		}
+		for (int row=0; row<tableArray.getUBound(1); row++) {
+			int numAddresses = 0;
+			OlTablePhoneBookEntry pbeOther = new OlTablePhoneBookEntry(this, tableArray, row, indexMap_Other);
+			if (pbeOther.hasAddress()) {
+				entries.add(pbeOther);
+				numAddresses++;
+			}
+			OlTablePhoneBookEntry pbeHome = new OlTablePhoneBookEntry(this, tableArray, row, indexMap_Home);
+			if (pbeHome.hasAddress()) {
+				entries.add(pbeHome);
+				numAddresses++;
+			}
+			OlTablePhoneBookEntry pbeBusiness = new OlTablePhoneBookEntry(this, tableArray, row, indexMap_Business);
+			if (numAddresses == 0 || pbeBusiness.hasAddress()) {
+				entries.add(pbeBusiness);
+				numAddresses++;
+			}
+			if (numAddresses > 1) {
+				pbeOther.setSuffix(_("Other"));
+				pbeHome.setSuffix(_("Home"));
+				pbeBusiness.setSuffix(_("Business"));
+			}
+		}
+		
+		//long startTime = System.currentTimeMillis();/
+		// Used 2 secs
+//		SafeArray table = tbl.getArray(tbl.getRowCount()).toSafeArray(true);
+//		for (int i=table.getLBound(1); i<table.getUBound(1); i++) {
+//			//System.out.print("[");
+//			for (int j=table.getLBound(2); j<table.getUBound(2); j++) {
+//				table.getString(new int[] {i,j});
+//			}
+//			//System.out.println("]");
+//		}
+		
+		// Used 13 secs
+//		while (!tbl.getEndOfTable()) {
+//			Row row = tbl.getNextRow();
+//			SafeArray arr = row.getValues().toSafeArray();
+//			for (int i=arr.getLBound(); i<arr.getUBound(); i++) {
+//				arr.getString(i);
+//			}
+//		}
+//		System.out.println(System.currentTimeMillis()-startTime);
+		
+		_Items cl = contacts.getItems();
+		cl = cl.restrict("[MessageClass] = \"IPM.DistList\"");
+		loadOutlookItems(cl);
+	}
+	
+	private Map<PBEntryField,Integer> buildIndexMap(Map<PBEntryField,String> propertyMap, Map<String,Integer> columnMap) {
+		// Coalesce the two maps for performance
+		Map<PBEntryField,Integer> res  = new EnumMap<PBEntryField,Integer>(PBEntryField.class);
+		for (PBEntryField field : propertyMap.keySet()) {
+			Integer i = columnMap.get(propertyMap.get(field));
+			if (i != null) {
+				res.put(field, i);
+			}
+		}
+		return res;
+	}
+	
+	private void loadPreOutlook2007(MAPIFolder contacts) {
+		log.info("Loading contacts using pre-Outlook 2007 API...");
+		entries.clear();
+		
+		_Items cl = contacts.getItems();
+		loadOutlookItems(cl);
+	}
+
+
+	private void loadOutlookItems(_Items cl) {
+		final int dispIDClass = cl.getIDOfName("Class");
+		final int itemCount = cl.getCount();
+		for (int i=1; i<=itemCount; i++) {
+			Dispatch item = cl.item(i).toDispatch();
+			int itemClass = Dispatch.get(item, dispIDClass).getInt();
+			if (Utils.debugMode) {
+				log.fine("Item #" + i + ": itemClass=" + itemClass);
+			}
+			switch (itemClass) {
+			case OlObjectClass.olContact:
+				if (Utils.debugMode) {
+					log.fine("Item #" + i + ": is a ContactItem");
+				}
+
+				_ContactItem ci = new _ContactItem(item);
+				int numAddresses = 0;
+				
+				OutlookPhoneBookEntry pbeOther = new OutlookPhoneBookEntry(this, ci, propertyMap_Other);
+				if (pbeOther.hasAddress()) {
+					pbeOther.loadFully();
+					entries.add(pbeOther);
+					numAddresses++;
+				}
+				OutlookPhoneBookEntry pbeHome = new OutlookPhoneBookEntry(this, ci, propertyMap_Home);
+				if (pbeHome.hasAddress()) {
+					pbeHome.loadFully();
+					entries.add(pbeHome);
+					numAddresses++;
+				}
+				OutlookPhoneBookEntry pbeBusiness = new OutlookPhoneBookEntry(this, ci, propertyMap_Business);
+				if (numAddresses == 0 || pbeBusiness.hasAddress()) {
+					pbeBusiness.loadFully();
+					entries.add(pbeBusiness);
+					numAddresses++;
+				}
+				if (numAddresses > 1) {
+					pbeOther.setSuffix(_("Other"));
+					pbeHome.setSuffix(_("Home"));
+					pbeBusiness.setSuffix(_("Business"));
+				}
+				break;
+			case OlObjectClass.olDistributionList:
+				if (Utils.debugMode) {
+					log.fine("Item #" + i + ": is a DistListItem");
+				}
+				if (settings.accessDistributionLists) {
+					_DistListItem dl = new _DistListItem(item);
+					entries.add(new OutlookDistList(this, dl));
+				} else {
+					log.info(folderName + ": Ignoring item #" + i + " because it is a DistListItem");
+				}
+				break;
+			default:
+				log.info(folderName + " item #" + i + ": has a unhandled class: " + itemClass);
+			}
+		}
+	}
+
+	
 	@Override
 	public void close() {
 		open = false;
+		entries.clear();
+		app = null;
+		nameSpace = null;
 	}
 
 	@Override
