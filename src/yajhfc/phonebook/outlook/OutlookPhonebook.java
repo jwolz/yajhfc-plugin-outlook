@@ -88,7 +88,7 @@ public class OutlookPhonebook extends PhoneBook {
 	protected void loadBusinessAddressMapping(Map<PBEntryField,String> propertyMap) {
 		propertyMap.clear();
 		
-		if (settings.accessEMailAndBody)
+		if (settings.accessEMailAndBody && !useOl2007Api)
 			propertyMap.put(PBEntryField.Comment, "Body");
 		propertyMap.put(PBEntryField.Company, "CompanyName");
 		propertyMap.put(PBEntryField.Country, "BusinessAddressCountry");
@@ -111,7 +111,7 @@ public class OutlookPhonebook extends PhoneBook {
 	protected void loadHomeAddressMapping(Map<PBEntryField,String> propertyMap) {
 		propertyMap.clear();
 		
-		if (settings.accessEMailAndBody)
+		if (settings.accessEMailAndBody && !useOl2007Api)
 			propertyMap.put(PBEntryField.Comment, "Body");
 		//propertyMap.put(PBEntryField.Company, "CompanyName");
 		propertyMap.put(PBEntryField.Country, "HomeAddressCountry");
@@ -134,7 +134,7 @@ public class OutlookPhonebook extends PhoneBook {
 	protected void loadOtherAddressMapping(Map<PBEntryField,String> propertyMap) {
 		propertyMap.clear();
 		
-		if (settings.accessEMailAndBody)
+		if (settings.accessEMailAndBody && !useOl2007Api)
 			propertyMap.put(PBEntryField.Comment, "Body");
 		//propertyMap.put(PBEntryField.Company, "CompanyName");
 		propertyMap.put(PBEntryField.Country, "OtherAddressCountry");
@@ -216,11 +216,6 @@ public class OutlookPhonebook extends PhoneBook {
 					PBEntryField.FaxNumber,
 			};
 		}
-		
-		log.fine("Loading mappings...");
-		loadBusinessAddressMapping(propertyMap_Business);
-		loadHomeAddressMapping(propertyMap_Home);
-		loadOtherAddressMapping(propertyMap_Other);
 
 		try {
 			synchronized (outlookLock) { // Serialize access to Outlook to avoid message filter error
@@ -238,6 +233,11 @@ public class OutlookPhonebook extends PhoneBook {
 				useOl2007Api = (major >= 12); // Outlook 2007 has 12.0.0.6562; 2003 is 11....
 				
 				log.fine("Use Outlook 2007+ API: " + useOl2007Api);
+				
+				log.fine("Loading mappings...");
+				loadBusinessAddressMapping(propertyMap_Business);
+				loadHomeAddressMapping(propertyMap_Home);
+				loadOtherAddressMapping(propertyMap_Other);
 				
 				log.fine("Got Application, getting MAPI namespace");
 				nameSpace = app.getNamespace("MAPI");
