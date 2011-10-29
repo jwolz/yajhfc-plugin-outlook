@@ -51,14 +51,15 @@ public class OutlookPhonebook extends PhoneBook {
 	public static String PB_Prefix = "outlook";      // The prefix of this Phonebook type's descriptor
 	public static String PB_DisplayName = _("Microsoft Outlook contacts"); // A user-readable name for this Phonebook type
 	public static String PB_Description = _("Phone book reading it entries from Microsoft Outlook contacts"); // A user-readable description of this Phonebook type
-
-	protected static final PBEntryField[] addressFields = {
-		PBEntryField.Street,
-		PBEntryField.Location,
-		PBEntryField.VoiceNumber,
-		PBEntryField.FaxNumber,
-	};
 	
+	/**
+	 * Which fields must be present for an address to be loaded
+	 */
+	protected PBEntryField[] addressFields; 
+	
+	/*
+	 * Mappings PBEntryField <-> Outlook property name
+	 */
 	protected final Map<PBEntryField,String> propertyMap_Home  = new EnumMap<PBEntryField,String>(PBEntryField.class);
 	protected final Map<PBEntryField,String> propertyMap_Business  = new EnumMap<PBEntryField,String>(PBEntryField.class);
 	protected final Map<PBEntryField,String> propertyMap_Other  = new EnumMap<PBEntryField,String>(PBEntryField.class);
@@ -196,6 +197,19 @@ public class OutlookPhonebook extends PhoneBook {
 		settings = new OutlookSettings();
 		settings.loadFromString(descriptorWithoutPrefix);
 		
+		if (settings.loadOnlyFaxContacts) {
+			addressFields = new PBEntryField[] {
+					PBEntryField.FaxNumber,
+			};
+		} else {
+			addressFields = new PBEntryField[] {
+					PBEntryField.Street,
+					PBEntryField.Location,
+					PBEntryField.VoiceNumber,
+					PBEntryField.FaxNumber,
+			};
+		}
+		
 		log.fine("Loading mappings...");
 		loadBusinessAddressMapping(propertyMap_Business);
 		loadHomeAddressMapping(propertyMap_Home);
@@ -284,7 +298,7 @@ public class OutlookPhonebook extends PhoneBook {
 		for (PBEntryField field : addressFields) {
 			String olProp = propertyMap.get(field);
 			if (olProp != null) {
-				String s = Dispatch.get(ci, olProp).toString();
+				String s = Dispatch.get(ci, ci.getIDOfName(olProp)).toString();
 				if (s != null && s.length() > 0) {
 					return true;
 				}

@@ -6,7 +6,7 @@ package com.jacobgen.ms.outlook;
 
 import com.jacob.com.*;
 
-public class _Items extends Dispatch {
+public class _Items extends CachingDispatch {
 
 	public static final String componentName = "Outlook._Items";
 
@@ -36,7 +36,7 @@ public class _Items extends Dispatch {
 	 * @return the result is of type _Application
 	 */
 	public _Application getApplication() {
-		return new _Application(Dispatch.get(this, "Application").toDispatch());
+		return new _Application(Dispatch.get(this, getIDOfName("Application")).toDispatch());
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class _Items extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getClass1() {
-		return Dispatch.get(this, "Class").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("Class")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class _Items extends Dispatch {
 	 * @return the result is of type _NameSpace
 	 */
 	public _NameSpace getSession() {
-		return new _NameSpace(Dispatch.get(this, "Session").toDispatch());
+		return new _NameSpace(Dispatch.get(this, getIDOfName("Session")).toDispatch());
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class _Items extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Variant getParent() {
-		return Dispatch.get(this, "Parent");
+		return Dispatch.get(this, getIDOfName("Parent"));
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class _Items extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getCount() {
-		return Dispatch.get(this, "Count").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("Count")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class _Items extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Variant item(Integer index) {
-		return Dispatch.call(this, "Item", index);
+		return Dispatch.call(this, getIDOfName("Item"), index);
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class _Items extends Dispatch {
 	 * @return the result is of type Variant
 	 */
 	public Variant getRawTable() {
-		return Dispatch.get(this, "RawTable");
+		return Dispatch.get(this, getIDOfName("RawTable"));
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class _Items extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getIncludeRecurrences() {
-		return Dispatch.get(this, "IncludeRecurrences").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("IncludeRecurrences")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -101,7 +101,7 @@ public class _Items extends Dispatch {
 	 * @param includeRecurrences an input-parameter of type boolean
 	 */
 	public void setIncludeRecurrences(boolean includeRecurrences) {
-		Dispatch.put(this, "IncludeRecurrences", new Variant(includeRecurrences));
+		Dispatch.put(this, getIDOfName("IncludeRecurrences"), new Variant(includeRecurrences));
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class _Items extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Variant add(Variant type) {
-		return Dispatch.call(this, "Add", type);
+		return Dispatch.call(this, getIDOfName("Add"), type);
 	}
 
 	/**
@@ -118,7 +118,7 @@ public class _Items extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Variant add() {
-		return Dispatch.call(this, "Add");
+		return Dispatch.call(this, getIDOfName("Add"));
 	}
 
 	/**
@@ -127,7 +127,7 @@ public class _Items extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Variant find(String filter) {
-		return Dispatch.call(this, "Find", filter);
+		return Dispatch.call(this, getIDOfName("Find"), filter);
 	}
 
 	/**
@@ -135,7 +135,7 @@ public class _Items extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Variant findNext() {
-		return Dispatch.call(this, "FindNext");
+		return Dispatch.call(this, getIDOfName("FindNext"));
 	}
 
 	/**
@@ -143,7 +143,7 @@ public class _Items extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Variant getFirst() {
-		return Dispatch.call(this, "GetFirst");
+		return Dispatch.call(this, getIDOfName("GetFirst"));
 	}
 
 	/**
@@ -151,7 +151,7 @@ public class _Items extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Variant getLast() {
-		return Dispatch.call(this, "GetLast");
+		return Dispatch.call(this, getIDOfName("GetLast"));
 	}
 
 	/**
@@ -159,7 +159,7 @@ public class _Items extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Variant getNext() {
-		return Dispatch.call(this, "GetNext");
+		return Dispatch.call(this, getIDOfName("GetNext"));
 	}
 
 	/**
@@ -167,7 +167,7 @@ public class _Items extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Variant getPrevious() {
-		return Dispatch.call(this, "GetPrevious");
+		return Dispatch.call(this, getIDOfName("GetPrevious"));
 	}
 
 	/**
@@ -175,14 +175,14 @@ public class _Items extends Dispatch {
 	 * @param index an input-parameter of type int
 	 */
 	public void remove(int index) {
-		Dispatch.call(this, "Remove", new Variant(index));
+		Dispatch.call(this, getIDOfName("Remove"), new Variant(index));
 	}
 
 	/**
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 */
 	public void resetColumns() {
-		Dispatch.call(this, "ResetColumns");
+		Dispatch.call(this, getIDOfName("ResetColumns"));
 	}
 
 	/**
@@ -191,7 +191,7 @@ public class _Items extends Dispatch {
 	 * @return the result is of type _Items
 	 */
 	public _Items restrict(String filter) {
-		return new _Items(Dispatch.call(this, "Restrict", filter).toDispatch());
+		return new _Items(Dispatch.call(this, getIDOfName("Restrict"), filter).toDispatch());
 	}
 
 	/**
@@ -199,7 +199,7 @@ public class _Items extends Dispatch {
 	 * @param columns an input-parameter of type String
 	 */
 	public void setColumns(String columns) {
-		Dispatch.call(this, "SetColumns", columns);
+		Dispatch.call(this, getIDOfName("SetColumns"), columns);
 	}
 
 	/**
@@ -208,7 +208,7 @@ public class _Items extends Dispatch {
 	 * @param descending an input-parameter of type Variant
 	 */
 	public void sort(String property, Variant descending) {
-		Dispatch.call(this, "Sort", property, descending);
+		Dispatch.call(this, getIDOfName("Sort"), property, descending);
 	}
 
 	/**
@@ -216,7 +216,7 @@ public class _Items extends Dispatch {
 	 * @param property an input-parameter of type String
 	 */
 	public void sort(String property) {
-		Dispatch.call(this, "Sort", property);
+		Dispatch.call(this, getIDOfName("Sort"), property);
 	}
 
 }

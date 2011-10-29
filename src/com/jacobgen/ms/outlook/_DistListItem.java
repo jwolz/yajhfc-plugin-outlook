@@ -6,7 +6,7 @@ package com.jacobgen.ms.outlook;
 
 import com.jacob.com.*;
 
-public class _DistListItem extends Dispatch {
+public class _DistListItem extends CachingDispatch {
 
 	public static final String componentName = "Outlook._DistListItem";
 
@@ -36,7 +36,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type _Application
 	 */
 	public _Application getApplication() {
-		return new _Application(Dispatch.get(this, "Application").toDispatch());
+		return new _Application(Dispatch.get(this, getIDOfName("Application")).toDispatch());
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getClass1() {
-		return Dispatch.get(this, "Class").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("Class")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type _NameSpace
 	 */
 	public _NameSpace getSession() {
-		return new _NameSpace(Dispatch.get(this, "Session").toDispatch());
+		return new _NameSpace(Dispatch.get(this, getIDOfName("Session")).toDispatch());
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Object getParent() {
-		return Dispatch.get(this, "Parent");
+		return Dispatch.get(this, getIDOfName("Parent"));
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type Actions
 	 */
 	public Actions getActions() {
-		return new Actions(Dispatch.get(this, "Actions").toDispatch());
+		return new Actions(Dispatch.get(this, getIDOfName("Actions")).toDispatch());
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type Attachments
 	 */
 	public Attachments getAttachments() {
-		return new Attachments(Dispatch.get(this, "Attachments").toDispatch());
+		return new Attachments(Dispatch.get(this, getIDOfName("Attachments")).toDispatch());
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getBillingInformation() {
-		return Dispatch.get(this, "BillingInformation").toString();
+		return Dispatch.get(this, getIDOfName("BillingInformation")).toString();
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class _DistListItem extends Dispatch {
 	 * @param billingInformation an input-parameter of type String
 	 */
 	public void setBillingInformation(String billingInformation) {
-		Dispatch.put(this, "BillingInformation", billingInformation);
+		Dispatch.put(this, getIDOfName("BillingInformation"), billingInformation);
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getBody() {
-		return Dispatch.get(this, "Body").toString();
+		return Dispatch.get(this, getIDOfName("Body")).toString();
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class _DistListItem extends Dispatch {
 	 * @param body an input-parameter of type String
 	 */
 	public void setBody(String body) {
-		Dispatch.put(this, "Body", body);
+		Dispatch.put(this, getIDOfName("Body"), body);
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getCategories() {
-		return Dispatch.get(this, "Categories").toString();
+		return Dispatch.get(this, getIDOfName("Categories")).toString();
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class _DistListItem extends Dispatch {
 	 * @param categories an input-parameter of type String
 	 */
 	public void setCategories(String categories) {
-		Dispatch.put(this, "Categories", categories);
+		Dispatch.put(this, getIDOfName("Categories"), categories);
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getCompanies() {
-		return Dispatch.get(this, "Companies").toString();
+		return Dispatch.get(this, getIDOfName("Companies")).toString();
 	}
 
 	/**
@@ -140,7 +140,7 @@ public class _DistListItem extends Dispatch {
 	 * @param companies an input-parameter of type String
 	 */
 	public void setCompanies(String companies) {
-		Dispatch.put(this, "Companies", companies);
+		Dispatch.put(this, getIDOfName("Companies"), companies);
 	}
 
 	/**
@@ -148,7 +148,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getConversationIndex() {
-		return Dispatch.get(this, "ConversationIndex").toString();
+		return Dispatch.get(this, getIDOfName("ConversationIndex")).toString();
 	}
 
 	/**
@@ -156,7 +156,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getConversationTopic() {
-		return Dispatch.get(this, "ConversationTopic").toString();
+		return Dispatch.get(this, getIDOfName("ConversationTopic")).toString();
 	}
 
 	/**
@@ -164,7 +164,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type java.util.Date
 	 */
 	public java.util.Date getCreationTime() {
-		return Dispatch.get(this, "CreationTime").getJavaDate();
+		return Dispatch.get(this, getIDOfName("CreationTime")).getJavaDate();
 	}
 
 	/**
@@ -172,7 +172,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getEntryID() {
-		return Dispatch.get(this, "EntryID").toString();
+		return Dispatch.get(this, getIDOfName("EntryID")).toString();
 	}
 
 	/**
@@ -180,7 +180,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type FormDescription
 	 */
 	public FormDescription getFormDescription() {
-		return new FormDescription(Dispatch.get(this, "FormDescription").toDispatch());
+		return new FormDescription(Dispatch.get(this, getIDOfName("FormDescription")).toDispatch());
 	}
 
 	/**
@@ -188,7 +188,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type _Inspector
 	 */
 	public _Inspector getGetInspector() {
-		return new _Inspector(Dispatch.get(this, "GetInspector").toDispatch());
+		return new _Inspector(Dispatch.get(this, getIDOfName("GetInspector")).toDispatch());
 	}
 
 	/**
@@ -196,7 +196,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getImportance() {
-		return Dispatch.get(this, "Importance").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("Importance")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -204,7 +204,7 @@ public class _DistListItem extends Dispatch {
 	 * @param importance an input-parameter of type int
 	 */
 	public void setImportance(int importance) {
-		Dispatch.put(this, "Importance", new Variant(importance));
+		Dispatch.put(this, getIDOfName("Importance"), new Variant(importance));
 	}
 
 	/**
@@ -212,7 +212,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type java.util.Date
 	 */
 	public java.util.Date getLastModificationTime() {
-		return Dispatch.get(this, "LastModificationTime").getJavaDate();
+		return Dispatch.get(this, getIDOfName("LastModificationTime")).getJavaDate();
 	}
 
 	/**
@@ -220,7 +220,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type Variant
 	 */
 	public Variant getMAPIOBJECT() {
-		return Dispatch.get(this, "MAPIOBJECT");
+		return Dispatch.get(this, getIDOfName("MAPIOBJECT"));
 	}
 
 	/**
@@ -228,7 +228,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getMessageClass() {
-		return Dispatch.get(this, "MessageClass").toString();
+		return Dispatch.get(this, getIDOfName("MessageClass")).toString();
 	}
 
 	/**
@@ -236,7 +236,7 @@ public class _DistListItem extends Dispatch {
 	 * @param messageClass an input-parameter of type String
 	 */
 	public void setMessageClass(String messageClass) {
-		Dispatch.put(this, "MessageClass", messageClass);
+		Dispatch.put(this, getIDOfName("MessageClass"), messageClass);
 	}
 
 	/**
@@ -244,7 +244,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getMileage() {
-		return Dispatch.get(this, "Mileage").toString();
+		return Dispatch.get(this, getIDOfName("Mileage")).toString();
 	}
 
 	/**
@@ -252,7 +252,7 @@ public class _DistListItem extends Dispatch {
 	 * @param mileage an input-parameter of type String
 	 */
 	public void setMileage(String mileage) {
-		Dispatch.put(this, "Mileage", mileage);
+		Dispatch.put(this, getIDOfName("Mileage"), mileage);
 	}
 
 	/**
@@ -260,7 +260,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getNoAging() {
-		return Dispatch.get(this, "NoAging").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("NoAging")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -268,7 +268,7 @@ public class _DistListItem extends Dispatch {
 	 * @param noAging an input-parameter of type boolean
 	 */
 	public void setNoAging(boolean noAging) {
-		Dispatch.put(this, "NoAging", new Variant(noAging));
+		Dispatch.put(this, getIDOfName("NoAging"), new Variant(noAging));
 	}
 
 	/**
@@ -276,7 +276,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getOutlookInternalVersion() {
-		return Dispatch.get(this, "OutlookInternalVersion").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("OutlookInternalVersion")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -284,7 +284,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getOutlookVersion() {
-		return Dispatch.get(this, "OutlookVersion").toString();
+		return Dispatch.get(this, getIDOfName("OutlookVersion")).toString();
 	}
 
 	/**
@@ -292,7 +292,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getSaved() {
-		return Dispatch.get(this, "Saved").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("Saved")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -300,7 +300,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getSensitivity() {
-		return Dispatch.get(this, "Sensitivity").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("Sensitivity")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -308,7 +308,7 @@ public class _DistListItem extends Dispatch {
 	 * @param sensitivity an input-parameter of type int
 	 */
 	public void setSensitivity(int sensitivity) {
-		Dispatch.put(this, "Sensitivity", new Variant(sensitivity));
+		Dispatch.put(this, getIDOfName("Sensitivity"), new Variant(sensitivity));
 	}
 
 	/**
@@ -316,7 +316,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getSize() {
-		return Dispatch.get(this, "Size").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("Size")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -324,7 +324,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getSubject() {
-		return Dispatch.get(this, "Subject").toString();
+		return Dispatch.get(this, getIDOfName("Subject")).toString();
 	}
 
 	/**
@@ -332,7 +332,7 @@ public class _DistListItem extends Dispatch {
 	 * @param subject an input-parameter of type String
 	 */
 	public void setSubject(String subject) {
-		Dispatch.put(this, "Subject", subject);
+		Dispatch.put(this, getIDOfName("Subject"), subject);
 	}
 
 	/**
@@ -340,7 +340,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getUnRead() {
-		return Dispatch.get(this, "UnRead").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("UnRead")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -348,7 +348,7 @@ public class _DistListItem extends Dispatch {
 	 * @param unRead an input-parameter of type boolean
 	 */
 	public void setUnRead(boolean unRead) {
-		Dispatch.put(this, "UnRead", new Variant(unRead));
+		Dispatch.put(this, getIDOfName("UnRead"), new Variant(unRead));
 	}
 
 	/**
@@ -356,7 +356,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type UserProperties
 	 */
 	public UserProperties getUserProperties() {
-		return new UserProperties(Dispatch.get(this, "UserProperties").toDispatch());
+		return new UserProperties(Dispatch.get(this, getIDOfName("UserProperties")).toDispatch());
 	}
 
 	/**
@@ -364,7 +364,7 @@ public class _DistListItem extends Dispatch {
 	 * @param saveMode an input-parameter of type int
 	 */
 	public void close(int saveMode) {
-		Dispatch.call(this, "Close", new Variant(saveMode));
+		Dispatch.call(this, getIDOfName("Close"), new Variant(saveMode));
 	}
 
 	/**
@@ -372,14 +372,14 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Object copy() {
-		return Dispatch.call(this, "Copy");
+		return Dispatch.call(this, getIDOfName("Copy"));
 	}
 
 	/**
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 */
 	public void delete() {
-		Dispatch.call(this, "Delete");
+		Dispatch.call(this, getIDOfName("Delete"));
 	}
 
 	/**
@@ -387,14 +387,14 @@ public class _DistListItem extends Dispatch {
 	 * @param modal an input-parameter of type Variant
 	 */
 	public void display(Variant modal) {
-		Dispatch.call(this, "Display", modal);
+		Dispatch.call(this, getIDOfName("Display"), modal);
 	}
 
 	/**
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 */
 	public void display() {
-		Dispatch.call(this, "Display");
+		Dispatch.call(this, getIDOfName("Display"));
 	}
 
 //	/**
@@ -402,7 +402,7 @@ public class _DistListItem extends Dispatch {
 //	 * @param modal an input-parameter of type Variant
 //	 */
 //	public void display(Variant modal) {
-//		Dispatch.call(this, "Display", modal);
+//		Dispatch.call(this, getIDOfName("Display"), modal);
 //
 //	}
 
@@ -412,21 +412,21 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Object move(MAPIFolder destFldr) {
-		return Dispatch.call(this, "Move", destFldr);
+		return Dispatch.call(this, getIDOfName("Move"), destFldr);
 	}
 
 	/**
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 */
 	public void printOut() {
-		Dispatch.call(this, "PrintOut");
+		Dispatch.call(this, getIDOfName("PrintOut"));
 	}
 
 	/**
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 */
 	public void save() {
-		Dispatch.call(this, "Save");
+		Dispatch.call(this, getIDOfName("Save"));
 	}
 
 	/**
@@ -435,7 +435,7 @@ public class _DistListItem extends Dispatch {
 	 * @param type an input-parameter of type Variant
 	 */
 	public void saveAs(String path, Variant type) {
-		Dispatch.call(this, "SaveAs", path, type);
+		Dispatch.call(this, getIDOfName("SaveAs"), path, type);
 	}
 
 	/**
@@ -443,7 +443,7 @@ public class _DistListItem extends Dispatch {
 	 * @param path an input-parameter of type String
 	 */
 	public void saveAs(String path) {
-		Dispatch.call(this, "SaveAs", path);
+		Dispatch.call(this, getIDOfName("SaveAs"), path);
 	}
 
 
@@ -452,7 +452,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getDLName() {
-		return Dispatch.get(this, "DLName").toString();
+		return Dispatch.get(this, getIDOfName("DLName")).toString();
 	}
 
 	/**
@@ -460,7 +460,7 @@ public class _DistListItem extends Dispatch {
 	 * @param dLName an input-parameter of type String
 	 */
 	public void setDLName(String dLName) {
-		Dispatch.put(this, "DLName", dLName);
+		Dispatch.put(this, getIDOfName("DLName"), dLName);
 	}
 
 	/**
@@ -468,7 +468,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getMemberCount() {
-		return Dispatch.get(this, "MemberCount").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("MemberCount")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -476,7 +476,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getCheckSum() {
-		return Dispatch.get(this, "CheckSum").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("CheckSum")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -484,7 +484,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type Variant
 	 */
 	public Variant getMembers() {
-		return Dispatch.get(this, "Members");
+		return Dispatch.get(this, getIDOfName("Members"));
 	}
 
 	/**
@@ -492,7 +492,7 @@ public class _DistListItem extends Dispatch {
 	 * @param members an input-parameter of type Variant
 	 */
 	public void setMembers(Variant members) {
-		Dispatch.put(this, "Members", members);
+		Dispatch.put(this, getIDOfName("Members"), members);
 	}
 
 	/**
@@ -500,7 +500,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type Variant
 	 */
 	public Variant getOneOffMembers() {
-		return Dispatch.get(this, "OneOffMembers");
+		return Dispatch.get(this, getIDOfName("OneOffMembers"));
 	}
 
 	/**
@@ -508,7 +508,7 @@ public class _DistListItem extends Dispatch {
 	 * @param oneOffMembers an input-parameter of type Variant
 	 */
 	public void setOneOffMembers(Variant oneOffMembers) {
-		Dispatch.put(this, "OneOffMembers", oneOffMembers);
+		Dispatch.put(this, getIDOfName("OneOffMembers"), oneOffMembers);
 	}
 
 	/**
@@ -516,7 +516,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type Links
 	 */
 	public Links getLinks() {
-		return new Links(Dispatch.get(this, "Links").toDispatch());
+		return new Links(Dispatch.get(this, getIDOfName("Links")).toDispatch());
 	}
 
 	/**
@@ -524,7 +524,7 @@ public class _DistListItem extends Dispatch {
 	 * @param recipients an input-parameter of type Recipients
 	 */
 	public void addMembers(Recipients recipients) {
-		Dispatch.call(this, "AddMembers", recipients);
+		Dispatch.call(this, getIDOfName("AddMembers"), recipients);
 	}
 
 	/**
@@ -532,7 +532,7 @@ public class _DistListItem extends Dispatch {
 	 * @param recipients an input-parameter of type Recipients
 	 */
 	public void removeMembers(Recipients recipients) {
-		Dispatch.call(this, "RemoveMembers", recipients);
+		Dispatch.call(this, getIDOfName("RemoveMembers"), recipients);
 	}
 
 	/**
@@ -541,7 +541,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type Recipient
 	 */
 	public Recipient getMember(int index) {
-		return new Recipient(Dispatch.call(this, "GetMember", new Variant(index)).toDispatch());
+		return new Recipient(Dispatch.call(this, getIDOfName("GetMember"), new Variant(index)).toDispatch());
 	}
 
 	/**
@@ -549,14 +549,14 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getDownloadState() {
-		return Dispatch.get(this, "DownloadState").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("DownloadState")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 */
 	public void showCategoriesDialog() {
-		Dispatch.call(this, "ShowCategoriesDialog");
+		Dispatch.call(this, getIDOfName("ShowCategoriesDialog"));
 	}
 
 	/**
@@ -564,7 +564,7 @@ public class _DistListItem extends Dispatch {
 	 * @param recipient an input-parameter of type Recipient
 	 */
 	public void addMember(Recipient recipient) {
-		Dispatch.call(this, "AddMember", recipient);
+		Dispatch.call(this, getIDOfName("AddMember"), recipient);
 	}
 
 	/**
@@ -572,7 +572,7 @@ public class _DistListItem extends Dispatch {
 	 * @param recipient an input-parameter of type Recipient
 	 */
 	public void removeMember(Recipient recipient) {
-		Dispatch.call(this, "RemoveMember", recipient);
+		Dispatch.call(this, getIDOfName("RemoveMember"), recipient);
 	}
 
 	/**
@@ -580,7 +580,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type ItemProperties
 	 */
 	public ItemProperties getItemProperties() {
-		return new ItemProperties(Dispatch.get(this, "ItemProperties").toDispatch());
+		return new ItemProperties(Dispatch.get(this, getIDOfName("ItemProperties")).toDispatch());
 	}
 
 	/**
@@ -588,7 +588,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getMarkForDownload() {
-		return Dispatch.get(this, "MarkForDownload").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("MarkForDownload")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -596,7 +596,7 @@ public class _DistListItem extends Dispatch {
 	 * @param markForDownload an input-parameter of type int
 	 */
 	public void setMarkForDownload(int markForDownload) {
-		Dispatch.put(this, "MarkForDownload", new Variant(markForDownload));
+		Dispatch.put(this, getIDOfName("MarkForDownload"), new Variant(markForDownload));
 	}
 
 	/**
@@ -604,7 +604,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getIsConflict() {
-		return Dispatch.get(this, "IsConflict").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("IsConflict")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -612,7 +612,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getAutoResolvedWinner() {
-		return Dispatch.get(this, "AutoResolvedWinner").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("AutoResolvedWinner")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -620,7 +620,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type Conflicts
 	 */
 	public Conflicts getConflicts() {
-		return new Conflicts(Dispatch.get(this, "Conflicts").toDispatch());
+		return new Conflicts(Dispatch.get(this, getIDOfName("Conflicts")).toDispatch());
 	}
 
 	/**
@@ -628,7 +628,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type PropertyAccessor
 	 */
 	public PropertyAccessor getPropertyAccessor() {
-		return new PropertyAccessor(Dispatch.get(this, "PropertyAccessor").toDispatch());
+		return new PropertyAccessor(Dispatch.get(this, getIDOfName("PropertyAccessor")).toDispatch());
 	}
 
 	/**
@@ -636,7 +636,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getTaskSubject() {
-		return Dispatch.get(this, "TaskSubject").toString();
+		return Dispatch.get(this, getIDOfName("TaskSubject")).toString();
 	}
 
 	/**
@@ -644,7 +644,7 @@ public class _DistListItem extends Dispatch {
 	 * @param taskSubject an input-parameter of type String
 	 */
 	public void setTaskSubject(String taskSubject) {
-		Dispatch.put(this, "TaskSubject", taskSubject);
+		Dispatch.put(this, getIDOfName("TaskSubject"), taskSubject);
 	}
 
 	/**
@@ -652,7 +652,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type java.util.Date
 	 */
 	public java.util.Date getTaskDueDate() {
-		return Dispatch.get(this, "TaskDueDate").getJavaDate();
+		return Dispatch.get(this, getIDOfName("TaskDueDate")).getJavaDate();
 	}
 
 	/**
@@ -660,7 +660,7 @@ public class _DistListItem extends Dispatch {
 	 * @param taskDueDate an input-parameter of type java.util.Date
 	 */
 	public void setTaskDueDate(java.util.Date taskDueDate) {
-		Dispatch.put(this, "TaskDueDate", new Variant(taskDueDate));
+		Dispatch.put(this, getIDOfName("TaskDueDate"), new Variant(taskDueDate));
 	}
 
 	/**
@@ -668,7 +668,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type java.util.Date
 	 */
 	public java.util.Date getTaskStartDate() {
-		return Dispatch.get(this, "TaskStartDate").getJavaDate();
+		return Dispatch.get(this, getIDOfName("TaskStartDate")).getJavaDate();
 	}
 
 	/**
@@ -676,7 +676,7 @@ public class _DistListItem extends Dispatch {
 	 * @param taskStartDate an input-parameter of type java.util.Date
 	 */
 	public void setTaskStartDate(java.util.Date taskStartDate) {
-		Dispatch.put(this, "TaskStartDate", new Variant(taskStartDate));
+		Dispatch.put(this, getIDOfName("TaskStartDate"), new Variant(taskStartDate));
 	}
 
 	/**
@@ -684,7 +684,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type java.util.Date
 	 */
 	public java.util.Date getTaskCompletedDate() {
-		return Dispatch.get(this, "TaskCompletedDate").getJavaDate();
+		return Dispatch.get(this, getIDOfName("TaskCompletedDate")).getJavaDate();
 	}
 
 	/**
@@ -692,7 +692,7 @@ public class _DistListItem extends Dispatch {
 	 * @param taskCompletedDate an input-parameter of type java.util.Date
 	 */
 	public void setTaskCompletedDate(java.util.Date taskCompletedDate) {
-		Dispatch.put(this, "TaskCompletedDate", new Variant(taskCompletedDate));
+		Dispatch.put(this, getIDOfName("TaskCompletedDate"), new Variant(taskCompletedDate));
 	}
 
 	/**
@@ -700,7 +700,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type java.util.Date
 	 */
 	public java.util.Date getToDoTaskOrdinal() {
-		return Dispatch.get(this, "ToDoTaskOrdinal").getJavaDate();
+		return Dispatch.get(this, getIDOfName("ToDoTaskOrdinal")).getJavaDate();
 	}
 
 	/**
@@ -708,7 +708,7 @@ public class _DistListItem extends Dispatch {
 	 * @param toDoTaskOrdinal an input-parameter of type java.util.Date
 	 */
 	public void setToDoTaskOrdinal(java.util.Date toDoTaskOrdinal) {
-		Dispatch.put(this, "ToDoTaskOrdinal", new Variant(toDoTaskOrdinal));
+		Dispatch.put(this, getIDOfName("ToDoTaskOrdinal"), new Variant(toDoTaskOrdinal));
 	}
 
 	/**
@@ -716,7 +716,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getReminderOverrideDefault() {
-		return Dispatch.get(this, "ReminderOverrideDefault").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("ReminderOverrideDefault")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -724,7 +724,7 @@ public class _DistListItem extends Dispatch {
 	 * @param reminderOverrideDefault an input-parameter of type boolean
 	 */
 	public void setReminderOverrideDefault(boolean reminderOverrideDefault) {
-		Dispatch.put(this, "ReminderOverrideDefault", new Variant(reminderOverrideDefault));
+		Dispatch.put(this, getIDOfName("ReminderOverrideDefault"), new Variant(reminderOverrideDefault));
 	}
 
 	/**
@@ -732,7 +732,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getReminderPlaySound() {
-		return Dispatch.get(this, "ReminderPlaySound").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("ReminderPlaySound")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -740,7 +740,7 @@ public class _DistListItem extends Dispatch {
 	 * @param reminderPlaySound an input-parameter of type boolean
 	 */
 	public void setReminderPlaySound(boolean reminderPlaySound) {
-		Dispatch.put(this, "ReminderPlaySound", new Variant(reminderPlaySound));
+		Dispatch.put(this, getIDOfName("ReminderPlaySound"), new Variant(reminderPlaySound));
 	}
 
 	/**
@@ -748,7 +748,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getReminderSet() {
-		return Dispatch.get(this, "ReminderSet").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("ReminderSet")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -756,7 +756,7 @@ public class _DistListItem extends Dispatch {
 	 * @param reminderSet an input-parameter of type boolean
 	 */
 	public void setReminderSet(boolean reminderSet) {
-		Dispatch.put(this, "ReminderSet", new Variant(reminderSet));
+		Dispatch.put(this, getIDOfName("ReminderSet"), new Variant(reminderSet));
 	}
 
 	/**
@@ -764,7 +764,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getReminderSoundFile() {
-		return Dispatch.get(this, "ReminderSoundFile").toString();
+		return Dispatch.get(this, getIDOfName("ReminderSoundFile")).toString();
 	}
 
 	/**
@@ -772,7 +772,7 @@ public class _DistListItem extends Dispatch {
 	 * @param reminderSoundFile an input-parameter of type String
 	 */
 	public void setReminderSoundFile(String reminderSoundFile) {
-		Dispatch.put(this, "ReminderSoundFile", reminderSoundFile);
+		Dispatch.put(this, getIDOfName("ReminderSoundFile"), reminderSoundFile);
 	}
 
 	/**
@@ -780,7 +780,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type java.util.Date
 	 */
 	public java.util.Date getReminderTime() {
-		return Dispatch.get(this, "ReminderTime").getJavaDate();
+		return Dispatch.get(this, getIDOfName("ReminderTime")).getJavaDate();
 	}
 
 	/**
@@ -788,7 +788,7 @@ public class _DistListItem extends Dispatch {
 	 * @param reminderTime an input-parameter of type java.util.Date
 	 */
 	public void setReminderTime(java.util.Date reminderTime) {
-		Dispatch.put(this, "ReminderTime", new Variant(reminderTime));
+		Dispatch.put(this, getIDOfName("ReminderTime"), new Variant(reminderTime));
 	}
 
 	/**
@@ -796,14 +796,14 @@ public class _DistListItem extends Dispatch {
 	 * @param markInterval an input-parameter of type int
 	 */
 	public void markAsTask(int markInterval) {
-		Dispatch.call(this, "MarkAsTask", new Variant(markInterval));
+		Dispatch.call(this, getIDOfName("MarkAsTask"), new Variant(markInterval));
 	}
 
 	/**
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 */
 	public void clearTaskFlag() {
-		Dispatch.call(this, "ClearTaskFlag");
+		Dispatch.call(this, getIDOfName("ClearTaskFlag"));
 	}
 
 	/**
@@ -811,7 +811,7 @@ public class _DistListItem extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getIsMarkedAsTask() {
-		return Dispatch.get(this, "IsMarkedAsTask").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("IsMarkedAsTask")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 }

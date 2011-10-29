@@ -65,7 +65,7 @@ public class ConnectionDialog extends JDialog {
 	JTree folderTree;
 	Action actSetFolder, actOK;
 	JTextField textSelectedFolder;
-	JCheckBox checkAccessEMailAndBody, checkAccessDistList, checkResolveDistList;
+	JCheckBox checkAccessEMailAndBody, checkAccessDistList, checkResolveDistList, checkOnlyLoadFaxContacts;
 	
 	OutlookTreeNode selectedNode = null, rootNode;
 	
@@ -87,7 +87,7 @@ public class ConnectionDialog extends JDialog {
 	private void initialize() {
 		double[][] dLay = {
 			{border, TableLayout.FILL, border, 0.5, border},
-			{border, TableLayout.PREFERRED, border, TableLayout.PREFERRED, TableLayout.PREFERRED, border, TableLayout.PREFERRED, border, TableLayout.PREFERRED, border, TableLayout.PREFERRED, border, TableLayout.PREFERRED, TableLayout.FILL, border, TableLayout.PREFERRED, border, TableLayout.PREFERRED,  border}
+			{border, TableLayout.PREFERRED, border, TableLayout.PREFERRED, TableLayout.PREFERRED, border, TableLayout.PREFERRED, border, TableLayout.PREFERRED, border, TableLayout.PREFERRED, border, TableLayout.PREFERRED, border, TableLayout.PREFERRED, TableLayout.FILL, border, TableLayout.PREFERRED, border, TableLayout.PREFERRED,  border}
 		};
 		
 		try {
@@ -141,6 +141,8 @@ public class ConnectionDialog extends JDialog {
 		checkResolveDistList = new JCheckBox(_("Resolve distribution list items to full contacts"));
 		checkResolveDistList.setEnabled(false);
 		
+		checkOnlyLoadFaxContacts = new JCheckBox(_("Only load contacts having a fax number"));
+		
 		actSetFolder = new ExcDialogAbstractAction(_("Choose folder")) {
 			@Override
 			protected void actualActionPerformed(ActionEvent e) {
@@ -162,15 +164,16 @@ public class ConnectionDialog extends JDialog {
 		
 		JPanel contentPane = new JPanel(new TableLayout(dLay));
 		contentPane.add(new JLabel(_("Please select which Outlook folder should be used as data source for this phonebook")), "1,1,3,1,c,c");
-		contentPane.add(new JScrollPane(folderTree), "1,3,1,17,f,f");
+		contentPane.add(new JScrollPane(folderTree), "1,3,1,19,f,f");
 		Utils.addWithLabel(contentPane, textSelectedFolder, _("Chosen folder:"), "3,4");
 		contentPane.add(new JButton(actSetFolder), "3,6");
 		contentPane.add(checkAccessEMailAndBody, "3,8");
 		contentPane.add(checkAccessDistList, "3,10");
 		contentPane.add(checkResolveDistList, "3,12");
+		contentPane.add(checkOnlyLoadFaxContacts, "3,14");
 		
-		contentPane.add(new JButton(actOK), "3,15");
-		contentPane.add(new JButton(actCancel), "3,17");
+		contentPane.add(new JButton(actOK), "3,17");
+		contentPane.add(new JButton(actCancel), "3,19");
 	
 		setContentPane(contentPane);
 		pack();
@@ -265,6 +268,7 @@ public class ConnectionDialog extends JDialog {
 		checkAccessEMailAndBody.setSelected(source.accessEMailAndBody);
 		checkAccessDistList.setSelected(source.accessDistributionLists);
 		checkResolveDistList.setSelected(source.resolveDistributionLists);
+		checkOnlyLoadFaxContacts.setSelected(source.loadOnlyFaxContacts);
 	}
 	
 	protected void writeToConnectionSettings(OutlookSettings dest) {
@@ -273,6 +277,7 @@ public class ConnectionDialog extends JDialog {
 		dest.accessEMailAndBody = checkAccessEMailAndBody.isSelected();
 		dest.accessDistributionLists = checkAccessDistList.isSelected();
 		dest.resolveDistributionLists = checkResolveDistList.isSelected();
+		dest.loadOnlyFaxContacts = checkOnlyLoadFaxContacts.isSelected();
 	}
 	
     /**

@@ -6,7 +6,7 @@ package com.jacobgen.ms.outlook;
 
 import com.jacob.com.*;
 
-public class _Application extends Dispatch {
+public class _Application extends CachingDispatch {
 
 	public static final String componentName = "Outlook._Application";
 
@@ -36,7 +36,7 @@ public class _Application extends Dispatch {
 	 * @return the result is of type _Application
 	 */
 	public _Application getApplication() {
-		return new _Application(Dispatch.get(this, "Application").toDispatch());
+		return new _Application(Dispatch.get(this, getIDOfName("Application")).toDispatch());
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class _Application extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getClass1() {
-		return Dispatch.get(this, "Class").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("Class")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class _Application extends Dispatch {
 	 * @return the result is of type _NameSpace
 	 */
 	public _NameSpace getSession() {
-		return new _NameSpace(Dispatch.get(this, "Session").toDispatch());
+		return new _NameSpace(Dispatch.get(this, getIDOfName("Session")).toDispatch());
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class _Application extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Object getParent() {
-		return Dispatch.get(this, "Parent");
+		return Dispatch.get(this, getIDOfName("Parent"));
 	}
 
 //	/**
@@ -68,7 +68,7 @@ public class _Application extends Dispatch {
 //	 * @return the result is of type Assistant
 //	 */
 //	public Assistant getAssistant() {
-//		return new Assistant(Dispatch.get(this, "Assistant").toDispatch());
+//		return new Assistant(Dispatch.get(this, getIDOfName("Assistant")).toDispatch());
 //	}
 
 	/**
@@ -76,7 +76,7 @@ public class _Application extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getName() {
-		return Dispatch.get(this, "Name").toString();
+		return Dispatch.get(this, getIDOfName("Name")).toString();
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class _Application extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getVersion() {
-		return Dispatch.get(this, "Version").toString();
+		return Dispatch.get(this, getIDOfName("Version")).toString();
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class _Application extends Dispatch {
 	 * @return the result is of type _Explorer
 	 */
 	public _Explorer activeExplorer() {
-		return new _Explorer(Dispatch.call(this, "ActiveExplorer").toDispatch());
+		return new _Explorer(Dispatch.call(this, getIDOfName("ActiveExplorer")).toDispatch());
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class _Application extends Dispatch {
 	 * @return the result is of type _Inspector
 	 */
 	public _Inspector activeInspector() {
-		return new _Inspector(Dispatch.call(this, "ActiveInspector").toDispatch());
+		return new _Inspector(Dispatch.call(this, getIDOfName("ActiveInspector")).toDispatch());
 	}
 
 	/**
@@ -109,7 +109,7 @@ public class _Application extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Object createItem(int itemType) {
-		return Dispatch.call(this, "CreateItem", new Variant(itemType));
+		return Dispatch.call(this, getIDOfName("CreateItem"), new Variant(itemType));
 	}
 
 	/**
@@ -119,7 +119,7 @@ public class _Application extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Object createItemFromTemplate(String templatePath, Variant inFolder) {
-		return Dispatch.call(this, "CreateItemFromTemplate", templatePath, inFolder);
+		return Dispatch.call(this, getIDOfName("CreateItemFromTemplate"), templatePath, inFolder);
 	}
 
 	/**
@@ -128,7 +128,7 @@ public class _Application extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Object createItemFromTemplate(String templatePath) {
-		return Dispatch.call(this, "CreateItemFromTemplate", templatePath);
+		return Dispatch.call(this, getIDOfName("CreateItemFromTemplate"), templatePath);
 	}
 
 //	/**
@@ -138,7 +138,7 @@ public class _Application extends Dispatch {
 //	 * @return the result is of type Object
 //	 */
 //	public Object createItemFromTemplate(String templatePath, Variant inFolder) {
-//		Object result_of_CreateItemFromTemplate = Dispatch.call(this, "CreateItemFromTemplate", templatePath, inFolder);
+//		Object result_of_CreateItemFromTemplate = Dispatch.call(this, getIDOfName("CreateItemFromTemplate"), templatePath, inFolder);
 //
 //
 //		return result_of_CreateItemFromTemplate;
@@ -150,7 +150,7 @@ public class _Application extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Object createObject(String objectName) {
-		return Dispatch.call(this, "CreateObject", objectName);
+		return Dispatch.call(this, getIDOfName("CreateObject"), objectName);
 	}
 
 	/**
@@ -159,14 +159,14 @@ public class _Application extends Dispatch {
 	 * @return the result is of type _NameSpace
 	 */
 	public _NameSpace getNamespace(String type) {
-		return new _NameSpace(Dispatch.call(this, "GetNamespace", type).toDispatch());
+		return new _NameSpace(Dispatch.call(this, getIDOfName("GetNamespace"), type).toDispatch());
 	}
 
 	/**
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 */
 	public void quit() {
-		Dispatch.call(this, "Quit");
+		Dispatch.call(this, getIDOfName("Quit"));
 	}
 
 //	/**
@@ -174,7 +174,7 @@ public class _Application extends Dispatch {
 //	 * @return the result is of type COMAddIns
 //	 */
 //	public COMAddIns getCOMAddIns() {
-//		return new COMAddIns(Dispatch.get(this, "COMAddIns").toDispatch());
+//		return new COMAddIns(Dispatch.get(this, getIDOfName("COMAddIns")).toDispatch());
 //	}
 
 	/**
@@ -182,7 +182,7 @@ public class _Application extends Dispatch {
 	 * @return the result is of type _Explorers
 	 */
 	public _Explorers getExplorers() {
-		return new _Explorers(Dispatch.get(this, "Explorers").toDispatch());
+		return new _Explorers(Dispatch.get(this, getIDOfName("Explorers")).toDispatch());
 	}
 
 	/**
@@ -190,7 +190,7 @@ public class _Application extends Dispatch {
 	 * @return the result is of type _Inspectors
 	 */
 	public _Inspectors getInspectors() {
-		return new _Inspectors(Dispatch.get(this, "Inspectors").toDispatch());
+		return new _Inspectors(Dispatch.get(this, getIDOfName("Inspectors")).toDispatch());
 	}
 
 //	/**
@@ -198,7 +198,7 @@ public class _Application extends Dispatch {
 //	 * @return the result is of type LanguageSettings
 //	 */
 //	public LanguageSettings getLanguageSettings() {
-//		return new LanguageSettings(Dispatch.get(this, "LanguageSettings").toDispatch());
+//		return new LanguageSettings(Dispatch.get(this, getIDOfName("LanguageSettings")).toDispatch());
 //	}
 
 	/**
@@ -206,7 +206,7 @@ public class _Application extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getProductCode() {
-		return Dispatch.get(this, "ProductCode").toString();
+		return Dispatch.get(this, getIDOfName("ProductCode")).toString();
 	}
 
 //	/**
@@ -214,7 +214,7 @@ public class _Application extends Dispatch {
 //	 * @return the result is of type AnswerWizard
 //	 */
 //	public AnswerWizard getAnswerWizard() {
-//		return new AnswerWizard(Dispatch.get(this, "AnswerWizard").toDispatch());
+//		return new AnswerWizard(Dispatch.get(this, getIDOfName("AnswerWizard")).toDispatch());
 //	}
 //
 //	/**
@@ -222,7 +222,7 @@ public class _Application extends Dispatch {
 //	 * @return the result is of type MsoFeatureInstall
 //	 */
 //	public MsoFeatureInstall getFeatureInstall() {
-//		return new MsoFeatureInstall(Dispatch.get(this, "FeatureInstall").toDispatch());
+//		return new MsoFeatureInstall(Dispatch.get(this, getIDOfName("FeatureInstall")).toDispatch());
 //	}
 //
 //	/**
@@ -230,7 +230,7 @@ public class _Application extends Dispatch {
 //	 * @param featureInstall an input-parameter of type MsoFeatureInstall
 //	 */
 //	public void setFeatureInstall(MsoFeatureInstall featureInstall) {
-//		Dispatch.put(this, "FeatureInstall", featureInstall);
+//		Dispatch.put(this, getIDOfName("FeatureInstall"), featureInstall);
 //	}
 
 	/**
@@ -238,7 +238,7 @@ public class _Application extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Object activeWindow() {
-		return Dispatch.call(this, "ActiveWindow");
+		return Dispatch.call(this, getIDOfName("ActiveWindow"));
 	}
 
 	/**
@@ -248,7 +248,7 @@ public class _Application extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Object copyFile(String filePath, String destFolderPath) {
-		return Dispatch.call(this, "CopyFile", filePath, destFolderPath);
+		return Dispatch.call(this, getIDOfName("CopyFile"), filePath, destFolderPath);
 	}
 
 	/**
@@ -260,7 +260,7 @@ public class _Application extends Dispatch {
 	 * @return the result is of type Search
 	 */
 	public Search advancedSearch(String scope, Variant filter, Variant searchSubFolders, Variant tag) {
-		return new Search(Dispatch.call(this, "AdvancedSearch", scope, filter, searchSubFolders, tag).toDispatch());
+		return new Search(Dispatch.call(this, getIDOfName("AdvancedSearch"), scope, filter, searchSubFolders, tag).toDispatch());
 	}
 
 	/**
@@ -271,7 +271,7 @@ public class _Application extends Dispatch {
 	 * @return the result is of type Search
 	 */
 	public Search advancedSearch(String scope, Variant filter, Variant searchSubFolders) {
-		return new Search(Dispatch.call(this, "AdvancedSearch", scope, filter, searchSubFolders).toDispatch());
+		return new Search(Dispatch.call(this, getIDOfName("AdvancedSearch"), scope, filter, searchSubFolders).toDispatch());
 	}
 
 	/**
@@ -281,7 +281,7 @@ public class _Application extends Dispatch {
 	 * @return the result is of type Search
 	 */
 	public Search advancedSearch(String scope, Variant filter) {
-		return new Search(Dispatch.call(this, "AdvancedSearch", scope, filter).toDispatch());
+		return new Search(Dispatch.call(this, getIDOfName("AdvancedSearch"), scope, filter).toDispatch());
 	}
 
 	/**
@@ -290,7 +290,7 @@ public class _Application extends Dispatch {
 	 * @return the result is of type Search
 	 */
 	public Search advancedSearch(String scope) {
-		return new Search(Dispatch.call(this, "AdvancedSearch", scope).toDispatch());
+		return new Search(Dispatch.call(this, getIDOfName("AdvancedSearch"), scope).toDispatch());
 	}
 
 //	/**
@@ -302,7 +302,7 @@ public class _Application extends Dispatch {
 //	 * @return the result is of type Search
 //	 */
 //	public Search advancedSearch(String scope, Variant filter, Variant searchSubFolders, Variant tag) {
-//		Search result_of_AdvancedSearch = new Search(Dispatch.call(this, "AdvancedSearch", scope, filter, searchSubFolders, tag).toDispatch());
+//		Search result_of_AdvancedSearch = new Search(Dispatch.call(this, getIDOfName("AdvancedSearch"), scope, filter, searchSubFolders, tag).toDispatch());
 //
 //
 //		return result_of_AdvancedSearch;
@@ -314,7 +314,7 @@ public class _Application extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean isSearchSynchronous(String lookInFolders) {
-		return Dispatch.call(this, "IsSearchSynchronous", lookInFolders).changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.call(this, getIDOfName("IsSearchSynchronous"), lookInFolders).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -322,7 +322,7 @@ public class _Application extends Dispatch {
 	 * @param pvar an input-parameter of type Variant
 	 */
 	public void getNewNickNames(Variant pvar) {
-		Dispatch.call(this, "GetNewNickNames", pvar);
+		Dispatch.call(this, getIDOfName("GetNewNickNames"), pvar);
 	}
 
 	/**
@@ -330,7 +330,7 @@ public class _Application extends Dispatch {
 	 * @return the result is of type _Reminders
 	 */
 	public _Reminders getReminders() {
-		return new _Reminders(Dispatch.get(this, "Reminders").toDispatch());
+		return new _Reminders(Dispatch.get(this, getIDOfName("Reminders")).toDispatch());
 	}
 
 	/**
@@ -338,7 +338,7 @@ public class _Application extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getDefaultProfileName() {
-		return Dispatch.get(this, "DefaultProfileName").toString();
+		return Dispatch.get(this, getIDOfName("DefaultProfileName")).toString();
 	}
 
 	/**
@@ -346,7 +346,7 @@ public class _Application extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getIsTrusted() {
-		return Dispatch.get(this, "IsTrusted").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("IsTrusted")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -356,7 +356,7 @@ public class _Application extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Object getObjectReference(Object item, int referenceType) {
-		return Dispatch.call(this, "GetObjectReference", item, new Variant(referenceType));
+		return Dispatch.call(this, getIDOfName("GetObjectReference"), item, new Variant(referenceType));
 	}
 
 //	/**
@@ -364,7 +364,7 @@ public class _Application extends Dispatch {
 //	 * @return the result is of type IAssistance
 //	 */
 //	public IAssistance getAssistance() {
-//		return new IAssistance(Dispatch.get(this, "Assistance").toDispatch());
+//		return new IAssistance(Dispatch.get(this, getIDOfName("Assistance")).toDispatch());
 //	}
 
 	/**
@@ -372,7 +372,7 @@ public class _Application extends Dispatch {
 	 * @return the result is of type TimeZones
 	 */
 	public TimeZones getTimeZones() {
-		return new TimeZones(Dispatch.get(this, "TimeZones").toDispatch());
+		return new TimeZones(Dispatch.get(this, getIDOfName("TimeZones")).toDispatch());
 	}
 
 }

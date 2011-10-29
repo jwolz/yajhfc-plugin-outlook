@@ -6,7 +6,7 @@ package com.jacobgen.ms.outlook;
 
 import com.jacob.com.*;
 
-public class _ContactItem extends Dispatch {
+public class _ContactItem extends CachingDispatch {
 
 	public static final String componentName = "Outlook._ContactItem";
 
@@ -36,7 +36,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type _Application
 	 */
 	public _Application getApplication() {
-		return new _Application(Dispatch.get(this, "Application").toDispatch());
+		return new _Application(Dispatch.get(this, getIDOfName("Application")).toDispatch());
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getClass1() {
-		return Dispatch.get(this, "Class").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("Class")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type _NameSpace
 	 */
 	public _NameSpace getSession() {
-		return new _NameSpace(Dispatch.get(this, "Session").toDispatch());
+		return new _NameSpace(Dispatch.get(this, getIDOfName("Session")).toDispatch());
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Object getParent() {
-		return Dispatch.get(this, "Parent");
+		return Dispatch.get(this, getIDOfName("Parent"));
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type Actions
 	 */
 	public Actions getActions() {
-		return new Actions(Dispatch.get(this, "Actions").toDispatch());
+		return new Actions(Dispatch.get(this, getIDOfName("Actions")).toDispatch());
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type Attachments
 	 */
 	public Attachments getAttachments() {
-		return new Attachments(Dispatch.get(this, "Attachments").toDispatch());
+		return new Attachments(Dispatch.get(this, getIDOfName("Attachments")).toDispatch());
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getBillingInformation() {
-		return Dispatch.get(this, "BillingInformation").toString();
+		return Dispatch.get(this, getIDOfName("BillingInformation")).toString();
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class _ContactItem extends Dispatch {
 	 * @param billingInformation an input-parameter of type String
 	 */
 	public void setBillingInformation(String billingInformation) {
-		Dispatch.put(this, "BillingInformation", billingInformation);
+		Dispatch.put(this, getIDOfName("BillingInformation"), billingInformation);
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getBody() {
-		return Dispatch.get(this, "Body").toString();
+		return Dispatch.get(this, getIDOfName("Body")).toString();
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class _ContactItem extends Dispatch {
 	 * @param body an input-parameter of type String
 	 */
 	public void setBody(String body) {
-		Dispatch.put(this, "Body", body);
+		Dispatch.put(this, getIDOfName("Body"), body);
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getCategories() {
-		return Dispatch.get(this, "Categories").toString();
+		return Dispatch.get(this, getIDOfName("Categories")).toString();
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class _ContactItem extends Dispatch {
 	 * @param categories an input-parameter of type String
 	 */
 	public void setCategories(String categories) {
-		Dispatch.put(this, "Categories", categories);
+		Dispatch.put(this, getIDOfName("Categories"), categories);
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getCompanies() {
-		return Dispatch.get(this, "Companies").toString();
+		return Dispatch.get(this, getIDOfName("Companies")).toString();
 	}
 
 	/**
@@ -140,7 +140,7 @@ public class _ContactItem extends Dispatch {
 	 * @param companies an input-parameter of type String
 	 */
 	public void setCompanies(String companies) {
-		Dispatch.put(this, "Companies", companies);
+		Dispatch.put(this, getIDOfName("Companies"), companies);
 	}
 
 	/**
@@ -148,7 +148,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getConversationIndex() {
-		return Dispatch.get(this, "ConversationIndex").toString();
+		return Dispatch.get(this, getIDOfName("ConversationIndex")).toString();
 	}
 
 	/**
@@ -156,7 +156,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getConversationTopic() {
-		return Dispatch.get(this, "ConversationTopic").toString();
+		return Dispatch.get(this, getIDOfName("ConversationTopic")).toString();
 	}
 
 	/**
@@ -164,7 +164,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type java.util.Date
 	 */
 	public java.util.Date getCreationTime() {
-		return Dispatch.get(this, "CreationTime").getJavaDate();
+		return Dispatch.get(this, getIDOfName("CreationTime")).getJavaDate();
 	}
 
 	/**
@@ -172,7 +172,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getEntryID() {
-		return Dispatch.get(this, "EntryID").toString();
+		return Dispatch.get(this, getIDOfName("EntryID")).toString();
 	}
 
 	/**
@@ -180,7 +180,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type FormDescription
 	 */
 	public FormDescription getFormDescription() {
-		return new FormDescription(Dispatch.get(this, "FormDescription").toDispatch());
+		return new FormDescription(Dispatch.get(this, getIDOfName("FormDescription")).toDispatch());
 	}
 
 	/**
@@ -188,7 +188,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type _Inspector
 	 */
 	public _Inspector getGetInspector() {
-		return new _Inspector(Dispatch.get(this, "GetInspector").toDispatch());
+		return new _Inspector(Dispatch.get(this, getIDOfName("GetInspector")).toDispatch());
 	}
 
 	/**
@@ -196,7 +196,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getImportance() {
-		return Dispatch.get(this, "Importance").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("Importance")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -204,7 +204,7 @@ public class _ContactItem extends Dispatch {
 	 * @param importance an input-parameter of type int
 	 */
 	public void setImportance(int importance) {
-		Dispatch.put(this, "Importance", new Variant(importance));
+		Dispatch.put(this, getIDOfName("Importance"), new Variant(importance));
 	}
 
 	/**
@@ -212,7 +212,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type java.util.Date
 	 */
 	public java.util.Date getLastModificationTime() {
-		return Dispatch.get(this, "LastModificationTime").getJavaDate();
+		return Dispatch.get(this, getIDOfName("LastModificationTime")).getJavaDate();
 	}
 
 	/**
@@ -220,7 +220,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type Variant
 	 */
 	public Variant getMAPIOBJECT() {
-		return Dispatch.get(this, "MAPIOBJECT");
+		return Dispatch.get(this, getIDOfName("MAPIOBJECT"));
 	}
 
 	/**
@@ -228,7 +228,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getMessageClass() {
-		return Dispatch.get(this, "MessageClass").toString();
+		return Dispatch.get(this, getIDOfName("MessageClass")).toString();
 	}
 
 	/**
@@ -236,7 +236,7 @@ public class _ContactItem extends Dispatch {
 	 * @param messageClass an input-parameter of type String
 	 */
 	public void setMessageClass(String messageClass) {
-		Dispatch.put(this, "MessageClass", messageClass);
+		Dispatch.put(this, getIDOfName("MessageClass"), messageClass);
 	}
 
 	/**
@@ -244,7 +244,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getMileage() {
-		return Dispatch.get(this, "Mileage").toString();
+		return Dispatch.get(this, getIDOfName("Mileage")).toString();
 	}
 
 	/**
@@ -252,7 +252,7 @@ public class _ContactItem extends Dispatch {
 	 * @param mileage an input-parameter of type String
 	 */
 	public void setMileage(String mileage) {
-		Dispatch.put(this, "Mileage", mileage);
+		Dispatch.put(this, getIDOfName("Mileage"), mileage);
 	}
 
 	/**
@@ -260,7 +260,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getNoAging() {
-		return Dispatch.get(this, "NoAging").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("NoAging")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -268,7 +268,7 @@ public class _ContactItem extends Dispatch {
 	 * @param noAging an input-parameter of type boolean
 	 */
 	public void setNoAging(boolean noAging) {
-		Dispatch.put(this, "NoAging", new Variant(noAging));
+		Dispatch.put(this, getIDOfName("NoAging"), new Variant(noAging));
 	}
 
 	/**
@@ -276,7 +276,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getOutlookInternalVersion() {
-		return Dispatch.get(this, "OutlookInternalVersion").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("OutlookInternalVersion")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -284,7 +284,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getOutlookVersion() {
-		return Dispatch.get(this, "OutlookVersion").toString();
+		return Dispatch.get(this, getIDOfName("OutlookVersion")).toString();
 	}
 
 	/**
@@ -292,7 +292,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getSaved() {
-		return Dispatch.get(this, "Saved").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("Saved")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -300,7 +300,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getSensitivity() {
-		return Dispatch.get(this, "Sensitivity").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("Sensitivity")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -308,7 +308,7 @@ public class _ContactItem extends Dispatch {
 	 * @param sensitivity an input-parameter of type int
 	 */
 	public void setSensitivity(int sensitivity) {
-		Dispatch.put(this, "Sensitivity", new Variant(sensitivity));
+		Dispatch.put(this, getIDOfName("Sensitivity"), new Variant(sensitivity));
 	}
 
 	/**
@@ -316,7 +316,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getSize() {
-		return Dispatch.get(this, "Size").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("Size")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -324,7 +324,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getSubject() {
-		return Dispatch.get(this, "Subject").toString();
+		return Dispatch.get(this, getIDOfName("Subject")).toString();
 	}
 
 	/**
@@ -332,7 +332,7 @@ public class _ContactItem extends Dispatch {
 	 * @param subject an input-parameter of type String
 	 */
 	public void setSubject(String subject) {
-		Dispatch.put(this, "Subject", subject);
+		Dispatch.put(this, getIDOfName("Subject"), subject);
 	}
 
 	/**
@@ -340,7 +340,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getUnRead() {
-		return Dispatch.get(this, "UnRead").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("UnRead")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -348,7 +348,7 @@ public class _ContactItem extends Dispatch {
 	 * @param unRead an input-parameter of type boolean
 	 */
 	public void setUnRead(boolean unRead) {
-		Dispatch.put(this, "UnRead", new Variant(unRead));
+		Dispatch.put(this, getIDOfName("UnRead"), new Variant(unRead));
 	}
 
 	/**
@@ -356,7 +356,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type UserProperties
 	 */
 	public UserProperties getUserProperties() {
-		return new UserProperties(Dispatch.get(this, "UserProperties").toDispatch());
+		return new UserProperties(Dispatch.get(this, getIDOfName("UserProperties")).toDispatch());
 	}
 
 	/**
@@ -364,7 +364,7 @@ public class _ContactItem extends Dispatch {
 	 * @param saveMode an input-parameter of type int
 	 */
 	public void close(int saveMode) {
-		Dispatch.call(this, "Close", new Variant(saveMode));
+		Dispatch.call(this, getIDOfName("Close"), new Variant(saveMode));
 	}
 
 	/**
@@ -372,14 +372,14 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Object copy() {
-		return Dispatch.call(this, "Copy");
+		return Dispatch.call(this, getIDOfName("Copy"));
 	}
 
 	/**
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 */
 	public void delete() {
-		Dispatch.call(this, "Delete");
+		Dispatch.call(this, getIDOfName("Delete"));
 	}
 
 	/**
@@ -387,14 +387,14 @@ public class _ContactItem extends Dispatch {
 	 * @param modal an input-parameter of type Variant
 	 */
 	public void display(Variant modal) {
-		Dispatch.call(this, "Display", modal);
+		Dispatch.call(this, getIDOfName("Display"), modal);
 	}
 
 	/**
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 */
 	public void display() {
-		Dispatch.call(this, "Display");
+		Dispatch.call(this, getIDOfName("Display"));
 	}
 
 //	/**
@@ -402,7 +402,7 @@ public class _ContactItem extends Dispatch {
 //	 * @param modal an input-parameter of type Variant
 //	 */
 //	public void display(Variant modal) {
-//		Dispatch.call(this, "Display", modal);
+//		Dispatch.call(this, getIDOfName("Display"), modal);
 //
 //	}
 
@@ -412,21 +412,21 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Object move(MAPIFolder destFldr) {
-		return Dispatch.call(this, "Move", destFldr);
+		return Dispatch.call(this, getIDOfName("Move"), destFldr);
 	}
 
 	/**
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 */
 	public void printOut() {
-		Dispatch.call(this, "PrintOut");
+		Dispatch.call(this, getIDOfName("PrintOut"));
 	}
 
 	/**
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 */
 	public void save() {
-		Dispatch.call(this, "Save");
+		Dispatch.call(this, getIDOfName("Save"));
 	}
 
 	/**
@@ -435,7 +435,7 @@ public class _ContactItem extends Dispatch {
 	 * @param type an input-parameter of type Variant
 	 */
 	public void saveAs(String path, Variant type) {
-		Dispatch.call(this, "SaveAs", path, type);
+		Dispatch.call(this, getIDOfName("SaveAs"), path, type);
 	}
 
 	/**
@@ -443,7 +443,7 @@ public class _ContactItem extends Dispatch {
 	 * @param path an input-parameter of type String
 	 */
 	public void saveAs(String path) {
-		Dispatch.call(this, "SaveAs", path);
+		Dispatch.call(this, getIDOfName("SaveAs"), path);
 	}
 
 //	/**
@@ -452,7 +452,7 @@ public class _ContactItem extends Dispatch {
 //	 * @param type an input-parameter of type Variant
 //	 */
 //	public void saveAs(String path, Variant type) {
-//		Dispatch.call(this, "SaveAs", path, type);
+//		Dispatch.call(this, getIDOfName("SaveAs"), path, type);
 //
 //	}
 
@@ -461,7 +461,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getAccount() {
-		return Dispatch.get(this, "Account").toString();
+		return Dispatch.get(this, getIDOfName("Account")).toString();
 	}
 
 	/**
@@ -469,7 +469,7 @@ public class _ContactItem extends Dispatch {
 	 * @param account an input-parameter of type String
 	 */
 	public void setAccount(String account) {
-		Dispatch.put(this, "Account", account);
+		Dispatch.put(this, getIDOfName("Account"), account);
 	}
 
 	/**
@@ -477,7 +477,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type java.util.Date
 	 */
 	public java.util.Date getAnniversary() {
-		return Dispatch.get(this, "Anniversary").getJavaDate();
+		return Dispatch.get(this, getIDOfName("Anniversary")).getJavaDate();
 	}
 
 	/**
@@ -485,7 +485,7 @@ public class _ContactItem extends Dispatch {
 	 * @param anniversary an input-parameter of type java.util.Date
 	 */
 	public void setAnniversary(java.util.Date anniversary) {
-		Dispatch.put(this, "Anniversary", new Variant(anniversary));
+		Dispatch.put(this, getIDOfName("Anniversary"), new Variant(anniversary));
 	}
 
 	/**
@@ -493,7 +493,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getAssistantName() {
-		return Dispatch.get(this, "AssistantName").toString();
+		return Dispatch.get(this, getIDOfName("AssistantName")).toString();
 	}
 
 	/**
@@ -501,7 +501,7 @@ public class _ContactItem extends Dispatch {
 	 * @param assistantName an input-parameter of type String
 	 */
 	public void setAssistantName(String assistantName) {
-		Dispatch.put(this, "AssistantName", assistantName);
+		Dispatch.put(this, getIDOfName("AssistantName"), assistantName);
 	}
 
 	/**
@@ -509,7 +509,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getAssistantTelephoneNumber() {
-		return Dispatch.get(this, "AssistantTelephoneNumber").toString();
+		return Dispatch.get(this, getIDOfName("AssistantTelephoneNumber")).toString();
 	}
 
 	/**
@@ -517,7 +517,7 @@ public class _ContactItem extends Dispatch {
 	 * @param assistantTelephoneNumber an input-parameter of type String
 	 */
 	public void setAssistantTelephoneNumber(String assistantTelephoneNumber) {
-		Dispatch.put(this, "AssistantTelephoneNumber", assistantTelephoneNumber);
+		Dispatch.put(this, getIDOfName("AssistantTelephoneNumber"), assistantTelephoneNumber);
 	}
 
 	/**
@@ -525,7 +525,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type java.util.Date
 	 */
 	public java.util.Date getBirthday() {
-		return Dispatch.get(this, "Birthday").getJavaDate();
+		return Dispatch.get(this, getIDOfName("Birthday")).getJavaDate();
 	}
 
 	/**
@@ -533,7 +533,7 @@ public class _ContactItem extends Dispatch {
 	 * @param birthday an input-parameter of type java.util.Date
 	 */
 	public void setBirthday(java.util.Date birthday) {
-		Dispatch.put(this, "Birthday", new Variant(birthday));
+		Dispatch.put(this, getIDOfName("Birthday"), new Variant(birthday));
 	}
 
 	/**
@@ -541,7 +541,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getBusiness2TelephoneNumber() {
-		return Dispatch.get(this, "Business2TelephoneNumber").toString();
+		return Dispatch.get(this, getIDOfName("Business2TelephoneNumber")).toString();
 	}
 
 	/**
@@ -549,7 +549,7 @@ public class _ContactItem extends Dispatch {
 	 * @param business2TelephoneNumber an input-parameter of type String
 	 */
 	public void setBusiness2TelephoneNumber(String business2TelephoneNumber) {
-		Dispatch.put(this, "Business2TelephoneNumber", business2TelephoneNumber);
+		Dispatch.put(this, getIDOfName("Business2TelephoneNumber"), business2TelephoneNumber);
 	}
 
 	/**
@@ -557,7 +557,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getBusinessAddress() {
-		return Dispatch.get(this, "BusinessAddress").toString();
+		return Dispatch.get(this, getIDOfName("BusinessAddress")).toString();
 	}
 
 	/**
@@ -565,7 +565,7 @@ public class _ContactItem extends Dispatch {
 	 * @param businessAddress an input-parameter of type String
 	 */
 	public void setBusinessAddress(String businessAddress) {
-		Dispatch.put(this, "BusinessAddress", businessAddress);
+		Dispatch.put(this, getIDOfName("BusinessAddress"), businessAddress);
 	}
 
 	/**
@@ -573,7 +573,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getBusinessAddressCity() {
-		return Dispatch.get(this, "BusinessAddressCity").toString();
+		return Dispatch.get(this, getIDOfName("BusinessAddressCity")).toString();
 	}
 
 	/**
@@ -581,7 +581,7 @@ public class _ContactItem extends Dispatch {
 	 * @param businessAddressCity an input-parameter of type String
 	 */
 	public void setBusinessAddressCity(String businessAddressCity) {
-		Dispatch.put(this, "BusinessAddressCity", businessAddressCity);
+		Dispatch.put(this, getIDOfName("BusinessAddressCity"), businessAddressCity);
 	}
 
 	/**
@@ -589,7 +589,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getBusinessAddressCountry() {
-		return Dispatch.get(this, "BusinessAddressCountry").toString();
+		return Dispatch.get(this, getIDOfName("BusinessAddressCountry")).toString();
 	}
 
 	/**
@@ -597,7 +597,7 @@ public class _ContactItem extends Dispatch {
 	 * @param businessAddressCountry an input-parameter of type String
 	 */
 	public void setBusinessAddressCountry(String businessAddressCountry) {
-		Dispatch.put(this, "BusinessAddressCountry", businessAddressCountry);
+		Dispatch.put(this, getIDOfName("BusinessAddressCountry"), businessAddressCountry);
 	}
 
 	/**
@@ -605,7 +605,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getBusinessAddressPostalCode() {
-		return Dispatch.get(this, "BusinessAddressPostalCode").toString();
+		return Dispatch.get(this, getIDOfName("BusinessAddressPostalCode")).toString();
 	}
 
 	/**
@@ -613,7 +613,7 @@ public class _ContactItem extends Dispatch {
 	 * @param businessAddressPostalCode an input-parameter of type String
 	 */
 	public void setBusinessAddressPostalCode(String businessAddressPostalCode) {
-		Dispatch.put(this, "BusinessAddressPostalCode", businessAddressPostalCode);
+		Dispatch.put(this, getIDOfName("BusinessAddressPostalCode"), businessAddressPostalCode);
 	}
 
 	/**
@@ -621,7 +621,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getBusinessAddressPostOfficeBox() {
-		return Dispatch.get(this, "BusinessAddressPostOfficeBox").toString();
+		return Dispatch.get(this, getIDOfName("BusinessAddressPostOfficeBox")).toString();
 	}
 
 	/**
@@ -629,7 +629,7 @@ public class _ContactItem extends Dispatch {
 	 * @param businessAddressPostOfficeBox an input-parameter of type String
 	 */
 	public void setBusinessAddressPostOfficeBox(String businessAddressPostOfficeBox) {
-		Dispatch.put(this, "BusinessAddressPostOfficeBox", businessAddressPostOfficeBox);
+		Dispatch.put(this, getIDOfName("BusinessAddressPostOfficeBox"), businessAddressPostOfficeBox);
 	}
 
 	/**
@@ -637,7 +637,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getBusinessAddressState() {
-		return Dispatch.get(this, "BusinessAddressState").toString();
+		return Dispatch.get(this, getIDOfName("BusinessAddressState")).toString();
 	}
 
 	/**
@@ -645,7 +645,7 @@ public class _ContactItem extends Dispatch {
 	 * @param businessAddressState an input-parameter of type String
 	 */
 	public void setBusinessAddressState(String businessAddressState) {
-		Dispatch.put(this, "BusinessAddressState", businessAddressState);
+		Dispatch.put(this, getIDOfName("BusinessAddressState"), businessAddressState);
 	}
 
 	/**
@@ -653,7 +653,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getBusinessAddressStreet() {
-		return Dispatch.get(this, "BusinessAddressStreet").toString();
+		return Dispatch.get(this, getIDOfName("BusinessAddressStreet")).toString();
 	}
 
 	/**
@@ -661,7 +661,7 @@ public class _ContactItem extends Dispatch {
 	 * @param businessAddressStreet an input-parameter of type String
 	 */
 	public void setBusinessAddressStreet(String businessAddressStreet) {
-		Dispatch.put(this, "BusinessAddressStreet", businessAddressStreet);
+		Dispatch.put(this, getIDOfName("BusinessAddressStreet"), businessAddressStreet);
 	}
 
 	/**
@@ -669,7 +669,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getBusinessFaxNumber() {
-		return Dispatch.get(this, "BusinessFaxNumber").toString();
+		return Dispatch.get(this, getIDOfName("BusinessFaxNumber")).toString();
 	}
 
 	/**
@@ -677,7 +677,7 @@ public class _ContactItem extends Dispatch {
 	 * @param businessFaxNumber an input-parameter of type String
 	 */
 	public void setBusinessFaxNumber(String businessFaxNumber) {
-		Dispatch.put(this, "BusinessFaxNumber", businessFaxNumber);
+		Dispatch.put(this, getIDOfName("BusinessFaxNumber"), businessFaxNumber);
 	}
 
 	/**
@@ -685,7 +685,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getBusinessHomePage() {
-		return Dispatch.get(this, "BusinessHomePage").toString();
+		return Dispatch.get(this, getIDOfName("BusinessHomePage")).toString();
 	}
 
 	/**
@@ -693,7 +693,7 @@ public class _ContactItem extends Dispatch {
 	 * @param businessHomePage an input-parameter of type String
 	 */
 	public void setBusinessHomePage(String businessHomePage) {
-		Dispatch.put(this, "BusinessHomePage", businessHomePage);
+		Dispatch.put(this, getIDOfName("BusinessHomePage"), businessHomePage);
 	}
 
 	/**
@@ -701,7 +701,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getBusinessTelephoneNumber() {
-		return Dispatch.get(this, "BusinessTelephoneNumber").toString();
+		return Dispatch.get(this, getIDOfName("BusinessTelephoneNumber")).toString();
 	}
 
 	/**
@@ -709,7 +709,7 @@ public class _ContactItem extends Dispatch {
 	 * @param businessTelephoneNumber an input-parameter of type String
 	 */
 	public void setBusinessTelephoneNumber(String businessTelephoneNumber) {
-		Dispatch.put(this, "BusinessTelephoneNumber", businessTelephoneNumber);
+		Dispatch.put(this, getIDOfName("BusinessTelephoneNumber"), businessTelephoneNumber);
 	}
 
 	/**
@@ -717,7 +717,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getCallbackTelephoneNumber() {
-		return Dispatch.get(this, "CallbackTelephoneNumber").toString();
+		return Dispatch.get(this, getIDOfName("CallbackTelephoneNumber")).toString();
 	}
 
 	/**
@@ -725,7 +725,7 @@ public class _ContactItem extends Dispatch {
 	 * @param callbackTelephoneNumber an input-parameter of type String
 	 */
 	public void setCallbackTelephoneNumber(String callbackTelephoneNumber) {
-		Dispatch.put(this, "CallbackTelephoneNumber", callbackTelephoneNumber);
+		Dispatch.put(this, getIDOfName("CallbackTelephoneNumber"), callbackTelephoneNumber);
 	}
 
 	/**
@@ -733,7 +733,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getCarTelephoneNumber() {
-		return Dispatch.get(this, "CarTelephoneNumber").toString();
+		return Dispatch.get(this, getIDOfName("CarTelephoneNumber")).toString();
 	}
 
 	/**
@@ -741,7 +741,7 @@ public class _ContactItem extends Dispatch {
 	 * @param carTelephoneNumber an input-parameter of type String
 	 */
 	public void setCarTelephoneNumber(String carTelephoneNumber) {
-		Dispatch.put(this, "CarTelephoneNumber", carTelephoneNumber);
+		Dispatch.put(this, getIDOfName("CarTelephoneNumber"), carTelephoneNumber);
 	}
 
 	/**
@@ -749,7 +749,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getChildren() {
-		return Dispatch.get(this, "Children").toString();
+		return Dispatch.get(this, getIDOfName("Children")).toString();
 	}
 
 	/**
@@ -757,7 +757,7 @@ public class _ContactItem extends Dispatch {
 	 * @param children an input-parameter of type String
 	 */
 	public void setChildren(String children) {
-		Dispatch.put(this, "Children", children);
+		Dispatch.put(this, getIDOfName("Children"), children);
 	}
 
 	/**
@@ -765,7 +765,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getCompanyAndFullName() {
-		return Dispatch.get(this, "CompanyAndFullName").toString();
+		return Dispatch.get(this, getIDOfName("CompanyAndFullName")).toString();
 	}
 
 	/**
@@ -773,7 +773,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getCompanyLastFirstNoSpace() {
-		return Dispatch.get(this, "CompanyLastFirstNoSpace").toString();
+		return Dispatch.get(this, getIDOfName("CompanyLastFirstNoSpace")).toString();
 	}
 
 	/**
@@ -781,7 +781,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getCompanyLastFirstSpaceOnly() {
-		return Dispatch.get(this, "CompanyLastFirstSpaceOnly").toString();
+		return Dispatch.get(this, getIDOfName("CompanyLastFirstSpaceOnly")).toString();
 	}
 
 	/**
@@ -789,7 +789,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getCompanyMainTelephoneNumber() {
-		return Dispatch.get(this, "CompanyMainTelephoneNumber").toString();
+		return Dispatch.get(this, getIDOfName("CompanyMainTelephoneNumber")).toString();
 	}
 
 	/**
@@ -797,7 +797,7 @@ public class _ContactItem extends Dispatch {
 	 * @param companyMainTelephoneNumber an input-parameter of type String
 	 */
 	public void setCompanyMainTelephoneNumber(String companyMainTelephoneNumber) {
-		Dispatch.put(this, "CompanyMainTelephoneNumber", companyMainTelephoneNumber);
+		Dispatch.put(this, getIDOfName("CompanyMainTelephoneNumber"), companyMainTelephoneNumber);
 	}
 
 	/**
@@ -805,7 +805,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getCompanyName() {
-		return Dispatch.get(this, "CompanyName").toString();
+		return Dispatch.get(this, getIDOfName("CompanyName")).toString();
 	}
 
 	/**
@@ -813,7 +813,7 @@ public class _ContactItem extends Dispatch {
 	 * @param companyName an input-parameter of type String
 	 */
 	public void setCompanyName(String companyName) {
-		Dispatch.put(this, "CompanyName", companyName);
+		Dispatch.put(this, getIDOfName("CompanyName"), companyName);
 	}
 
 	/**
@@ -821,7 +821,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getComputerNetworkName() {
-		return Dispatch.get(this, "ComputerNetworkName").toString();
+		return Dispatch.get(this, getIDOfName("ComputerNetworkName")).toString();
 	}
 
 	/**
@@ -829,7 +829,7 @@ public class _ContactItem extends Dispatch {
 	 * @param computerNetworkName an input-parameter of type String
 	 */
 	public void setComputerNetworkName(String computerNetworkName) {
-		Dispatch.put(this, "ComputerNetworkName", computerNetworkName);
+		Dispatch.put(this, getIDOfName("ComputerNetworkName"), computerNetworkName);
 	}
 
 	/**
@@ -837,7 +837,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getCustomerID() {
-		return Dispatch.get(this, "CustomerID").toString();
+		return Dispatch.get(this, getIDOfName("CustomerID")).toString();
 	}
 
 	/**
@@ -845,7 +845,7 @@ public class _ContactItem extends Dispatch {
 	 * @param customerID an input-parameter of type String
 	 */
 	public void setCustomerID(String customerID) {
-		Dispatch.put(this, "CustomerID", customerID);
+		Dispatch.put(this, getIDOfName("CustomerID"), customerID);
 	}
 
 	/**
@@ -853,7 +853,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getDepartment() {
-		return Dispatch.get(this, "Department").toString();
+		return Dispatch.get(this, getIDOfName("Department")).toString();
 	}
 
 	/**
@@ -861,7 +861,7 @@ public class _ContactItem extends Dispatch {
 	 * @param department an input-parameter of type String
 	 */
 	public void setDepartment(String department) {
-		Dispatch.put(this, "Department", department);
+		Dispatch.put(this, getIDOfName("Department"), department);
 	}
 
 	/**
@@ -869,7 +869,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getEmail1Address() {
-		return Dispatch.get(this, "Email1Address").toString();
+		return Dispatch.get(this, getIDOfName("Email1Address")).toString();
 	}
 
 	/**
@@ -877,7 +877,7 @@ public class _ContactItem extends Dispatch {
 	 * @param email1Address an input-parameter of type String
 	 */
 	public void setEmail1Address(String email1Address) {
-		Dispatch.put(this, "Email1Address", email1Address);
+		Dispatch.put(this, getIDOfName("Email1Address"), email1Address);
 	}
 
 	/**
@@ -885,7 +885,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getEmail1AddressType() {
-		return Dispatch.get(this, "Email1AddressType").toString();
+		return Dispatch.get(this, getIDOfName("Email1AddressType")).toString();
 	}
 
 	/**
@@ -893,7 +893,7 @@ public class _ContactItem extends Dispatch {
 	 * @param email1AddressType an input-parameter of type String
 	 */
 	public void setEmail1AddressType(String email1AddressType) {
-		Dispatch.put(this, "Email1AddressType", email1AddressType);
+		Dispatch.put(this, getIDOfName("Email1AddressType"), email1AddressType);
 	}
 
 	/**
@@ -901,7 +901,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getEmail1DisplayName() {
-		return Dispatch.get(this, "Email1DisplayName").toString();
+		return Dispatch.get(this, getIDOfName("Email1DisplayName")).toString();
 	}
 
 	/**
@@ -909,7 +909,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getEmail1EntryID() {
-		return Dispatch.get(this, "Email1EntryID").toString();
+		return Dispatch.get(this, getIDOfName("Email1EntryID")).toString();
 	}
 
 	/**
@@ -917,7 +917,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getEmail2Address() {
-		return Dispatch.get(this, "Email2Address").toString();
+		return Dispatch.get(this, getIDOfName("Email2Address")).toString();
 	}
 
 	/**
@@ -925,7 +925,7 @@ public class _ContactItem extends Dispatch {
 	 * @param email2Address an input-parameter of type String
 	 */
 	public void setEmail2Address(String email2Address) {
-		Dispatch.put(this, "Email2Address", email2Address);
+		Dispatch.put(this, getIDOfName("Email2Address"), email2Address);
 	}
 
 	/**
@@ -933,7 +933,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getEmail2AddressType() {
-		return Dispatch.get(this, "Email2AddressType").toString();
+		return Dispatch.get(this, getIDOfName("Email2AddressType")).toString();
 	}
 
 	/**
@@ -941,7 +941,7 @@ public class _ContactItem extends Dispatch {
 	 * @param email2AddressType an input-parameter of type String
 	 */
 	public void setEmail2AddressType(String email2AddressType) {
-		Dispatch.put(this, "Email2AddressType", email2AddressType);
+		Dispatch.put(this, getIDOfName("Email2AddressType"), email2AddressType);
 	}
 
 	/**
@@ -949,7 +949,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getEmail2DisplayName() {
-		return Dispatch.get(this, "Email2DisplayName").toString();
+		return Dispatch.get(this, getIDOfName("Email2DisplayName")).toString();
 	}
 
 	/**
@@ -957,7 +957,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getEmail2EntryID() {
-		return Dispatch.get(this, "Email2EntryID").toString();
+		return Dispatch.get(this, getIDOfName("Email2EntryID")).toString();
 	}
 
 	/**
@@ -965,7 +965,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getEmail3Address() {
-		return Dispatch.get(this, "Email3Address").toString();
+		return Dispatch.get(this, getIDOfName("Email3Address")).toString();
 	}
 
 	/**
@@ -973,7 +973,7 @@ public class _ContactItem extends Dispatch {
 	 * @param email3Address an input-parameter of type String
 	 */
 	public void setEmail3Address(String email3Address) {
-		Dispatch.put(this, "Email3Address", email3Address);
+		Dispatch.put(this, getIDOfName("Email3Address"), email3Address);
 	}
 
 	/**
@@ -981,7 +981,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getEmail3AddressType() {
-		return Dispatch.get(this, "Email3AddressType").toString();
+		return Dispatch.get(this, getIDOfName("Email3AddressType")).toString();
 	}
 
 	/**
@@ -989,7 +989,7 @@ public class _ContactItem extends Dispatch {
 	 * @param email3AddressType an input-parameter of type String
 	 */
 	public void setEmail3AddressType(String email3AddressType) {
-		Dispatch.put(this, "Email3AddressType", email3AddressType);
+		Dispatch.put(this, getIDOfName("Email3AddressType"), email3AddressType);
 	}
 
 	/**
@@ -997,7 +997,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getEmail3DisplayName() {
-		return Dispatch.get(this, "Email3DisplayName").toString();
+		return Dispatch.get(this, getIDOfName("Email3DisplayName")).toString();
 	}
 
 	/**
@@ -1005,7 +1005,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getEmail3EntryID() {
-		return Dispatch.get(this, "Email3EntryID").toString();
+		return Dispatch.get(this, getIDOfName("Email3EntryID")).toString();
 	}
 
 	/**
@@ -1013,7 +1013,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getFileAs() {
-		return Dispatch.get(this, "FileAs").toString();
+		return Dispatch.get(this, getIDOfName("FileAs")).toString();
 	}
 
 	/**
@@ -1021,7 +1021,7 @@ public class _ContactItem extends Dispatch {
 	 * @param fileAs an input-parameter of type String
 	 */
 	public void setFileAs(String fileAs) {
-		Dispatch.put(this, "FileAs", fileAs);
+		Dispatch.put(this, getIDOfName("FileAs"), fileAs);
 	}
 
 	/**
@@ -1029,7 +1029,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getFirstName() {
-		return Dispatch.get(this, "FirstName").toString();
+		return Dispatch.get(this, getIDOfName("FirstName")).toString();
 	}
 
 	/**
@@ -1037,7 +1037,7 @@ public class _ContactItem extends Dispatch {
 	 * @param firstName an input-parameter of type String
 	 */
 	public void setFirstName(String firstName) {
-		Dispatch.put(this, "FirstName", firstName);
+		Dispatch.put(this, getIDOfName("FirstName"), firstName);
 	}
 
 	/**
@@ -1045,7 +1045,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getFTPSite() {
-		return Dispatch.get(this, "FTPSite").toString();
+		return Dispatch.get(this, getIDOfName("FTPSite")).toString();
 	}
 
 	/**
@@ -1053,7 +1053,7 @@ public class _ContactItem extends Dispatch {
 	 * @param fTPSite an input-parameter of type String
 	 */
 	public void setFTPSite(String fTPSite) {
-		Dispatch.put(this, "FTPSite", fTPSite);
+		Dispatch.put(this, getIDOfName("FTPSite"), fTPSite);
 	}
 
 	/**
@@ -1061,7 +1061,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getFullName() {
-		return Dispatch.get(this, "FullName").toString();
+		return Dispatch.get(this, getIDOfName("FullName")).toString();
 	}
 
 	/**
@@ -1069,7 +1069,7 @@ public class _ContactItem extends Dispatch {
 	 * @param fullName an input-parameter of type String
 	 */
 	public void setFullName(String fullName) {
-		Dispatch.put(this, "FullName", fullName);
+		Dispatch.put(this, getIDOfName("FullName"), fullName);
 	}
 
 	/**
@@ -1077,7 +1077,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getFullNameAndCompany() {
-		return Dispatch.get(this, "FullNameAndCompany").toString();
+		return Dispatch.get(this, getIDOfName("FullNameAndCompany")).toString();
 	}
 
 	/**
@@ -1085,7 +1085,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getGender() {
-		return Dispatch.get(this, "Gender").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("Gender")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -1093,7 +1093,7 @@ public class _ContactItem extends Dispatch {
 	 * @param gender an input-parameter of type int
 	 */
 	public void setGender(int gender) {
-		Dispatch.put(this, "Gender", new Variant(gender));
+		Dispatch.put(this, getIDOfName("Gender"), new Variant(gender));
 	}
 
 	/**
@@ -1101,7 +1101,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getGovernmentIDNumber() {
-		return Dispatch.get(this, "GovernmentIDNumber").toString();
+		return Dispatch.get(this, getIDOfName("GovernmentIDNumber")).toString();
 	}
 
 	/**
@@ -1109,7 +1109,7 @@ public class _ContactItem extends Dispatch {
 	 * @param governmentIDNumber an input-parameter of type String
 	 */
 	public void setGovernmentIDNumber(String governmentIDNumber) {
-		Dispatch.put(this, "GovernmentIDNumber", governmentIDNumber);
+		Dispatch.put(this, getIDOfName("GovernmentIDNumber"), governmentIDNumber);
 	}
 
 	/**
@@ -1117,7 +1117,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getHobby() {
-		return Dispatch.get(this, "Hobby").toString();
+		return Dispatch.get(this, getIDOfName("Hobby")).toString();
 	}
 
 	/**
@@ -1125,7 +1125,7 @@ public class _ContactItem extends Dispatch {
 	 * @param hobby an input-parameter of type String
 	 */
 	public void setHobby(String hobby) {
-		Dispatch.put(this, "Hobby", hobby);
+		Dispatch.put(this, getIDOfName("Hobby"), hobby);
 	}
 
 	/**
@@ -1133,7 +1133,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getHome2TelephoneNumber() {
-		return Dispatch.get(this, "Home2TelephoneNumber").toString();
+		return Dispatch.get(this, getIDOfName("Home2TelephoneNumber")).toString();
 	}
 
 	/**
@@ -1141,7 +1141,7 @@ public class _ContactItem extends Dispatch {
 	 * @param home2TelephoneNumber an input-parameter of type String
 	 */
 	public void setHome2TelephoneNumber(String home2TelephoneNumber) {
-		Dispatch.put(this, "Home2TelephoneNumber", home2TelephoneNumber);
+		Dispatch.put(this, getIDOfName("Home2TelephoneNumber"), home2TelephoneNumber);
 	}
 
 	/**
@@ -1149,7 +1149,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getHomeAddress() {
-		return Dispatch.get(this, "HomeAddress").toString();
+		return Dispatch.get(this, getIDOfName("HomeAddress")).toString();
 	}
 
 	/**
@@ -1157,7 +1157,7 @@ public class _ContactItem extends Dispatch {
 	 * @param homeAddress an input-parameter of type String
 	 */
 	public void setHomeAddress(String homeAddress) {
-		Dispatch.put(this, "HomeAddress", homeAddress);
+		Dispatch.put(this, getIDOfName("HomeAddress"), homeAddress);
 	}
 
 	/**
@@ -1165,7 +1165,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getHomeAddressCity() {
-		return Dispatch.get(this, "HomeAddressCity").toString();
+		return Dispatch.get(this, getIDOfName("HomeAddressCity")).toString();
 	}
 
 	/**
@@ -1173,7 +1173,7 @@ public class _ContactItem extends Dispatch {
 	 * @param homeAddressCity an input-parameter of type String
 	 */
 	public void setHomeAddressCity(String homeAddressCity) {
-		Dispatch.put(this, "HomeAddressCity", homeAddressCity);
+		Dispatch.put(this, getIDOfName("HomeAddressCity"), homeAddressCity);
 	}
 
 	/**
@@ -1181,7 +1181,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getHomeAddressCountry() {
-		return Dispatch.get(this, "HomeAddressCountry").toString();
+		return Dispatch.get(this, getIDOfName("HomeAddressCountry")).toString();
 	}
 
 	/**
@@ -1189,7 +1189,7 @@ public class _ContactItem extends Dispatch {
 	 * @param homeAddressCountry an input-parameter of type String
 	 */
 	public void setHomeAddressCountry(String homeAddressCountry) {
-		Dispatch.put(this, "HomeAddressCountry", homeAddressCountry);
+		Dispatch.put(this, getIDOfName("HomeAddressCountry"), homeAddressCountry);
 	}
 
 	/**
@@ -1197,7 +1197,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getHomeAddressPostalCode() {
-		return Dispatch.get(this, "HomeAddressPostalCode").toString();
+		return Dispatch.get(this, getIDOfName("HomeAddressPostalCode")).toString();
 	}
 
 	/**
@@ -1205,7 +1205,7 @@ public class _ContactItem extends Dispatch {
 	 * @param homeAddressPostalCode an input-parameter of type String
 	 */
 	public void setHomeAddressPostalCode(String homeAddressPostalCode) {
-		Dispatch.put(this, "HomeAddressPostalCode", homeAddressPostalCode);
+		Dispatch.put(this, getIDOfName("HomeAddressPostalCode"), homeAddressPostalCode);
 	}
 
 	/**
@@ -1213,7 +1213,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getHomeAddressPostOfficeBox() {
-		return Dispatch.get(this, "HomeAddressPostOfficeBox").toString();
+		return Dispatch.get(this, getIDOfName("HomeAddressPostOfficeBox")).toString();
 	}
 
 	/**
@@ -1221,7 +1221,7 @@ public class _ContactItem extends Dispatch {
 	 * @param homeAddressPostOfficeBox an input-parameter of type String
 	 */
 	public void setHomeAddressPostOfficeBox(String homeAddressPostOfficeBox) {
-		Dispatch.put(this, "HomeAddressPostOfficeBox", homeAddressPostOfficeBox);
+		Dispatch.put(this, getIDOfName("HomeAddressPostOfficeBox"), homeAddressPostOfficeBox);
 	}
 
 	/**
@@ -1229,7 +1229,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getHomeAddressState() {
-		return Dispatch.get(this, "HomeAddressState").toString();
+		return Dispatch.get(this, getIDOfName("HomeAddressState")).toString();
 	}
 
 	/**
@@ -1237,7 +1237,7 @@ public class _ContactItem extends Dispatch {
 	 * @param homeAddressState an input-parameter of type String
 	 */
 	public void setHomeAddressState(String homeAddressState) {
-		Dispatch.put(this, "HomeAddressState", homeAddressState);
+		Dispatch.put(this, getIDOfName("HomeAddressState"), homeAddressState);
 	}
 
 	/**
@@ -1245,7 +1245,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getHomeAddressStreet() {
-		return Dispatch.get(this, "HomeAddressStreet").toString();
+		return Dispatch.get(this, getIDOfName("HomeAddressStreet")).toString();
 	}
 
 	/**
@@ -1253,7 +1253,7 @@ public class _ContactItem extends Dispatch {
 	 * @param homeAddressStreet an input-parameter of type String
 	 */
 	public void setHomeAddressStreet(String homeAddressStreet) {
-		Dispatch.put(this, "HomeAddressStreet", homeAddressStreet);
+		Dispatch.put(this, getIDOfName("HomeAddressStreet"), homeAddressStreet);
 	}
 
 	/**
@@ -1261,7 +1261,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getHomeFaxNumber() {
-		return Dispatch.get(this, "HomeFaxNumber").toString();
+		return Dispatch.get(this, getIDOfName("HomeFaxNumber")).toString();
 	}
 
 	/**
@@ -1269,7 +1269,7 @@ public class _ContactItem extends Dispatch {
 	 * @param homeFaxNumber an input-parameter of type String
 	 */
 	public void setHomeFaxNumber(String homeFaxNumber) {
-		Dispatch.put(this, "HomeFaxNumber", homeFaxNumber);
+		Dispatch.put(this, getIDOfName("HomeFaxNumber"), homeFaxNumber);
 	}
 
 	/**
@@ -1277,7 +1277,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getHomeTelephoneNumber() {
-		return Dispatch.get(this, "HomeTelephoneNumber").toString();
+		return Dispatch.get(this, getIDOfName("HomeTelephoneNumber")).toString();
 	}
 
 	/**
@@ -1285,7 +1285,7 @@ public class _ContactItem extends Dispatch {
 	 * @param homeTelephoneNumber an input-parameter of type String
 	 */
 	public void setHomeTelephoneNumber(String homeTelephoneNumber) {
-		Dispatch.put(this, "HomeTelephoneNumber", homeTelephoneNumber);
+		Dispatch.put(this, getIDOfName("HomeTelephoneNumber"), homeTelephoneNumber);
 	}
 
 	/**
@@ -1293,7 +1293,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getInitials() {
-		return Dispatch.get(this, "Initials").toString();
+		return Dispatch.get(this, getIDOfName("Initials")).toString();
 	}
 
 	/**
@@ -1301,7 +1301,7 @@ public class _ContactItem extends Dispatch {
 	 * @param initials an input-parameter of type String
 	 */
 	public void setInitials(String initials) {
-		Dispatch.put(this, "Initials", initials);
+		Dispatch.put(this, getIDOfName("Initials"), initials);
 	}
 
 	/**
@@ -1309,7 +1309,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getInternetFreeBusyAddress() {
-		return Dispatch.get(this, "InternetFreeBusyAddress").toString();
+		return Dispatch.get(this, getIDOfName("InternetFreeBusyAddress")).toString();
 	}
 
 	/**
@@ -1317,7 +1317,7 @@ public class _ContactItem extends Dispatch {
 	 * @param internetFreeBusyAddress an input-parameter of type String
 	 */
 	public void setInternetFreeBusyAddress(String internetFreeBusyAddress) {
-		Dispatch.put(this, "InternetFreeBusyAddress", internetFreeBusyAddress);
+		Dispatch.put(this, getIDOfName("InternetFreeBusyAddress"), internetFreeBusyAddress);
 	}
 
 	/**
@@ -1325,7 +1325,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getISDNNumber() {
-		return Dispatch.get(this, "ISDNNumber").toString();
+		return Dispatch.get(this, getIDOfName("ISDNNumber")).toString();
 	}
 
 	/**
@@ -1333,7 +1333,7 @@ public class _ContactItem extends Dispatch {
 	 * @param iSDNNumber an input-parameter of type String
 	 */
 	public void setISDNNumber(String iSDNNumber) {
-		Dispatch.put(this, "ISDNNumber", iSDNNumber);
+		Dispatch.put(this, getIDOfName("ISDNNumber"), iSDNNumber);
 	}
 
 	/**
@@ -1341,7 +1341,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getJobTitle() {
-		return Dispatch.get(this, "JobTitle").toString();
+		return Dispatch.get(this, getIDOfName("JobTitle")).toString();
 	}
 
 	/**
@@ -1349,7 +1349,7 @@ public class _ContactItem extends Dispatch {
 	 * @param jobTitle an input-parameter of type String
 	 */
 	public void setJobTitle(String jobTitle) {
-		Dispatch.put(this, "JobTitle", jobTitle);
+		Dispatch.put(this, getIDOfName("JobTitle"), jobTitle);
 	}
 
 	/**
@@ -1357,7 +1357,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getJournal() {
-		return Dispatch.get(this, "Journal").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("Journal")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -1365,7 +1365,7 @@ public class _ContactItem extends Dispatch {
 	 * @param journal an input-parameter of type boolean
 	 */
 	public void setJournal(boolean journal) {
-		Dispatch.put(this, "Journal", new Variant(journal));
+		Dispatch.put(this, getIDOfName("Journal"), new Variant(journal));
 	}
 
 	/**
@@ -1373,7 +1373,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getLanguage() {
-		return Dispatch.get(this, "Language").toString();
+		return Dispatch.get(this, getIDOfName("Language")).toString();
 	}
 
 	/**
@@ -1381,7 +1381,7 @@ public class _ContactItem extends Dispatch {
 	 * @param language an input-parameter of type String
 	 */
 	public void setLanguage(String language) {
-		Dispatch.put(this, "Language", language);
+		Dispatch.put(this, getIDOfName("Language"), language);
 	}
 
 	/**
@@ -1389,7 +1389,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getLastFirstAndSuffix() {
-		return Dispatch.get(this, "LastFirstAndSuffix").toString();
+		return Dispatch.get(this, getIDOfName("LastFirstAndSuffix")).toString();
 	}
 
 	/**
@@ -1397,7 +1397,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getLastFirstNoSpace() {
-		return Dispatch.get(this, "LastFirstNoSpace").toString();
+		return Dispatch.get(this, getIDOfName("LastFirstNoSpace")).toString();
 	}
 
 	/**
@@ -1405,7 +1405,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getLastFirstNoSpaceCompany() {
-		return Dispatch.get(this, "LastFirstNoSpaceCompany").toString();
+		return Dispatch.get(this, getIDOfName("LastFirstNoSpaceCompany")).toString();
 	}
 
 	/**
@@ -1413,7 +1413,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getLastFirstSpaceOnly() {
-		return Dispatch.get(this, "LastFirstSpaceOnly").toString();
+		return Dispatch.get(this, getIDOfName("LastFirstSpaceOnly")).toString();
 	}
 
 	/**
@@ -1421,7 +1421,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getLastFirstSpaceOnlyCompany() {
-		return Dispatch.get(this, "LastFirstSpaceOnlyCompany").toString();
+		return Dispatch.get(this, getIDOfName("LastFirstSpaceOnlyCompany")).toString();
 	}
 
 	/**
@@ -1429,7 +1429,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getLastName() {
-		return Dispatch.get(this, "LastName").toString();
+		return Dispatch.get(this, getIDOfName("LastName")).toString();
 	}
 
 	/**
@@ -1437,7 +1437,7 @@ public class _ContactItem extends Dispatch {
 	 * @param lastName an input-parameter of type String
 	 */
 	public void setLastName(String lastName) {
-		Dispatch.put(this, "LastName", lastName);
+		Dispatch.put(this, getIDOfName("LastName"), lastName);
 	}
 
 	/**
@@ -1445,7 +1445,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getLastNameAndFirstName() {
-		return Dispatch.get(this, "LastNameAndFirstName").toString();
+		return Dispatch.get(this, getIDOfName("LastNameAndFirstName")).toString();
 	}
 
 	/**
@@ -1453,7 +1453,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getMailingAddress() {
-		return Dispatch.get(this, "MailingAddress").toString();
+		return Dispatch.get(this, getIDOfName("MailingAddress")).toString();
 	}
 
 	/**
@@ -1461,7 +1461,7 @@ public class _ContactItem extends Dispatch {
 	 * @param mailingAddress an input-parameter of type String
 	 */
 	public void setMailingAddress(String mailingAddress) {
-		Dispatch.put(this, "MailingAddress", mailingAddress);
+		Dispatch.put(this, getIDOfName("MailingAddress"), mailingAddress);
 	}
 
 	/**
@@ -1469,7 +1469,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getMailingAddressCity() {
-		return Dispatch.get(this, "MailingAddressCity").toString();
+		return Dispatch.get(this, getIDOfName("MailingAddressCity")).toString();
 	}
 
 	/**
@@ -1477,7 +1477,7 @@ public class _ContactItem extends Dispatch {
 	 * @param mailingAddressCity an input-parameter of type String
 	 */
 	public void setMailingAddressCity(String mailingAddressCity) {
-		Dispatch.put(this, "MailingAddressCity", mailingAddressCity);
+		Dispatch.put(this, getIDOfName("MailingAddressCity"), mailingAddressCity);
 	}
 
 	/**
@@ -1485,7 +1485,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getMailingAddressCountry() {
-		return Dispatch.get(this, "MailingAddressCountry").toString();
+		return Dispatch.get(this, getIDOfName("MailingAddressCountry")).toString();
 	}
 
 	/**
@@ -1493,7 +1493,7 @@ public class _ContactItem extends Dispatch {
 	 * @param mailingAddressCountry an input-parameter of type String
 	 */
 	public void setMailingAddressCountry(String mailingAddressCountry) {
-		Dispatch.put(this, "MailingAddressCountry", mailingAddressCountry);
+		Dispatch.put(this, getIDOfName("MailingAddressCountry"), mailingAddressCountry);
 	}
 
 	/**
@@ -1501,7 +1501,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getMailingAddressPostalCode() {
-		return Dispatch.get(this, "MailingAddressPostalCode").toString();
+		return Dispatch.get(this, getIDOfName("MailingAddressPostalCode")).toString();
 	}
 
 	/**
@@ -1509,7 +1509,7 @@ public class _ContactItem extends Dispatch {
 	 * @param mailingAddressPostalCode an input-parameter of type String
 	 */
 	public void setMailingAddressPostalCode(String mailingAddressPostalCode) {
-		Dispatch.put(this, "MailingAddressPostalCode", mailingAddressPostalCode);
+		Dispatch.put(this, getIDOfName("MailingAddressPostalCode"), mailingAddressPostalCode);
 	}
 
 	/**
@@ -1517,7 +1517,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getMailingAddressPostOfficeBox() {
-		return Dispatch.get(this, "MailingAddressPostOfficeBox").toString();
+		return Dispatch.get(this, getIDOfName("MailingAddressPostOfficeBox")).toString();
 	}
 
 	/**
@@ -1525,7 +1525,7 @@ public class _ContactItem extends Dispatch {
 	 * @param mailingAddressPostOfficeBox an input-parameter of type String
 	 */
 	public void setMailingAddressPostOfficeBox(String mailingAddressPostOfficeBox) {
-		Dispatch.put(this, "MailingAddressPostOfficeBox", mailingAddressPostOfficeBox);
+		Dispatch.put(this, getIDOfName("MailingAddressPostOfficeBox"), mailingAddressPostOfficeBox);
 	}
 
 	/**
@@ -1533,7 +1533,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getMailingAddressState() {
-		return Dispatch.get(this, "MailingAddressState").toString();
+		return Dispatch.get(this, getIDOfName("MailingAddressState")).toString();
 	}
 
 	/**
@@ -1541,7 +1541,7 @@ public class _ContactItem extends Dispatch {
 	 * @param mailingAddressState an input-parameter of type String
 	 */
 	public void setMailingAddressState(String mailingAddressState) {
-		Dispatch.put(this, "MailingAddressState", mailingAddressState);
+		Dispatch.put(this, getIDOfName("MailingAddressState"), mailingAddressState);
 	}
 
 	/**
@@ -1549,7 +1549,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getMailingAddressStreet() {
-		return Dispatch.get(this, "MailingAddressStreet").toString();
+		return Dispatch.get(this, getIDOfName("MailingAddressStreet")).toString();
 	}
 
 	/**
@@ -1557,7 +1557,7 @@ public class _ContactItem extends Dispatch {
 	 * @param mailingAddressStreet an input-parameter of type String
 	 */
 	public void setMailingAddressStreet(String mailingAddressStreet) {
-		Dispatch.put(this, "MailingAddressStreet", mailingAddressStreet);
+		Dispatch.put(this, getIDOfName("MailingAddressStreet"), mailingAddressStreet);
 	}
 
 	/**
@@ -1565,7 +1565,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getManagerName() {
-		return Dispatch.get(this, "ManagerName").toString();
+		return Dispatch.get(this, getIDOfName("ManagerName")).toString();
 	}
 
 	/**
@@ -1573,7 +1573,7 @@ public class _ContactItem extends Dispatch {
 	 * @param managerName an input-parameter of type String
 	 */
 	public void setManagerName(String managerName) {
-		Dispatch.put(this, "ManagerName", managerName);
+		Dispatch.put(this, getIDOfName("ManagerName"), managerName);
 	}
 
 	/**
@@ -1581,7 +1581,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getMiddleName() {
-		return Dispatch.get(this, "MiddleName").toString();
+		return Dispatch.get(this, getIDOfName("MiddleName")).toString();
 	}
 
 	/**
@@ -1589,7 +1589,7 @@ public class _ContactItem extends Dispatch {
 	 * @param middleName an input-parameter of type String
 	 */
 	public void setMiddleName(String middleName) {
-		Dispatch.put(this, "MiddleName", middleName);
+		Dispatch.put(this, getIDOfName("MiddleName"), middleName);
 	}
 
 	/**
@@ -1597,7 +1597,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getMobileTelephoneNumber() {
-		return Dispatch.get(this, "MobileTelephoneNumber").toString();
+		return Dispatch.get(this, getIDOfName("MobileTelephoneNumber")).toString();
 	}
 
 	/**
@@ -1605,7 +1605,7 @@ public class _ContactItem extends Dispatch {
 	 * @param mobileTelephoneNumber an input-parameter of type String
 	 */
 	public void setMobileTelephoneNumber(String mobileTelephoneNumber) {
-		Dispatch.put(this, "MobileTelephoneNumber", mobileTelephoneNumber);
+		Dispatch.put(this, getIDOfName("MobileTelephoneNumber"), mobileTelephoneNumber);
 	}
 
 	/**
@@ -1613,7 +1613,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getNetMeetingAlias() {
-		return Dispatch.get(this, "NetMeetingAlias").toString();
+		return Dispatch.get(this, getIDOfName("NetMeetingAlias")).toString();
 	}
 
 	/**
@@ -1621,7 +1621,7 @@ public class _ContactItem extends Dispatch {
 	 * @param netMeetingAlias an input-parameter of type String
 	 */
 	public void setNetMeetingAlias(String netMeetingAlias) {
-		Dispatch.put(this, "NetMeetingAlias", netMeetingAlias);
+		Dispatch.put(this, getIDOfName("NetMeetingAlias"), netMeetingAlias);
 	}
 
 	/**
@@ -1629,7 +1629,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getNetMeetingServer() {
-		return Dispatch.get(this, "NetMeetingServer").toString();
+		return Dispatch.get(this, getIDOfName("NetMeetingServer")).toString();
 	}
 
 	/**
@@ -1637,7 +1637,7 @@ public class _ContactItem extends Dispatch {
 	 * @param netMeetingServer an input-parameter of type String
 	 */
 	public void setNetMeetingServer(String netMeetingServer) {
-		Dispatch.put(this, "NetMeetingServer", netMeetingServer);
+		Dispatch.put(this, getIDOfName("NetMeetingServer"), netMeetingServer);
 	}
 
 	/**
@@ -1645,7 +1645,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getNickName() {
-		return Dispatch.get(this, "NickName").toString();
+		return Dispatch.get(this, getIDOfName("NickName")).toString();
 	}
 
 	/**
@@ -1653,7 +1653,7 @@ public class _ContactItem extends Dispatch {
 	 * @param nickName an input-parameter of type String
 	 */
 	public void setNickName(String nickName) {
-		Dispatch.put(this, "NickName", nickName);
+		Dispatch.put(this, getIDOfName("NickName"), nickName);
 	}
 
 	/**
@@ -1661,7 +1661,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getOfficeLocation() {
-		return Dispatch.get(this, "OfficeLocation").toString();
+		return Dispatch.get(this, getIDOfName("OfficeLocation")).toString();
 	}
 
 	/**
@@ -1669,7 +1669,7 @@ public class _ContactItem extends Dispatch {
 	 * @param officeLocation an input-parameter of type String
 	 */
 	public void setOfficeLocation(String officeLocation) {
-		Dispatch.put(this, "OfficeLocation", officeLocation);
+		Dispatch.put(this, getIDOfName("OfficeLocation"), officeLocation);
 	}
 
 	/**
@@ -1677,7 +1677,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getOrganizationalIDNumber() {
-		return Dispatch.get(this, "OrganizationalIDNumber").toString();
+		return Dispatch.get(this, getIDOfName("OrganizationalIDNumber")).toString();
 	}
 
 	/**
@@ -1685,7 +1685,7 @@ public class _ContactItem extends Dispatch {
 	 * @param organizationalIDNumber an input-parameter of type String
 	 */
 	public void setOrganizationalIDNumber(String organizationalIDNumber) {
-		Dispatch.put(this, "OrganizationalIDNumber", organizationalIDNumber);
+		Dispatch.put(this, getIDOfName("OrganizationalIDNumber"), organizationalIDNumber);
 	}
 
 	/**
@@ -1693,7 +1693,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getOtherAddress() {
-		return Dispatch.get(this, "OtherAddress").toString();
+		return Dispatch.get(this, getIDOfName("OtherAddress")).toString();
 	}
 
 	/**
@@ -1701,7 +1701,7 @@ public class _ContactItem extends Dispatch {
 	 * @param otherAddress an input-parameter of type String
 	 */
 	public void setOtherAddress(String otherAddress) {
-		Dispatch.put(this, "OtherAddress", otherAddress);
+		Dispatch.put(this, getIDOfName("OtherAddress"), otherAddress);
 	}
 
 	/**
@@ -1709,7 +1709,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getOtherAddressCity() {
-		return Dispatch.get(this, "OtherAddressCity").toString();
+		return Dispatch.get(this, getIDOfName("OtherAddressCity")).toString();
 	}
 
 	/**
@@ -1717,7 +1717,7 @@ public class _ContactItem extends Dispatch {
 	 * @param otherAddressCity an input-parameter of type String
 	 */
 	public void setOtherAddressCity(String otherAddressCity) {
-		Dispatch.put(this, "OtherAddressCity", otherAddressCity);
+		Dispatch.put(this, getIDOfName("OtherAddressCity"), otherAddressCity);
 	}
 
 	/**
@@ -1725,7 +1725,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getOtherAddressCountry() {
-		return Dispatch.get(this, "OtherAddressCountry").toString();
+		return Dispatch.get(this, getIDOfName("OtherAddressCountry")).toString();
 	}
 
 	/**
@@ -1733,7 +1733,7 @@ public class _ContactItem extends Dispatch {
 	 * @param otherAddressCountry an input-parameter of type String
 	 */
 	public void setOtherAddressCountry(String otherAddressCountry) {
-		Dispatch.put(this, "OtherAddressCountry", otherAddressCountry);
+		Dispatch.put(this, getIDOfName("OtherAddressCountry"), otherAddressCountry);
 	}
 
 	/**
@@ -1741,7 +1741,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getOtherAddressPostalCode() {
-		return Dispatch.get(this, "OtherAddressPostalCode").toString();
+		return Dispatch.get(this, getIDOfName("OtherAddressPostalCode")).toString();
 	}
 
 	/**
@@ -1749,7 +1749,7 @@ public class _ContactItem extends Dispatch {
 	 * @param otherAddressPostalCode an input-parameter of type String
 	 */
 	public void setOtherAddressPostalCode(String otherAddressPostalCode) {
-		Dispatch.put(this, "OtherAddressPostalCode", otherAddressPostalCode);
+		Dispatch.put(this, getIDOfName("OtherAddressPostalCode"), otherAddressPostalCode);
 	}
 
 	/**
@@ -1757,7 +1757,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getOtherAddressPostOfficeBox() {
-		return Dispatch.get(this, "OtherAddressPostOfficeBox").toString();
+		return Dispatch.get(this, getIDOfName("OtherAddressPostOfficeBox")).toString();
 	}
 
 	/**
@@ -1765,7 +1765,7 @@ public class _ContactItem extends Dispatch {
 	 * @param otherAddressPostOfficeBox an input-parameter of type String
 	 */
 	public void setOtherAddressPostOfficeBox(String otherAddressPostOfficeBox) {
-		Dispatch.put(this, "OtherAddressPostOfficeBox", otherAddressPostOfficeBox);
+		Dispatch.put(this, getIDOfName("OtherAddressPostOfficeBox"), otherAddressPostOfficeBox);
 	}
 
 	/**
@@ -1773,7 +1773,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getOtherAddressState() {
-		return Dispatch.get(this, "OtherAddressState").toString();
+		return Dispatch.get(this, getIDOfName("OtherAddressState")).toString();
 	}
 
 	/**
@@ -1781,7 +1781,7 @@ public class _ContactItem extends Dispatch {
 	 * @param otherAddressState an input-parameter of type String
 	 */
 	public void setOtherAddressState(String otherAddressState) {
-		Dispatch.put(this, "OtherAddressState", otherAddressState);
+		Dispatch.put(this, getIDOfName("OtherAddressState"), otherAddressState);
 	}
 
 	/**
@@ -1789,7 +1789,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getOtherAddressStreet() {
-		return Dispatch.get(this, "OtherAddressStreet").toString();
+		return Dispatch.get(this, getIDOfName("OtherAddressStreet")).toString();
 	}
 
 	/**
@@ -1797,7 +1797,7 @@ public class _ContactItem extends Dispatch {
 	 * @param otherAddressStreet an input-parameter of type String
 	 */
 	public void setOtherAddressStreet(String otherAddressStreet) {
-		Dispatch.put(this, "OtherAddressStreet", otherAddressStreet);
+		Dispatch.put(this, getIDOfName("OtherAddressStreet"), otherAddressStreet);
 	}
 
 	/**
@@ -1805,7 +1805,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getOtherFaxNumber() {
-		return Dispatch.get(this, "OtherFaxNumber").toString();
+		return Dispatch.get(this, getIDOfName("OtherFaxNumber")).toString();
 	}
 
 	/**
@@ -1813,7 +1813,7 @@ public class _ContactItem extends Dispatch {
 	 * @param otherFaxNumber an input-parameter of type String
 	 */
 	public void setOtherFaxNumber(String otherFaxNumber) {
-		Dispatch.put(this, "OtherFaxNumber", otherFaxNumber);
+		Dispatch.put(this, getIDOfName("OtherFaxNumber"), otherFaxNumber);
 	}
 
 	/**
@@ -1821,7 +1821,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getOtherTelephoneNumber() {
-		return Dispatch.get(this, "OtherTelephoneNumber").toString();
+		return Dispatch.get(this, getIDOfName("OtherTelephoneNumber")).toString();
 	}
 
 	/**
@@ -1829,7 +1829,7 @@ public class _ContactItem extends Dispatch {
 	 * @param otherTelephoneNumber an input-parameter of type String
 	 */
 	public void setOtherTelephoneNumber(String otherTelephoneNumber) {
-		Dispatch.put(this, "OtherTelephoneNumber", otherTelephoneNumber);
+		Dispatch.put(this, getIDOfName("OtherTelephoneNumber"), otherTelephoneNumber);
 	}
 
 	/**
@@ -1837,7 +1837,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getPagerNumber() {
-		return Dispatch.get(this, "PagerNumber").toString();
+		return Dispatch.get(this, getIDOfName("PagerNumber")).toString();
 	}
 
 	/**
@@ -1845,7 +1845,7 @@ public class _ContactItem extends Dispatch {
 	 * @param pagerNumber an input-parameter of type String
 	 */
 	public void setPagerNumber(String pagerNumber) {
-		Dispatch.put(this, "PagerNumber", pagerNumber);
+		Dispatch.put(this, getIDOfName("PagerNumber"), pagerNumber);
 	}
 
 	/**
@@ -1853,7 +1853,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getPersonalHomePage() {
-		return Dispatch.get(this, "PersonalHomePage").toString();
+		return Dispatch.get(this, getIDOfName("PersonalHomePage")).toString();
 	}
 
 	/**
@@ -1861,7 +1861,7 @@ public class _ContactItem extends Dispatch {
 	 * @param personalHomePage an input-parameter of type String
 	 */
 	public void setPersonalHomePage(String personalHomePage) {
-		Dispatch.put(this, "PersonalHomePage", personalHomePage);
+		Dispatch.put(this, getIDOfName("PersonalHomePage"), personalHomePage);
 	}
 
 	/**
@@ -1869,7 +1869,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getPrimaryTelephoneNumber() {
-		return Dispatch.get(this, "PrimaryTelephoneNumber").toString();
+		return Dispatch.get(this, getIDOfName("PrimaryTelephoneNumber")).toString();
 	}
 
 	/**
@@ -1877,7 +1877,7 @@ public class _ContactItem extends Dispatch {
 	 * @param primaryTelephoneNumber an input-parameter of type String
 	 */
 	public void setPrimaryTelephoneNumber(String primaryTelephoneNumber) {
-		Dispatch.put(this, "PrimaryTelephoneNumber", primaryTelephoneNumber);
+		Dispatch.put(this, getIDOfName("PrimaryTelephoneNumber"), primaryTelephoneNumber);
 	}
 
 	/**
@@ -1885,7 +1885,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getProfession() {
-		return Dispatch.get(this, "Profession").toString();
+		return Dispatch.get(this, getIDOfName("Profession")).toString();
 	}
 
 	/**
@@ -1893,7 +1893,7 @@ public class _ContactItem extends Dispatch {
 	 * @param profession an input-parameter of type String
 	 */
 	public void setProfession(String profession) {
-		Dispatch.put(this, "Profession", profession);
+		Dispatch.put(this, getIDOfName("Profession"), profession);
 	}
 
 	/**
@@ -1901,7 +1901,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getRadioTelephoneNumber() {
-		return Dispatch.get(this, "RadioTelephoneNumber").toString();
+		return Dispatch.get(this, getIDOfName("RadioTelephoneNumber")).toString();
 	}
 
 	/**
@@ -1909,7 +1909,7 @@ public class _ContactItem extends Dispatch {
 	 * @param radioTelephoneNumber an input-parameter of type String
 	 */
 	public void setRadioTelephoneNumber(String radioTelephoneNumber) {
-		Dispatch.put(this, "RadioTelephoneNumber", radioTelephoneNumber);
+		Dispatch.put(this, getIDOfName("RadioTelephoneNumber"), radioTelephoneNumber);
 	}
 
 	/**
@@ -1917,7 +1917,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getReferredBy() {
-		return Dispatch.get(this, "ReferredBy").toString();
+		return Dispatch.get(this, getIDOfName("ReferredBy")).toString();
 	}
 
 	/**
@@ -1925,7 +1925,7 @@ public class _ContactItem extends Dispatch {
 	 * @param referredBy an input-parameter of type String
 	 */
 	public void setReferredBy(String referredBy) {
-		Dispatch.put(this, "ReferredBy", referredBy);
+		Dispatch.put(this, getIDOfName("ReferredBy"), referredBy);
 	}
 
 	/**
@@ -1933,7 +1933,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getSelectedMailingAddress() {
-		return Dispatch.get(this, "SelectedMailingAddress").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("SelectedMailingAddress")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -1941,7 +1941,7 @@ public class _ContactItem extends Dispatch {
 	 * @param selectedMailingAddress an input-parameter of type int
 	 */
 	public void setSelectedMailingAddress(int selectedMailingAddress) {
-		Dispatch.put(this, "SelectedMailingAddress", new Variant(selectedMailingAddress));
+		Dispatch.put(this, getIDOfName("SelectedMailingAddress"), new Variant(selectedMailingAddress));
 	}
 
 	/**
@@ -1949,7 +1949,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getSpouse() {
-		return Dispatch.get(this, "Spouse").toString();
+		return Dispatch.get(this, getIDOfName("Spouse")).toString();
 	}
 
 	/**
@@ -1957,7 +1957,7 @@ public class _ContactItem extends Dispatch {
 	 * @param spouse an input-parameter of type String
 	 */
 	public void setSpouse(String spouse) {
-		Dispatch.put(this, "Spouse", spouse);
+		Dispatch.put(this, getIDOfName("Spouse"), spouse);
 	}
 
 	/**
@@ -1965,7 +1965,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getSuffix() {
-		return Dispatch.get(this, "Suffix").toString();
+		return Dispatch.get(this, getIDOfName("Suffix")).toString();
 	}
 
 	/**
@@ -1973,7 +1973,7 @@ public class _ContactItem extends Dispatch {
 	 * @param suffix an input-parameter of type String
 	 */
 	public void setSuffix(String suffix) {
-		Dispatch.put(this, "Suffix", suffix);
+		Dispatch.put(this, getIDOfName("Suffix"), suffix);
 	}
 
 	/**
@@ -1981,7 +1981,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getTelexNumber() {
-		return Dispatch.get(this, "TelexNumber").toString();
+		return Dispatch.get(this, getIDOfName("TelexNumber")).toString();
 	}
 
 	/**
@@ -1989,7 +1989,7 @@ public class _ContactItem extends Dispatch {
 	 * @param telexNumber an input-parameter of type String
 	 */
 	public void setTelexNumber(String telexNumber) {
-		Dispatch.put(this, "TelexNumber", telexNumber);
+		Dispatch.put(this, getIDOfName("TelexNumber"), telexNumber);
 	}
 
 	/**
@@ -1997,7 +1997,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getTitle() {
-		return Dispatch.get(this, "Title").toString();
+		return Dispatch.get(this, getIDOfName("Title")).toString();
 	}
 
 	/**
@@ -2005,7 +2005,7 @@ public class _ContactItem extends Dispatch {
 	 * @param title an input-parameter of type String
 	 */
 	public void setTitle(String title) {
-		Dispatch.put(this, "Title", title);
+		Dispatch.put(this, getIDOfName("Title"), title);
 	}
 
 	/**
@@ -2013,7 +2013,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getTTYTDDTelephoneNumber() {
-		return Dispatch.get(this, "TTYTDDTelephoneNumber").toString();
+		return Dispatch.get(this, getIDOfName("TTYTDDTelephoneNumber")).toString();
 	}
 
 	/**
@@ -2021,7 +2021,7 @@ public class _ContactItem extends Dispatch {
 	 * @param tTYTDDTelephoneNumber an input-parameter of type String
 	 */
 	public void setTTYTDDTelephoneNumber(String tTYTDDTelephoneNumber) {
-		Dispatch.put(this, "TTYTDDTelephoneNumber", tTYTDDTelephoneNumber);
+		Dispatch.put(this, getIDOfName("TTYTDDTelephoneNumber"), tTYTDDTelephoneNumber);
 	}
 
 	/**
@@ -2029,7 +2029,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getUser1() {
-		return Dispatch.get(this, "User1").toString();
+		return Dispatch.get(this, getIDOfName("User1")).toString();
 	}
 
 	/**
@@ -2037,7 +2037,7 @@ public class _ContactItem extends Dispatch {
 	 * @param user1 an input-parameter of type String
 	 */
 	public void setUser1(String user1) {
-		Dispatch.put(this, "User1", user1);
+		Dispatch.put(this, getIDOfName("User1"), user1);
 	}
 
 	/**
@@ -2045,7 +2045,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getUser2() {
-		return Dispatch.get(this, "User2").toString();
+		return Dispatch.get(this, getIDOfName("User2")).toString();
 	}
 
 	/**
@@ -2053,7 +2053,7 @@ public class _ContactItem extends Dispatch {
 	 * @param user2 an input-parameter of type String
 	 */
 	public void setUser2(String user2) {
-		Dispatch.put(this, "User2", user2);
+		Dispatch.put(this, getIDOfName("User2"), user2);
 	}
 
 	/**
@@ -2061,7 +2061,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getUser3() {
-		return Dispatch.get(this, "User3").toString();
+		return Dispatch.get(this, getIDOfName("User3")).toString();
 	}
 
 	/**
@@ -2069,7 +2069,7 @@ public class _ContactItem extends Dispatch {
 	 * @param user3 an input-parameter of type String
 	 */
 	public void setUser3(String user3) {
-		Dispatch.put(this, "User3", user3);
+		Dispatch.put(this, getIDOfName("User3"), user3);
 	}
 
 	/**
@@ -2077,7 +2077,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getUser4() {
-		return Dispatch.get(this, "User4").toString();
+		return Dispatch.get(this, getIDOfName("User4")).toString();
 	}
 
 	/**
@@ -2085,7 +2085,7 @@ public class _ContactItem extends Dispatch {
 	 * @param user4 an input-parameter of type String
 	 */
 	public void setUser4(String user4) {
-		Dispatch.put(this, "User4", user4);
+		Dispatch.put(this, getIDOfName("User4"), user4);
 	}
 
 	/**
@@ -2093,7 +2093,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getUserCertificate() {
-		return Dispatch.get(this, "UserCertificate").toString();
+		return Dispatch.get(this, getIDOfName("UserCertificate")).toString();
 	}
 
 	/**
@@ -2101,7 +2101,7 @@ public class _ContactItem extends Dispatch {
 	 * @param userCertificate an input-parameter of type String
 	 */
 	public void setUserCertificate(String userCertificate) {
-		Dispatch.put(this, "UserCertificate", userCertificate);
+		Dispatch.put(this, getIDOfName("UserCertificate"), userCertificate);
 	}
 
 	/**
@@ -2109,7 +2109,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getWebPage() {
-		return Dispatch.get(this, "WebPage").toString();
+		return Dispatch.get(this, getIDOfName("WebPage")).toString();
 	}
 
 	/**
@@ -2117,7 +2117,7 @@ public class _ContactItem extends Dispatch {
 	 * @param webPage an input-parameter of type String
 	 */
 	public void setWebPage(String webPage) {
-		Dispatch.put(this, "WebPage", webPage);
+		Dispatch.put(this, getIDOfName("WebPage"), webPage);
 	}
 
 	/**
@@ -2125,7 +2125,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getYomiCompanyName() {
-		return Dispatch.get(this, "YomiCompanyName").toString();
+		return Dispatch.get(this, getIDOfName("YomiCompanyName")).toString();
 	}
 
 	/**
@@ -2133,7 +2133,7 @@ public class _ContactItem extends Dispatch {
 	 * @param yomiCompanyName an input-parameter of type String
 	 */
 	public void setYomiCompanyName(String yomiCompanyName) {
-		Dispatch.put(this, "YomiCompanyName", yomiCompanyName);
+		Dispatch.put(this, getIDOfName("YomiCompanyName"), yomiCompanyName);
 	}
 
 	/**
@@ -2141,7 +2141,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getYomiFirstName() {
-		return Dispatch.get(this, "YomiFirstName").toString();
+		return Dispatch.get(this, getIDOfName("YomiFirstName")).toString();
 	}
 
 	/**
@@ -2149,7 +2149,7 @@ public class _ContactItem extends Dispatch {
 	 * @param yomiFirstName an input-parameter of type String
 	 */
 	public void setYomiFirstName(String yomiFirstName) {
-		Dispatch.put(this, "YomiFirstName", yomiFirstName);
+		Dispatch.put(this, getIDOfName("YomiFirstName"), yomiFirstName);
 	}
 
 	/**
@@ -2157,7 +2157,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getYomiLastName() {
-		return Dispatch.get(this, "YomiLastName").toString();
+		return Dispatch.get(this, getIDOfName("YomiLastName")).toString();
 	}
 
 	/**
@@ -2165,7 +2165,7 @@ public class _ContactItem extends Dispatch {
 	 * @param yomiLastName an input-parameter of type String
 	 */
 	public void setYomiLastName(String yomiLastName) {
-		Dispatch.put(this, "YomiLastName", yomiLastName);
+		Dispatch.put(this, getIDOfName("YomiLastName"), yomiLastName);
 	}
 
 	/**
@@ -2173,7 +2173,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type MailItem
 	 */
 	public MailItem forwardAsVcard() {
-		return new MailItem(Dispatch.call(this, "ForwardAsVcard").toDispatch());
+		return new MailItem(Dispatch.call(this, getIDOfName("ForwardAsVcard")).toDispatch());
 	}
 
 	/**
@@ -2181,7 +2181,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type Links
 	 */
 	public Links getLinks() {
-		return new Links(Dispatch.get(this, "Links").toDispatch());
+		return new Links(Dispatch.get(this, getIDOfName("Links")).toDispatch());
 	}
 
 	/**
@@ -2189,7 +2189,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type ItemProperties
 	 */
 	public ItemProperties getItemProperties() {
-		return new ItemProperties(Dispatch.get(this, "ItemProperties").toDispatch());
+		return new ItemProperties(Dispatch.get(this, getIDOfName("ItemProperties")).toDispatch());
 	}
 
 	/**
@@ -2197,7 +2197,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getLastFirstNoSpaceAndSuffix() {
-		return Dispatch.get(this, "LastFirstNoSpaceAndSuffix").toString();
+		return Dispatch.get(this, getIDOfName("LastFirstNoSpaceAndSuffix")).toString();
 	}
 
 	/**
@@ -2205,14 +2205,14 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getDownloadState() {
-		return Dispatch.get(this, "DownloadState").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("DownloadState")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 */
 	public void showCategoriesDialog() {
-		Dispatch.call(this, "ShowCategoriesDialog");
+		Dispatch.call(this, getIDOfName("ShowCategoriesDialog"));
 	}
 
 	/**
@@ -2220,7 +2220,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getIMAddress() {
-		return Dispatch.get(this, "IMAddress").toString();
+		return Dispatch.get(this, getIDOfName("IMAddress")).toString();
 	}
 
 	/**
@@ -2228,7 +2228,7 @@ public class _ContactItem extends Dispatch {
 	 * @param iMAddress an input-parameter of type String
 	 */
 	public void setIMAddress(String iMAddress) {
-		Dispatch.put(this, "IMAddress", iMAddress);
+		Dispatch.put(this, getIDOfName("IMAddress"), iMAddress);
 	}
 
 	/**
@@ -2236,7 +2236,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getMarkForDownload() {
-		return Dispatch.get(this, "MarkForDownload").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("MarkForDownload")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -2244,7 +2244,7 @@ public class _ContactItem extends Dispatch {
 	 * @param markForDownload an input-parameter of type int
 	 */
 	public void setMarkForDownload(int markForDownload) {
-		Dispatch.put(this, "MarkForDownload", new Variant(markForDownload));
+		Dispatch.put(this, getIDOfName("MarkForDownload"), new Variant(markForDownload));
 	}
 
 	/**
@@ -2252,7 +2252,7 @@ public class _ContactItem extends Dispatch {
 	 * @param email1DisplayName an input-parameter of type String
 	 */
 	public void setEmail1DisplayName(String email1DisplayName) {
-		Dispatch.put(this, "Email1DisplayName", email1DisplayName);
+		Dispatch.put(this, getIDOfName("Email1DisplayName"), email1DisplayName);
 	}
 
 	/**
@@ -2260,7 +2260,7 @@ public class _ContactItem extends Dispatch {
 	 * @param email2DisplayName an input-parameter of type String
 	 */
 	public void setEmail2DisplayName(String email2DisplayName) {
-		Dispatch.put(this, "Email2DisplayName", email2DisplayName);
+		Dispatch.put(this, getIDOfName("Email2DisplayName"), email2DisplayName);
 	}
 
 	/**
@@ -2268,7 +2268,7 @@ public class _ContactItem extends Dispatch {
 	 * @param email3DisplayName an input-parameter of type String
 	 */
 	public void setEmail3DisplayName(String email3DisplayName) {
-		Dispatch.put(this, "Email3DisplayName", email3DisplayName);
+		Dispatch.put(this, getIDOfName("Email3DisplayName"), email3DisplayName);
 	}
 
 	/**
@@ -2276,7 +2276,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getIsConflict() {
-		return Dispatch.get(this, "IsConflict").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("IsConflict")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -2284,7 +2284,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getAutoResolvedWinner() {
-		return Dispatch.get(this, "AutoResolvedWinner").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("AutoResolvedWinner")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -2292,7 +2292,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type Conflicts
 	 */
 	public Conflicts getConflicts() {
-		return new Conflicts(Dispatch.get(this, "Conflicts").toDispatch());
+		return new Conflicts(Dispatch.get(this, getIDOfName("Conflicts")).toDispatch());
 	}
 
 	/**
@@ -2300,14 +2300,14 @@ public class _ContactItem extends Dispatch {
 	 * @param path an input-parameter of type String
 	 */
 	public void addPicture(String path) {
-		Dispatch.call(this, "AddPicture", path);
+		Dispatch.call(this, getIDOfName("AddPicture"), path);
 	}
 
 	/**
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 */
 	public void removePicture() {
-		Dispatch.call(this, "RemovePicture");
+		Dispatch.call(this, getIDOfName("RemovePicture"));
 	}
 
 	/**
@@ -2315,7 +2315,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getHasPicture() {
-		return Dispatch.get(this, "HasPicture").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("HasPicture")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -2323,7 +2323,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type PropertyAccessor
 	 */
 	public PropertyAccessor getPropertyAccessor() {
-		return new PropertyAccessor(Dispatch.get(this, "PropertyAccessor").toDispatch());
+		return new PropertyAccessor(Dispatch.get(this, getIDOfName("PropertyAccessor")).toDispatch());
 	}
 
 	/**
@@ -2331,14 +2331,14 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type MailItem
 	 */
 	public MailItem forwardAsBusinessCard() {
-		return new MailItem(Dispatch.call(this, "ForwardAsBusinessCard").toDispatch());
+		return new MailItem(Dispatch.call(this, getIDOfName("ForwardAsBusinessCard")).toDispatch());
 	}
 
 	/**
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 */
 	public void showBusinessCardEditor() {
-		Dispatch.call(this, "ShowBusinessCardEditor");
+		Dispatch.call(this, getIDOfName("ShowBusinessCardEditor"));
 	}
 
 	/**
@@ -2346,7 +2346,7 @@ public class _ContactItem extends Dispatch {
 	 * @param path an input-parameter of type String
 	 */
 	public void saveBusinessCardImage(String path) {
-		Dispatch.call(this, "SaveBusinessCardImage", path);
+		Dispatch.call(this, getIDOfName("SaveBusinessCardImage"), path);
 	}
 
 	/**
@@ -2354,7 +2354,7 @@ public class _ContactItem extends Dispatch {
 	 * @param phoneNumber an input-parameter of type int
 	 */
 	public void showCheckPhoneDialog(int phoneNumber) {
-		Dispatch.call(this, "ShowCheckPhoneDialog", new Variant(phoneNumber));
+		Dispatch.call(this, getIDOfName("ShowCheckPhoneDialog"), new Variant(phoneNumber));
 	}
 
 	/**
@@ -2362,7 +2362,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getTaskSubject() {
-		return Dispatch.get(this, "TaskSubject").toString();
+		return Dispatch.get(this, getIDOfName("TaskSubject")).toString();
 	}
 
 	/**
@@ -2370,7 +2370,7 @@ public class _ContactItem extends Dispatch {
 	 * @param taskSubject an input-parameter of type String
 	 */
 	public void setTaskSubject(String taskSubject) {
-		Dispatch.put(this, "TaskSubject", taskSubject);
+		Dispatch.put(this, getIDOfName("TaskSubject"), taskSubject);
 	}
 
 	/**
@@ -2378,7 +2378,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type java.util.Date
 	 */
 	public java.util.Date getTaskDueDate() {
-		return Dispatch.get(this, "TaskDueDate").getJavaDate();
+		return Dispatch.get(this, getIDOfName("TaskDueDate")).getJavaDate();
 	}
 
 	/**
@@ -2386,7 +2386,7 @@ public class _ContactItem extends Dispatch {
 	 * @param taskDueDate an input-parameter of type java.util.Date
 	 */
 	public void setTaskDueDate(java.util.Date taskDueDate) {
-		Dispatch.put(this, "TaskDueDate", new Variant(taskDueDate));
+		Dispatch.put(this, getIDOfName("TaskDueDate"), new Variant(taskDueDate));
 	}
 
 	/**
@@ -2394,7 +2394,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type java.util.Date
 	 */
 	public java.util.Date getTaskStartDate() {
-		return Dispatch.get(this, "TaskStartDate").getJavaDate();
+		return Dispatch.get(this, getIDOfName("TaskStartDate")).getJavaDate();
 	}
 
 	/**
@@ -2402,7 +2402,7 @@ public class _ContactItem extends Dispatch {
 	 * @param taskStartDate an input-parameter of type java.util.Date
 	 */
 	public void setTaskStartDate(java.util.Date taskStartDate) {
-		Dispatch.put(this, "TaskStartDate", new Variant(taskStartDate));
+		Dispatch.put(this, getIDOfName("TaskStartDate"), new Variant(taskStartDate));
 	}
 
 	/**
@@ -2410,7 +2410,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type java.util.Date
 	 */
 	public java.util.Date getTaskCompletedDate() {
-		return Dispatch.get(this, "TaskCompletedDate").getJavaDate();
+		return Dispatch.get(this, getIDOfName("TaskCompletedDate")).getJavaDate();
 	}
 
 	/**
@@ -2418,7 +2418,7 @@ public class _ContactItem extends Dispatch {
 	 * @param taskCompletedDate an input-parameter of type java.util.Date
 	 */
 	public void setTaskCompletedDate(java.util.Date taskCompletedDate) {
-		Dispatch.put(this, "TaskCompletedDate", new Variant(taskCompletedDate));
+		Dispatch.put(this, getIDOfName("TaskCompletedDate"), new Variant(taskCompletedDate));
 	}
 
 	/**
@@ -2426,7 +2426,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type java.util.Date
 	 */
 	public java.util.Date getToDoTaskOrdinal() {
-		return Dispatch.get(this, "ToDoTaskOrdinal").getJavaDate();
+		return Dispatch.get(this, getIDOfName("ToDoTaskOrdinal")).getJavaDate();
 	}
 
 	/**
@@ -2434,7 +2434,7 @@ public class _ContactItem extends Dispatch {
 	 * @param toDoTaskOrdinal an input-parameter of type java.util.Date
 	 */
 	public void setToDoTaskOrdinal(java.util.Date toDoTaskOrdinal) {
-		Dispatch.put(this, "ToDoTaskOrdinal", new Variant(toDoTaskOrdinal));
+		Dispatch.put(this, getIDOfName("ToDoTaskOrdinal"), new Variant(toDoTaskOrdinal));
 	}
 
 	/**
@@ -2442,7 +2442,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getReminderOverrideDefault() {
-		return Dispatch.get(this, "ReminderOverrideDefault").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("ReminderOverrideDefault")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -2450,7 +2450,7 @@ public class _ContactItem extends Dispatch {
 	 * @param reminderOverrideDefault an input-parameter of type boolean
 	 */
 	public void setReminderOverrideDefault(boolean reminderOverrideDefault) {
-		Dispatch.put(this, "ReminderOverrideDefault", new Variant(reminderOverrideDefault));
+		Dispatch.put(this, getIDOfName("ReminderOverrideDefault"), new Variant(reminderOverrideDefault));
 	}
 
 	/**
@@ -2458,7 +2458,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getReminderPlaySound() {
-		return Dispatch.get(this, "ReminderPlaySound").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("ReminderPlaySound")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -2466,7 +2466,7 @@ public class _ContactItem extends Dispatch {
 	 * @param reminderPlaySound an input-parameter of type boolean
 	 */
 	public void setReminderPlaySound(boolean reminderPlaySound) {
-		Dispatch.put(this, "ReminderPlaySound", new Variant(reminderPlaySound));
+		Dispatch.put(this, getIDOfName("ReminderPlaySound"), new Variant(reminderPlaySound));
 	}
 
 	/**
@@ -2474,7 +2474,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getReminderSet() {
-		return Dispatch.get(this, "ReminderSet").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("ReminderSet")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -2482,7 +2482,7 @@ public class _ContactItem extends Dispatch {
 	 * @param reminderSet an input-parameter of type boolean
 	 */
 	public void setReminderSet(boolean reminderSet) {
-		Dispatch.put(this, "ReminderSet", new Variant(reminderSet));
+		Dispatch.put(this, getIDOfName("ReminderSet"), new Variant(reminderSet));
 	}
 
 	/**
@@ -2490,7 +2490,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getReminderSoundFile() {
-		return Dispatch.get(this, "ReminderSoundFile").toString();
+		return Dispatch.get(this, getIDOfName("ReminderSoundFile")).toString();
 	}
 
 	/**
@@ -2498,7 +2498,7 @@ public class _ContactItem extends Dispatch {
 	 * @param reminderSoundFile an input-parameter of type String
 	 */
 	public void setReminderSoundFile(String reminderSoundFile) {
-		Dispatch.put(this, "ReminderSoundFile", reminderSoundFile);
+		Dispatch.put(this, getIDOfName("ReminderSoundFile"), reminderSoundFile);
 	}
 
 	/**
@@ -2506,7 +2506,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type java.util.Date
 	 */
 	public java.util.Date getReminderTime() {
-		return Dispatch.get(this, "ReminderTime").getJavaDate();
+		return Dispatch.get(this, getIDOfName("ReminderTime")).getJavaDate();
 	}
 
 	/**
@@ -2514,7 +2514,7 @@ public class _ContactItem extends Dispatch {
 	 * @param reminderTime an input-parameter of type java.util.Date
 	 */
 	public void setReminderTime(java.util.Date reminderTime) {
-		Dispatch.put(this, "ReminderTime", new Variant(reminderTime));
+		Dispatch.put(this, getIDOfName("ReminderTime"), new Variant(reminderTime));
 	}
 
 	/**
@@ -2522,14 +2522,14 @@ public class _ContactItem extends Dispatch {
 	 * @param markInterval an input-parameter of type int
 	 */
 	public void markAsTask(int markInterval) {
-		Dispatch.call(this, "MarkAsTask", new Variant(markInterval));
+		Dispatch.call(this, getIDOfName("MarkAsTask"), new Variant(markInterval));
 	}
 
 	/**
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 */
 	public void clearTaskFlag() {
-		Dispatch.call(this, "ClearTaskFlag");
+		Dispatch.call(this, getIDOfName("ClearTaskFlag"));
 	}
 
 	/**
@@ -2537,7 +2537,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getIsMarkedAsTask() {
-		return Dispatch.get(this, "IsMarkedAsTask").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("IsMarkedAsTask")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -2545,7 +2545,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getBusinessCardLayoutXml() {
-		return Dispatch.get(this, "BusinessCardLayoutXml").toString();
+		return Dispatch.get(this, getIDOfName("BusinessCardLayoutXml")).toString();
 	}
 
 	/**
@@ -2553,14 +2553,14 @@ public class _ContactItem extends Dispatch {
 	 * @param businessCardLayoutXml an input-parameter of type String
 	 */
 	public void setBusinessCardLayoutXml(String businessCardLayoutXml) {
-		Dispatch.put(this, "BusinessCardLayoutXml", businessCardLayoutXml);
+		Dispatch.put(this, getIDOfName("BusinessCardLayoutXml"), businessCardLayoutXml);
 	}
 
 	/**
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 */
 	public void resetBusinessCard() {
-		Dispatch.call(this, "ResetBusinessCard");
+		Dispatch.call(this, getIDOfName("ResetBusinessCard"));
 	}
 
 	/**
@@ -2568,7 +2568,7 @@ public class _ContactItem extends Dispatch {
 	 * @param path an input-parameter of type String
 	 */
 	public void addBusinessCardLogoPicture(String path) {
-		Dispatch.call(this, "AddBusinessCardLogoPicture", path);
+		Dispatch.call(this, getIDOfName("AddBusinessCardLogoPicture"), path);
 	}
 
 	/**
@@ -2576,7 +2576,7 @@ public class _ContactItem extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getBusinessCardType() {
-		return Dispatch.get(this, "BusinessCardType").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("BusinessCardType")).changeType(Variant.VariantInt).getInt();
 	}
 
 }

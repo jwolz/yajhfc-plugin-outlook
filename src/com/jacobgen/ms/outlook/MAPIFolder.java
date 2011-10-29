@@ -6,7 +6,7 @@ package com.jacobgen.ms.outlook;
 
 import com.jacob.com.*;
 
-public class MAPIFolder extends Dispatch {
+public class MAPIFolder extends CachingDispatch {
 
 	public static final String componentName = "Outlook.MAPIFolder";
 
@@ -36,7 +36,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type _Application
 	 */
 	public _Application getApplication() {
-		return new _Application(Dispatch.get(this, "Application").toDispatch());
+		return new _Application(Dispatch.get(this, getIDOfName("Application")).toDispatch());
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getClass1() {
-		return Dispatch.get(this, "Class").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("Class")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type _NameSpace
 	 */
 	public _NameSpace getSession() {
-		return new _NameSpace(Dispatch.get(this, "Session").toDispatch());
+		return new _NameSpace(Dispatch.get(this, getIDOfName("Session")).toDispatch());
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Object getParent() {
-		return Dispatch.get(this, "Parent");
+		return Dispatch.get(this, getIDOfName("Parent"));
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getDefaultItemType() {
-		return Dispatch.get(this, "DefaultItemType").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("DefaultItemType")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getDefaultMessageClass() {
-		return Dispatch.get(this, "DefaultMessageClass").toString();
+		return Dispatch.get(this, getIDOfName("DefaultMessageClass")).toString();
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getDescription() {
-		return Dispatch.get(this, "Description").toString();
+		return Dispatch.get(this, getIDOfName("Description")).toString();
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class MAPIFolder extends Dispatch {
 	 * @param description an input-parameter of type String
 	 */
 	public void setDescription(String description) {
-		Dispatch.put(this, "Description", description);
+		Dispatch.put(this, getIDOfName("Description"), description);
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getEntryID() {
-		return Dispatch.get(this, "EntryID").toString();
+		return Dispatch.get(this, getIDOfName("EntryID")).toString();
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type _Folders
 	 */
 	public _Folders getFolders() {
-		return new _Folders(Dispatch.get(this, "Folders").toDispatch());
+		return new _Folders(Dispatch.get(this, getIDOfName("Folders")).toDispatch());
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type _Items
 	 */
 	public _Items getItems() {
-		return new _Items(Dispatch.get(this, "Items").toDispatch());
+		return new _Items(Dispatch.get(this, getIDOfName("Items")).toDispatch());
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getName() {
-		return Dispatch.get(this, "Name").toString();
+		return Dispatch.get(this, getIDOfName("Name")).toString();
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class MAPIFolder extends Dispatch {
 	 * @param name an input-parameter of type String
 	 */
 	public void setName(String name) {
-		Dispatch.put(this, "Name", name);
+		Dispatch.put(this, getIDOfName("Name"), name);
 	}
 
 	/**
@@ -140,7 +140,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getStoreID() {
-		return Dispatch.get(this, "StoreID").toString();
+		return Dispatch.get(this, getIDOfName("StoreID")).toString();
 	}
 
 	/**
@@ -148,7 +148,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getUnReadItemCount() {
-		return Dispatch.get(this, "UnReadItemCount").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("UnReadItemCount")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -157,21 +157,21 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type MAPIFolder
 	 */
 	public MAPIFolder copyTo(MAPIFolder destinationFolder) {
-		return new MAPIFolder(Dispatch.call(this, "CopyTo", destinationFolder).toDispatch());
+		return new MAPIFolder(Dispatch.call(this, getIDOfName("CopyTo"), destinationFolder).toDispatch());
 	}
 
 	/**
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 */
 	public void delete() {
-		Dispatch.call(this, "Delete");
+		Dispatch.call(this, getIDOfName("Delete"));
 	}
 
 	/**
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 */
 	public void display() {
-		Dispatch.call(this, "Display");
+		Dispatch.call(this, getIDOfName("Display"));
 	}
 
 	/**
@@ -180,7 +180,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type _Explorer
 	 */
 	public _Explorer getExplorer(Variant displayMode) {
-		return new _Explorer(Dispatch.call(this, "GetExplorer", displayMode).toDispatch());
+		return new _Explorer(Dispatch.call(this, getIDOfName("GetExplorer"), displayMode).toDispatch());
 	}
 
 	/**
@@ -188,7 +188,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type _Explorer
 	 */
 	public _Explorer getExplorer() {
-		return new _Explorer(Dispatch.call(this, "GetExplorer").toDispatch());
+		return new _Explorer(Dispatch.call(this, getIDOfName("GetExplorer")).toDispatch());
 	}
 
 	/**
@@ -196,7 +196,7 @@ public class MAPIFolder extends Dispatch {
 	 * @param destinationFolder an input-parameter of type MAPIFolder
 	 */
 	public void moveTo(MAPIFolder destinationFolder) {
-		Dispatch.call(this, "MoveTo", destinationFolder);
+		Dispatch.call(this, getIDOfName("MoveTo"), destinationFolder);
 	}
 
 	/**
@@ -204,7 +204,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Object getUserPermissions() {
-		return Dispatch.get(this, "UserPermissions");
+		return Dispatch.get(this, getIDOfName("UserPermissions"));
 	}
 
 	/**
@@ -212,7 +212,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getWebViewOn() {
-		return Dispatch.get(this, "WebViewOn").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("WebViewOn")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -220,7 +220,7 @@ public class MAPIFolder extends Dispatch {
 	 * @param webViewOn an input-parameter of type boolean
 	 */
 	public void setWebViewOn(boolean webViewOn) {
-		Dispatch.put(this, "WebViewOn", new Variant(webViewOn));
+		Dispatch.put(this, getIDOfName("WebViewOn"), new Variant(webViewOn));
 	}
 
 	/**
@@ -228,7 +228,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getWebViewURL() {
-		return Dispatch.get(this, "WebViewURL").toString();
+		return Dispatch.get(this, getIDOfName("WebViewURL")).toString();
 	}
 
 	/**
@@ -236,7 +236,7 @@ public class MAPIFolder extends Dispatch {
 	 * @param webViewURL an input-parameter of type String
 	 */
 	public void setWebViewURL(String webViewURL) {
-		Dispatch.put(this, "WebViewURL", webViewURL);
+		Dispatch.put(this, getIDOfName("WebViewURL"), webViewURL);
 	}
 
 	/**
@@ -244,7 +244,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getWebViewAllowNavigation() {
-		return Dispatch.get(this, "WebViewAllowNavigation").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("WebViewAllowNavigation")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -252,14 +252,14 @@ public class MAPIFolder extends Dispatch {
 	 * @param webViewAllowNavigation an input-parameter of type boolean
 	 */
 	public void setWebViewAllowNavigation(boolean webViewAllowNavigation) {
-		Dispatch.put(this, "WebViewAllowNavigation", new Variant(webViewAllowNavigation));
+		Dispatch.put(this, getIDOfName("WebViewAllowNavigation"), new Variant(webViewAllowNavigation));
 	}
 
 	/**
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 */
 	public void addToPFFavorites() {
-		Dispatch.call(this, "AddToPFFavorites");
+		Dispatch.call(this, getIDOfName("AddToPFFavorites"));
 	}
 
 	/**
@@ -267,7 +267,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getAddressBookName() {
-		return Dispatch.get(this, "AddressBookName").toString();
+		return Dispatch.get(this, getIDOfName("AddressBookName")).toString();
 	}
 
 	/**
@@ -275,7 +275,7 @@ public class MAPIFolder extends Dispatch {
 	 * @param addressBookName an input-parameter of type String
 	 */
 	public void setAddressBookName(String addressBookName) {
-		Dispatch.put(this, "AddressBookName", addressBookName);
+		Dispatch.put(this, getIDOfName("AddressBookName"), addressBookName);
 	}
 
 	/**
@@ -283,7 +283,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getShowAsOutlookAB() {
-		return Dispatch.get(this, "ShowAsOutlookAB").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("ShowAsOutlookAB")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -291,7 +291,7 @@ public class MAPIFolder extends Dispatch {
 	 * @param showAsOutlookAB an input-parameter of type boolean
 	 */
 	public void setShowAsOutlookAB(boolean showAsOutlookAB) {
-		Dispatch.put(this, "ShowAsOutlookAB", new Variant(showAsOutlookAB));
+		Dispatch.put(this, getIDOfName("ShowAsOutlookAB"), new Variant(showAsOutlookAB));
 	}
 
 	/**
@@ -299,7 +299,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getFolderPath() {
-		return Dispatch.get(this, "FolderPath").toString();
+		return Dispatch.get(this, getIDOfName("FolderPath")).toString();
 	}
 
 	/**
@@ -308,7 +308,7 @@ public class MAPIFolder extends Dispatch {
 	 * @param name an input-parameter of type Variant
 	 */
 	public void addToFavorites(Variant fNoUI, Variant name) {
-		Dispatch.call(this, "AddToFavorites", fNoUI, name);
+		Dispatch.call(this, getIDOfName("AddToFavorites"), fNoUI, name);
 	}
 
 	/**
@@ -316,14 +316,14 @@ public class MAPIFolder extends Dispatch {
 	 * @param fNoUI an input-parameter of type Variant
 	 */
 	public void addToFavorites(Variant fNoUI) {
-		Dispatch.call(this, "AddToFavorites", fNoUI);
+		Dispatch.call(this, getIDOfName("AddToFavorites"), fNoUI);
 	}
 
 	/**
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 */
 	public void addToFavorites() {
-		Dispatch.call(this, "AddToFavorites");
+		Dispatch.call(this, getIDOfName("AddToFavorites"));
 	}
 
 
@@ -332,7 +332,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getInAppFolderSyncObject() {
-		return Dispatch.get(this, "InAppFolderSyncObject").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("InAppFolderSyncObject")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -340,7 +340,7 @@ public class MAPIFolder extends Dispatch {
 	 * @param inAppFolderSyncObject an input-parameter of type boolean
 	 */
 	public void setInAppFolderSyncObject(boolean inAppFolderSyncObject) {
-		Dispatch.put(this, "InAppFolderSyncObject", new Variant(inAppFolderSyncObject));
+		Dispatch.put(this, getIDOfName("InAppFolderSyncObject"), new Variant(inAppFolderSyncObject));
 	}
 
 	/**
@@ -348,7 +348,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type View
 	 */
 	public View getCurrentView() {
-		return new View(Dispatch.get(this, "CurrentView").toDispatch());
+		return new View(Dispatch.get(this, getIDOfName("CurrentView")).toDispatch());
 	}
 
 	/**
@@ -356,7 +356,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getCustomViewsOnly() {
-		return Dispatch.get(this, "CustomViewsOnly").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("CustomViewsOnly")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -364,7 +364,7 @@ public class MAPIFolder extends Dispatch {
 	 * @param customViewsOnly an input-parameter of type boolean
 	 */
 	public void setCustomViewsOnly(boolean customViewsOnly) {
-		Dispatch.put(this, "CustomViewsOnly", new Variant(customViewsOnly));
+		Dispatch.put(this, getIDOfName("CustomViewsOnly"), new Variant(customViewsOnly));
 	}
 
 	/**
@@ -372,7 +372,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type _Views
 	 */
 	public _Views getViews() {
-		return new _Views(Dispatch.get(this, "Views").toDispatch());
+		return new _Views(Dispatch.get(this, getIDOfName("Views")).toDispatch());
 	}
 
 	/**
@@ -380,7 +380,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type Variant
 	 */
 	public Variant getMAPIOBJECT() {
-		return Dispatch.get(this, "MAPIOBJECT");
+		return Dispatch.get(this, getIDOfName("MAPIOBJECT"));
 	}
 
 	/**
@@ -388,7 +388,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getFullFolderPath() {
-		return Dispatch.get(this, "FullFolderPath").toString();
+		return Dispatch.get(this, getIDOfName("FullFolderPath")).toString();
 	}
 
 	/**
@@ -396,7 +396,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getIsSharePointFolder() {
-		return Dispatch.get(this, "IsSharePointFolder").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("IsSharePointFolder")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -404,7 +404,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getShowItemCount() {
-		return Dispatch.get(this, "ShowItemCount").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("ShowItemCount")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -412,7 +412,7 @@ public class MAPIFolder extends Dispatch {
 	 * @param showItemCount an input-parameter of type int
 	 */
 	public void setShowItemCount(int showItemCount) {
-		Dispatch.put(this, "ShowItemCount", new Variant(showItemCount));
+		Dispatch.put(this, getIDOfName("ShowItemCount"), new Variant(showItemCount));
 	}
 
 	/**
@@ -420,7 +420,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type Store
 	 */
 	public Store getStore() {
-		return new Store(Dispatch.get(this, "Store").toDispatch());
+		return new Store(Dispatch.get(this, getIDOfName("Store")).toDispatch());
 	}
 
 	/**
@@ -430,7 +430,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type _StorageItem
 	 */
 	public _StorageItem getStorage(String storageIdentifier, int storageIdentifierType) {
-		return new _StorageItem(Dispatch.call(this, "GetStorage", storageIdentifier, new Variant(storageIdentifierType)).toDispatch());
+		return new _StorageItem(Dispatch.call(this, getIDOfName("GetStorage"), storageIdentifier, new Variant(storageIdentifierType)).toDispatch());
 	}
 
 	/**
@@ -440,7 +440,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type Table
 	 */
 	public Table getTable(Variant filter, Variant tableContents) {
-		return new Table(Dispatch.call(this, "GetTable", filter, tableContents).toDispatch());
+		return new Table(Dispatch.call(this, getIDOfName("GetTable"), filter, tableContents).toDispatch());
 	}
 
 	/**
@@ -449,7 +449,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type Table
 	 */
 	public Table getTable(Variant filter) {
-		return new Table(Dispatch.call(this, "GetTable", filter).toDispatch());
+		return new Table(Dispatch.call(this, getIDOfName("GetTable"), filter).toDispatch());
 	}
 
 	/**
@@ -457,7 +457,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type Table
 	 */
 	public Table getTable() {
-		return new Table(Dispatch.call(this, "GetTable").toDispatch());
+		return new Table(Dispatch.call(this, getIDOfName("GetTable")).toDispatch());
 	}
 
 
@@ -466,7 +466,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type PropertyAccessor
 	 */
 	public PropertyAccessor getPropertyAccessor() {
-		return new PropertyAccessor(Dispatch.get(this, "PropertyAccessor").toDispatch());
+		return new PropertyAccessor(Dispatch.get(this, getIDOfName("PropertyAccessor")).toDispatch());
 	}
 
 	/**
@@ -474,7 +474,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type CalendarSharing
 	 */
 	public CalendarSharing getCalendarExporter() {
-		return new CalendarSharing(Dispatch.call(this, "GetCalendarExporter").toDispatch());
+		return new CalendarSharing(Dispatch.call(this, getIDOfName("GetCalendarExporter")).toDispatch());
 	}
 
 	/**
@@ -482,7 +482,7 @@ public class MAPIFolder extends Dispatch {
 	 * @return the result is of type UserDefinedProperties
 	 */
 	public UserDefinedProperties getUserDefinedProperties() {
-		return new UserDefinedProperties(Dispatch.get(this, "UserDefinedProperties").toDispatch());
+		return new UserDefinedProperties(Dispatch.get(this, getIDOfName("UserDefinedProperties")).toDispatch());
 	}
 
 }

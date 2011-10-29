@@ -25,4 +25,5 @@ public class OutlookSettings extends AbstractConnectionSettings {
 	public boolean accessEMailAndBody = false;
 	public boolean accessDistributionLists = true;
 	public boolean resolveDistributionLists = true;
+	public boolean loadOnlyFaxContacts = false;
 }

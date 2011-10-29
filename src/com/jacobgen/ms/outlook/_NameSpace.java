@@ -6,7 +6,7 @@ package com.jacobgen.ms.outlook;
 
 import com.jacob.com.*;
 
-public class _NameSpace extends Dispatch {
+public class _NameSpace extends CachingDispatch {
 
 	public static final String componentName = "Outlook._NameSpace";
 
@@ -36,7 +36,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type _Application
 	 */
 	public _Application getApplication() {
-		return new _Application(Dispatch.get(this, "Application").toDispatch());
+		return new _Application(Dispatch.get(this, getIDOfName("Application")).toDispatch());
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getClass1() {
-		return Dispatch.get(this, "Class").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("Class")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type _NameSpace
 	 */
 	public _NameSpace getSession() {
-		return new _NameSpace(Dispatch.get(this, "Session").toDispatch());
+		return new _NameSpace(Dispatch.get(this, getIDOfName("Session")).toDispatch());
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Object getParent() {
-		return Dispatch.get(this, "Parent");
+		return Dispatch.get(this, getIDOfName("Parent"));
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type Recipient
 	 */
 	public Recipient getCurrentUser() {
-		return new Recipient(Dispatch.get(this, "CurrentUser").toDispatch());
+		return new Recipient(Dispatch.get(this, getIDOfName("CurrentUser")).toDispatch());
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type _Folders
 	 */
 	public _Folders getFolders() {
-		return new _Folders(Dispatch.get(this, "Folders").toDispatch());
+		return new _Folders(Dispatch.get(this, getIDOfName("Folders")).toDispatch());
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getType() {
-		return Dispatch.get(this, "Type").toString();
+		return Dispatch.get(this, getIDOfName("Type")).toString();
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type AddressLists
 	 */
 	public AddressLists getAddressLists() {
-		return new AddressLists(Dispatch.get(this, "AddressLists").toDispatch());
+		return new AddressLists(Dispatch.get(this, getIDOfName("AddressLists")).toDispatch());
 	}
 
 	/**
@@ -101,7 +101,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type Recipient
 	 */
 	public Recipient createRecipient(String recipientName) {
-		return new Recipient(Dispatch.call(this, "CreateRecipient", recipientName).toDispatch());
+		return new Recipient(Dispatch.call(this, getIDOfName("CreateRecipient"), recipientName).toDispatch());
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type MAPIFolder
 	 */
 	public MAPIFolder getDefaultFolder(int folderType) {
-		return new MAPIFolder(Dispatch.call(this, "GetDefaultFolder", new Variant(folderType)).toDispatch());
+		return new MAPIFolder(Dispatch.call(this, getIDOfName("GetDefaultFolder"), new Variant(folderType)).toDispatch());
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type MAPIFolder
 	 */
 	public MAPIFolder getFolderFromID(String entryIDFolder, Variant entryIDStore) {
-		return new MAPIFolder(Dispatch.call(this, "GetFolderFromID", entryIDFolder, entryIDStore).toDispatch());
+		return new MAPIFolder(Dispatch.call(this, getIDOfName("GetFolderFromID"), entryIDFolder, entryIDStore).toDispatch());
 	}
 
 	/**
@@ -129,7 +129,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type MAPIFolder
 	 */
 	public MAPIFolder getFolderFromID(String entryIDFolder) {
-		return new MAPIFolder(Dispatch.call(this, "GetFolderFromID", entryIDFolder).toDispatch());
+		return new MAPIFolder(Dispatch.call(this, getIDOfName("GetFolderFromID"), entryIDFolder).toDispatch());
 	}
 
 
@@ -140,7 +140,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Variant getItemFromID(String entryIDItem, Variant entryIDStore) {
-		return Dispatch.call(this, "GetItemFromID", entryIDItem, entryIDStore);
+		return Dispatch.call(this, getIDOfName("GetItemFromID"), entryIDItem, entryIDStore);
 	}
 
 	/**
@@ -149,7 +149,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Variant getItemFromID(String entryIDItem) {
-		return Dispatch.call(this, "GetItemFromID", entryIDItem);
+		return Dispatch.call(this, getIDOfName("GetItemFromID"), entryIDItem);
 	}
 
 	/**
@@ -158,7 +158,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type Recipient
 	 */
 	public Recipient getRecipientFromID(String entryID) {
-		return new Recipient(Dispatch.call(this, "GetRecipientFromID", entryID).toDispatch());
+		return new Recipient(Dispatch.call(this, getIDOfName("GetRecipientFromID"), entryID).toDispatch());
 	}
 
 	/**
@@ -168,14 +168,14 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type MAPIFolder
 	 */
 	public MAPIFolder getSharedDefaultFolder(Recipient recipient, int folderType) {
-		return new MAPIFolder(Dispatch.call(this, "GetSharedDefaultFolder", recipient, new Variant(folderType)).toDispatch());
+		return new MAPIFolder(Dispatch.call(this, getIDOfName("GetSharedDefaultFolder"), recipient, new Variant(folderType)).toDispatch());
 	}
 
 	/**
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 */
 	public void logoff() {
-		Dispatch.call(this, "Logoff");
+		Dispatch.call(this, getIDOfName("Logoff"));
 	}
 
 	/**
@@ -186,7 +186,7 @@ public class _NameSpace extends Dispatch {
 	 * @param newSession an input-parameter of type Variant
 	 */
 	public void logon(Variant profile, Variant password, Variant showDialog, Variant newSession) {
-		Dispatch.call(this, "Logon", profile, password, showDialog, newSession);
+		Dispatch.call(this, getIDOfName("Logon"), profile, password, showDialog, newSession);
 	}
 
 	/**
@@ -196,7 +196,7 @@ public class _NameSpace extends Dispatch {
 	 * @param showDialog an input-parameter of type Variant
 	 */
 	public void logon(Variant profile, Variant password, Variant showDialog) {
-		Dispatch.call(this, "Logon", profile, password, showDialog);
+		Dispatch.call(this, getIDOfName("Logon"), profile, password, showDialog);
 	}
 
 	/**
@@ -205,7 +205,7 @@ public class _NameSpace extends Dispatch {
 	 * @param password an input-parameter of type Variant
 	 */
 	public void logon(Variant profile, Variant password) {
-		Dispatch.call(this, "Logon", profile, password);
+		Dispatch.call(this, getIDOfName("Logon"), profile, password);
 	}
 
 	/**
@@ -213,14 +213,14 @@ public class _NameSpace extends Dispatch {
 	 * @param profile an input-parameter of type Variant
 	 */
 	public void logon(Variant profile) {
-		Dispatch.call(this, "Logon", profile);
+		Dispatch.call(this, getIDOfName("Logon"), profile);
 	}
 
 	/**
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 */
 	public void logon() {
-		Dispatch.call(this, "Logon");
+		Dispatch.call(this, getIDOfName("Logon"));
 	}
 
 
@@ -229,14 +229,14 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type MAPIFolder
 	 */
 	public MAPIFolder pickFolder() {
-		return new MAPIFolder(Dispatch.call(this, "PickFolder").toDispatch());
+		return new MAPIFolder(Dispatch.call(this, getIDOfName("PickFolder")).toDispatch());
 	}
 
 	/**
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 */
 	public void refreshRemoteHeaders() {
-		Dispatch.call(this, "RefreshRemoteHeaders");
+		Dispatch.call(this, getIDOfName("RefreshRemoteHeaders"));
 	}
 
 	/**
@@ -244,7 +244,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type SyncObjects
 	 */
 	public SyncObjects getSyncObjects() {
-		return new SyncObjects(Dispatch.get(this, "SyncObjects").toDispatch());
+		return new SyncObjects(Dispatch.get(this, getIDOfName("SyncObjects")).toDispatch());
 	}
 
 	/**
@@ -252,7 +252,7 @@ public class _NameSpace extends Dispatch {
 	 * @param store an input-parameter of type Variant
 	 */
 	public void addStore(Variant store) {
-		Dispatch.call(this, "AddStore", store);
+		Dispatch.call(this, getIDOfName("AddStore"), store);
 	}
 
 	/**
@@ -260,7 +260,7 @@ public class _NameSpace extends Dispatch {
 	 * @param folder an input-parameter of type MAPIFolder
 	 */
 	public void removeStore(MAPIFolder folder) {
-		Dispatch.call(this, "RemoveStore", folder);
+		Dispatch.call(this, getIDOfName("RemoveStore"), folder);
 	}
 
 	/**
@@ -268,7 +268,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getOffline() {
-		return Dispatch.get(this, "Offline").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("Offline")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -276,14 +276,14 @@ public class _NameSpace extends Dispatch {
 	 * @param contactItem an input-parameter of type Variant
 	 */
 	public void dial(Variant contactItem) {
-		Dispatch.call(this, "Dial", contactItem);
+		Dispatch.call(this, getIDOfName("Dial"), contactItem);
 	}
 
 	/**
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 */
 	public void dial() {
-		Dispatch.call(this, "Dial");
+		Dispatch.call(this, getIDOfName("Dial"));
 	}
 
 //	/**
@@ -291,7 +291,7 @@ public class _NameSpace extends Dispatch {
 //	 * @param contactItem an input-parameter of type Variant
 //	 */
 //	public void dial(Variant contactItem) {
-//		Dispatch.call(this, "Dial", contactItem);
+//		Dispatch.call(this, getIDOfName("Dial"), contactItem);
 //
 //	}
 
@@ -300,7 +300,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type Variant
 	 */
 	public Variant getMAPIOBJECT() {
-		return Dispatch.get(this, "MAPIOBJECT");
+		return Dispatch.get(this, getIDOfName("MAPIOBJECT"));
 	}
 
 	/**
@@ -308,7 +308,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getExchangeConnectionMode() {
-		return Dispatch.get(this, "ExchangeConnectionMode").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("ExchangeConnectionMode")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -317,7 +317,7 @@ public class _NameSpace extends Dispatch {
 	 * @param type an input-parameter of type int
 	 */
 	public void addStoreEx(Variant store, int type) {
-		Dispatch.call(this, "AddStoreEx", store, new Variant(type));
+		Dispatch.call(this, getIDOfName("AddStoreEx"), store, new Variant(type));
 	}
 
 	/**
@@ -325,7 +325,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type Accounts
 	 */
 	public Accounts getAccounts() {
-		return new Accounts(Dispatch.get(this, "Accounts").toDispatch());
+		return new Accounts(Dispatch.get(this, getIDOfName("Accounts")).toDispatch());
 	}
 
 	/**
@@ -333,7 +333,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getCurrentProfileName() {
-		return Dispatch.get(this, "CurrentProfileName").toString();
+		return Dispatch.get(this, getIDOfName("CurrentProfileName")).toString();
 	}
 
 	/**
@@ -341,7 +341,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type Stores
 	 */
 	public Stores getStores() {
-		return new Stores(Dispatch.get(this, "Stores").toDispatch());
+		return new Stores(Dispatch.get(this, getIDOfName("Stores")).toDispatch());
 	}
 
 	/**
@@ -349,7 +349,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type SelectNamesDialog
 	 */
 	public SelectNamesDialog getSelectNamesDialog() {
-		return new SelectNamesDialog(Dispatch.call(this, "GetSelectNamesDialog").toDispatch());
+		return new SelectNamesDialog(Dispatch.call(this, getIDOfName("GetSelectNamesDialog")).toDispatch());
 	}
 
 	/**
@@ -357,7 +357,7 @@ public class _NameSpace extends Dispatch {
 	 * @param showProgressDialog an input-parameter of type boolean
 	 */
 	public void sendAndReceive(boolean showProgressDialog) {
-		Dispatch.call(this, "SendAndReceive", new Variant(showProgressDialog));
+		Dispatch.call(this, getIDOfName("SendAndReceive"), new Variant(showProgressDialog));
 	}
 
 	/**
@@ -365,7 +365,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type Store
 	 */
 	public Store getDefaultStore() {
-		return new Store(Dispatch.get(this, "DefaultStore").toDispatch());
+		return new Store(Dispatch.get(this, getIDOfName("DefaultStore")).toDispatch());
 	}
 
 	/**
@@ -374,7 +374,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type AddressEntry
 	 */
 	public AddressEntry getAddressEntryFromID(String iD) {
-		return new AddressEntry(Dispatch.call(this, "GetAddressEntryFromID", iD).toDispatch());
+		return new AddressEntry(Dispatch.call(this, getIDOfName("GetAddressEntryFromID"), iD).toDispatch());
 	}
 
 	/**
@@ -382,7 +382,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type AddressList
 	 */
 	public AddressList getGlobalAddressList() {
-		return new AddressList(Dispatch.call(this, "GetGlobalAddressList").toDispatch());
+		return new AddressList(Dispatch.call(this, getIDOfName("GetGlobalAddressList")).toDispatch());
 	}
 
 	/**
@@ -391,7 +391,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type Store
 	 */
 	public Store getStoreFromID(String iD) {
-		return new Store(Dispatch.call(this, "GetStoreFromID", iD).toDispatch());
+		return new Store(Dispatch.call(this, getIDOfName("GetStoreFromID"), iD).toDispatch());
 	}
 
 	/**
@@ -399,7 +399,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type Categories
 	 */
 	public Categories getCategories() {
-		return new Categories(Dispatch.get(this, "Categories").toDispatch());
+		return new Categories(Dispatch.get(this, getIDOfName("Categories")).toDispatch());
 	}
 
 	/**
@@ -411,7 +411,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type MAPIFolder
 	 */
 	public MAPIFolder openSharedFolder(String path, Variant name, Variant downloadAttachments, Variant useTTL) {
-		return new MAPIFolder(Dispatch.call(this, "OpenSharedFolder", path, name, downloadAttachments, useTTL).toDispatch());
+		return new MAPIFolder(Dispatch.call(this, getIDOfName("OpenSharedFolder"), path, name, downloadAttachments, useTTL).toDispatch());
 	}
 
 	/**
@@ -422,7 +422,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type MAPIFolder
 	 */
 	public MAPIFolder openSharedFolder(String path, Variant name, Variant downloadAttachments) {
-		return new MAPIFolder(Dispatch.call(this, "OpenSharedFolder", path, name, downloadAttachments).toDispatch());
+		return new MAPIFolder(Dispatch.call(this, getIDOfName("OpenSharedFolder"), path, name, downloadAttachments).toDispatch());
 	}
 
 	/**
@@ -432,7 +432,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type MAPIFolder
 	 */
 	public MAPIFolder openSharedFolder(String path, Variant name) {
-		return new MAPIFolder(Dispatch.call(this, "OpenSharedFolder", path, name).toDispatch());
+		return new MAPIFolder(Dispatch.call(this, getIDOfName("OpenSharedFolder"), path, name).toDispatch());
 	}
 
 	/**
@@ -441,7 +441,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type MAPIFolder
 	 */
 	public MAPIFolder openSharedFolder(String path) {
-		return new MAPIFolder(Dispatch.call(this, "OpenSharedFolder", path).toDispatch());
+		return new MAPIFolder(Dispatch.call(this, getIDOfName("OpenSharedFolder"), path).toDispatch());
 	}
 
 
@@ -451,7 +451,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Object openSharedItem(String path) {
-		return Dispatch.call(this, "OpenSharedItem", path);
+		return Dispatch.call(this, getIDOfName("OpenSharedItem"), path);
 	}
 
 	/**
@@ -461,7 +461,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type SharingItem
 	 */
 	public SharingItem createSharingItem(Variant context, Variant provider) {
-		return new SharingItem(Dispatch.call(this, "CreateSharingItem", context, provider).toDispatch());
+		return new SharingItem(Dispatch.call(this, getIDOfName("CreateSharingItem"), context, provider).toDispatch());
 	}
 
 	/**
@@ -470,7 +470,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type SharingItem
 	 */
 	public SharingItem createSharingItem(Variant context) {
-		return new SharingItem(Dispatch.call(this, "CreateSharingItem", context).toDispatch());
+		return new SharingItem(Dispatch.call(this, getIDOfName("CreateSharingItem"), context).toDispatch());
 	}
 
 
@@ -479,7 +479,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getExchangeMailboxServerName() {
-		return Dispatch.get(this, "ExchangeMailboxServerName").toString();
+		return Dispatch.get(this, getIDOfName("ExchangeMailboxServerName")).toString();
 	}
 
 	/**
@@ -487,7 +487,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getExchangeMailboxServerVersion() {
-		return Dispatch.get(this, "ExchangeMailboxServerVersion").toString();
+		return Dispatch.get(this, getIDOfName("ExchangeMailboxServerVersion")).toString();
 	}
 
 	/**
@@ -497,7 +497,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean compareEntryIDs(String firstEntryID, String secondEntryID) {
-		return Dispatch.call(this, "CompareEntryIDs", firstEntryID, secondEntryID).changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.call(this, getIDOfName("CompareEntryIDs"), firstEntryID, secondEntryID).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -505,7 +505,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getAutoDiscoverXml() {
-		return Dispatch.get(this, "AutoDiscoverXml").toString();
+		return Dispatch.get(this, getIDOfName("AutoDiscoverXml")).toString();
 	}
 
 	/**
@@ -513,7 +513,7 @@ public class _NameSpace extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getAutoDiscoverConnectionMode() {
-		return Dispatch.get(this, "AutoDiscoverConnectionMode").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("AutoDiscoverConnectionMode")).changeType(Variant.VariantInt).getInt();
 	}
 
 }

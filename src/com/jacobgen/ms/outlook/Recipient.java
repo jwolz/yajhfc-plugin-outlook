@@ -6,7 +6,7 @@ package com.jacobgen.ms.outlook;
 
 import com.jacob.com.*;
 
-public class Recipient extends Dispatch {
+public class Recipient extends CachingDispatch {
 
 	public static final String componentName = "Outlook.Recipient";
 
@@ -36,7 +36,7 @@ public class Recipient extends Dispatch {
 	 * @return the result is of type _Application
 	 */
 	public _Application getApplication() {
-		return new _Application(Dispatch.get(this, "Application").toDispatch());
+		return new _Application(Dispatch.get(this, getIDOfName("Application")).toDispatch());
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class Recipient extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getClass1() {
-		return Dispatch.get(this, "Class").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("Class")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class Recipient extends Dispatch {
 	 * @return the result is of type _NameSpace
 	 */
 	public _NameSpace getSession() {
-		return new _NameSpace(Dispatch.get(this, "Session").toDispatch());
+		return new _NameSpace(Dispatch.get(this, getIDOfName("Session")).toDispatch());
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class Recipient extends Dispatch {
 	 * @return the result is of type Object
 	 */
 	public Object getParent() {
-		return Dispatch.get(this, "Parent");
+		return Dispatch.get(this, getIDOfName("Parent"));
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class Recipient extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getAddress() {
-		return Dispatch.get(this, "Address").toString();
+		return Dispatch.get(this, getIDOfName("Address")).toString();
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class Recipient extends Dispatch {
 	 * @return the result is of type AddressEntry
 	 */
 	public AddressEntry getAddressEntry() {
-		return new AddressEntry(Dispatch.get(this, "AddressEntry").toDispatch());
+		return new AddressEntry(Dispatch.get(this, getIDOfName("AddressEntry")).toDispatch());
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class Recipient extends Dispatch {
 	 * @param addressEntry an input-parameter of type AddressEntry
 	 */
 	public void setAddressEntry(AddressEntry addressEntry) {
-		Dispatch.put(this, "AddressEntry", addressEntry);
+		Dispatch.put(this, getIDOfName("AddressEntry"), addressEntry);
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class Recipient extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getAutoResponse() {
-		return Dispatch.get(this, "AutoResponse").toString();
+		return Dispatch.get(this, getIDOfName("AutoResponse")).toString();
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class Recipient extends Dispatch {
 	 * @param autoResponse an input-parameter of type String
 	 */
 	public void setAutoResponse(String autoResponse) {
-		Dispatch.put(this, "AutoResponse", autoResponse);
+		Dispatch.put(this, getIDOfName("AutoResponse"), autoResponse);
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class Recipient extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getDisplayType() {
-		return Dispatch.get(this, "DisplayType").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("DisplayType")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class Recipient extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getEntryID() {
-		return Dispatch.get(this, "EntryID").toString();
+		return Dispatch.get(this, getIDOfName("EntryID")).toString();
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class Recipient extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getIndex() {
-		return Dispatch.get(this, "Index").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("Index")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class Recipient extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getMeetingResponseStatus() {
-		return Dispatch.get(this, "MeetingResponseStatus").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("MeetingResponseStatus")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -140,7 +140,7 @@ public class Recipient extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String getName() {
-		return Dispatch.get(this, "Name").toString();
+		return Dispatch.get(this, getIDOfName("Name")).toString();
 	}
 
 	/**
@@ -148,7 +148,7 @@ public class Recipient extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean getResolved() {
-		return Dispatch.get(this, "Resolved").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.get(this, getIDOfName("Resolved")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -156,7 +156,7 @@ public class Recipient extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getTrackingStatus() {
-		return Dispatch.get(this, "TrackingStatus").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("TrackingStatus")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -164,7 +164,7 @@ public class Recipient extends Dispatch {
 	 * @param trackingStatus an input-parameter of type int
 	 */
 	public void setTrackingStatus(int trackingStatus) {
-		Dispatch.put(this, "TrackingStatus", new Variant(trackingStatus));
+		Dispatch.put(this, getIDOfName("TrackingStatus"), new Variant(trackingStatus));
 	}
 
 	/**
@@ -172,7 +172,7 @@ public class Recipient extends Dispatch {
 	 * @return the result is of type java.util.Date
 	 */
 	public java.util.Date getTrackingStatusTime() {
-		return Dispatch.get(this, "TrackingStatusTime").getJavaDate();
+		return Dispatch.get(this, getIDOfName("TrackingStatusTime")).getJavaDate();
 	}
 
 	/**
@@ -180,7 +180,7 @@ public class Recipient extends Dispatch {
 	 * @param trackingStatusTime an input-parameter of type java.util.Date
 	 */
 	public void setTrackingStatusTime(java.util.Date trackingStatusTime) {
-		Dispatch.put(this, "TrackingStatusTime", new Variant(trackingStatusTime));
+		Dispatch.put(this, getIDOfName("TrackingStatusTime"), new Variant(trackingStatusTime));
 	}
 
 	/**
@@ -188,7 +188,7 @@ public class Recipient extends Dispatch {
 	 * @return the result is of type int
 	 */
 	public int getType() {
-		return Dispatch.get(this, "Type").changeType(Variant.VariantInt).getInt();
+		return Dispatch.get(this, getIDOfName("Type")).changeType(Variant.VariantInt).getInt();
 	}
 
 	/**
@@ -196,14 +196,14 @@ public class Recipient extends Dispatch {
 	 * @param type an input-parameter of type int
 	 */
 	public void setType(int type) {
-		Dispatch.put(this, "Type", new Variant(type));
+		Dispatch.put(this, getIDOfName("Type"), new Variant(type));
 	}
 
 	/**
 	 * Wrapper for calling the ActiveX-Method with input-parameter(s).
 	 */
 	public void delete() {
-		Dispatch.call(this, "Delete");
+		Dispatch.call(this, getIDOfName("Delete"));
 	}
 
 	/**
@@ -214,7 +214,7 @@ public class Recipient extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String freeBusy(java.util.Date start, int minPerChar, Variant completeFormat) {
-		return Dispatch.call(this, "FreeBusy", new Variant(start), new Variant(minPerChar), completeFormat).toString();
+		return Dispatch.call(this, getIDOfName("FreeBusy"), new Variant(start), new Variant(minPerChar), completeFormat).toString();
 	}
 
 	/**
@@ -224,7 +224,7 @@ public class Recipient extends Dispatch {
 	 * @return the result is of type String
 	 */
 	public String freeBusy(java.util.Date start, int minPerChar) {
-		return Dispatch.call(this, "FreeBusy", new Variant(start), new Variant(minPerChar)).toString();
+		return Dispatch.call(this, getIDOfName("FreeBusy"), new Variant(start), new Variant(minPerChar)).toString();
 	}
 
 	/**
@@ -232,7 +232,7 @@ public class Recipient extends Dispatch {
 	 * @return the result is of type boolean
 	 */
 	public boolean resolve() {
-		return Dispatch.call(this, "Resolve").changeType(Variant.VariantBoolean).getBoolean();
+		return Dispatch.call(this, getIDOfName("Resolve")).changeType(Variant.VariantBoolean).getBoolean();
 	}
 
 	/**
@@ -240,7 +240,7 @@ public class Recipient extends Dispatch {
 	 * @return the result is of type PropertyAccessor
 	 */
 	public PropertyAccessor getPropertyAccessor() {
-		return new PropertyAccessor(Dispatch.get(this, "PropertyAccessor").toDispatch());
+		return new PropertyAccessor(Dispatch.get(this, getIDOfName("PropertyAccessor")).toDispatch());
 	}
 
 }
