@@ -26,6 +26,8 @@ import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -126,6 +128,14 @@ public class ConnectionDialog extends JDialog {
 				return res;
 			}
 		});
+		folderTree.addMouseListener(new MouseAdapter() {
+            @Override
+             public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    actSetFolder.actionPerformed(null);
+                }
+             } 
+         });
 		
 		textSelectedFolder = new JTextField();
 		textSelectedFolder.setEditable(false);

@@ -4,7 +4,7 @@ YajHFC Outlook phone book plugin
 This plugin adds a phone book to YajHFC that reads its contents from Outlook contacts.
 It does this by invoking the Simple MAPI COM interface of Outlook (using the JACOB library).
 
-This plugin is for Windows only.
+This plugin is for Windows only (both 32 and 64 bit).
 
 INSTALLATION
 ============
