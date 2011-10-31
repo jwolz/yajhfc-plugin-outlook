@@ -203,7 +203,7 @@ public class OutlookPhonebook extends PhoneBook {
 		log.fine("Loading settings...");
 		settings = new OutlookSettings();
 		settings.loadFromString(descriptorWithoutPrefix);
-		
+
 		if (settings.loadOnlyFaxContacts) {
 			addressFields = new PBEntryField[] {
 					PBEntryField.FaxNumber,
@@ -218,45 +218,52 @@ public class OutlookPhonebook extends PhoneBook {
 		}
 
 		try {
-			synchronized (outlookLock) { // Serialize access to Outlook to avoid message filter error
-				log.fine("Creating Application...");
+			// Serialize access to Outlook to avoid message filter error!
+			log.fine("Creating Application...");
+			String appVersion;
+			synchronized (outlookLock) {
 				app = new _Application("Outlook.Application");
-				
-				String appVersion = app.getVersion();
-				log.info("Outlook version is " + appVersion);
-				
-				int pos = appVersion.indexOf('.');
-				int major = -1;
-				if (pos >= 0) {
-					major = Integer.parseInt(appVersion.substring(0, pos));
-				}
-				useOl2007Api = (major >= 12); // Outlook 2007 has 12.0.0.6562; 2003 is 11....
-				
-				log.fine("Use Outlook 2007+ API: " + useOl2007Api);
-				
-				log.fine("Loading mappings...");
-				loadBusinessAddressMapping(propertyMap_Business);
-				loadHomeAddressMapping(propertyMap_Home);
-				loadOtherAddressMapping(propertyMap_Other);
-				
-				log.fine("Got Application, getting MAPI namespace");
-				nameSpace = app.getNamespace("MAPI");
-
-				if (Utils.debugMode)
-					log.fine("Getting contact folder with folderID=" + settings.folderID + " and storeID=" + settings.storeID);
-				MAPIFolder contacts = nameSpace.getFolderFromID(settings.folderID, new Variant(settings.storeID));
-				folderName = contacts.getName();
-
-				if (Utils.debugMode)
-					log.fine("Got folder name \"" + folderName + "\", reading items now...");
-				
-				if (useOl2007Api) {
-					loadOutlook2007(contacts);
-				} else {
-					loadPreOutlook2007(contacts);
-				}
+				appVersion = app.getVersion();
 			}
+			log.info("Outlook version is " + appVersion);
+
+			int pos = appVersion.indexOf('.');
+			int major = -1;
+			if (pos >= 0) {
+				major = Integer.parseInt(appVersion.substring(0, pos));
+			}
+			useOl2007Api = (major >= 12); // Outlook 2007 has 12.0.0.6562; 2003 is 11....
+
+			log.fine("Use Outlook 2007+ API: " + useOl2007Api);
+
+			log.fine("Loading mappings...");
+			loadBusinessAddressMapping(propertyMap_Business);
+			loadHomeAddressMapping(propertyMap_Home);
+			loadOtherAddressMapping(propertyMap_Other);
+
+			log.fine("Got Application, getting MAPI namespace");
+			synchronized (outlookLock) {
+				nameSpace = app.getNamespace("MAPI");
+			}
+
+			if (Utils.debugMode)
+				log.fine("Getting contact folder with folderID=" + settings.folderID + " and storeID=" + settings.storeID);
+			MAPIFolder contacts;
+			synchronized (outlookLock) {
+				contacts = nameSpace.getFolderFromID(settings.folderID, new Variant(settings.storeID));
+				folderName = contacts.getName();
+			}
+			if (Utils.debugMode)
+				log.fine("Got folder name \"" + folderName + "\", reading items now...");
+
+			if (useOl2007Api) {
+				loadOutlook2007(contacts);
+			} else {
+				loadPreOutlook2007(contacts);
+			}
+
 			log.fine("Successfully loaded phone book");
+			resort();
 			open = true;
 		} catch (UnsatisfiedLinkError ule) {
 			throw new PhoneBookException("Cannot initialize COM connection to Outlook: " + ule.getMessage(), ule, false);
@@ -284,12 +291,15 @@ public class OutlookPhonebook extends PhoneBook {
 		}
 		
 		String[] columns = columnMap.keySet().toArray(new String[columnMap.keySet().size()]);
-		Table tbl = contacts.getTable(new Variant("[MessageClass] = \"IPM.Contact\""));
-		Columns cols = tbl.getColumns();
-		cols.removeAll();
-		for (int i = 0; i < columns.length; i++) {
-			cols.add(columns[i]);
-			columnMap.put(columns[i], i);
+		Table tbl;
+		synchronized (outlookLock) {
+			tbl = contacts.getTable(new Variant("[MessageClass] = \"IPM.Contact\""));
+			Columns cols = tbl.getColumns();
+			cols.removeAll();
+			for (int i = 0; i < columns.length; i++) {
+				cols.add(columns[i]);
+				columnMap.put(columns[i], i);
+			}
 		}
 		
 		if (Utils.debugMode) {
@@ -301,15 +311,20 @@ public class OutlookPhonebook extends PhoneBook {
 		Map<PBEntryField,Integer> indexMap_Home = buildIndexMap(propertyMap_Home, columnMap);
 		Map<PBEntryField,Integer> indexMap_Other = buildIndexMap(propertyMap_Other, columnMap);
 		
-		int rowCount = tbl.getRowCount();
-		if (Utils.debugMode) {
-			log.fine("Row count: " + rowCount);
+		Variant varTableArray;
+		synchronized (outlookLock) {
+			int rowCount = tbl.getRowCount();
+			if (Utils.debugMode) {
+				log.fine("Row count: " + rowCount);
+			}
+			varTableArray = tbl.getArray(rowCount);
 		}
-		SafeArray tableArray = tbl.getArray(rowCount).toSafeArray(true);
+		SafeArray tableArray = varTableArray.toSafeArray(true);
+		
 		if (Utils.debugMode) {
 			log.fine("Got an array: rows=["  + tableArray.getLBound(1) + ".." + tableArray.getUBound(1) + "]; cols=["  + tableArray.getLBound(2) + ".." + tableArray.getUBound(2) + "]");
 		}
-		for (int row=0; row<tableArray.getUBound(1); row++) {
+		for (int row=tableArray.getLBound(1); row<=tableArray.getUBound(1); row++) {
 			int numAddresses = 0;
 			OlTablePhoneBookEntry pbeOther = new OlTablePhoneBookEntry(this, tableArray, row, indexMap_Other);
 			if (pbeOther.hasAddress()) {
@@ -322,7 +337,7 @@ public class OutlookPhonebook extends PhoneBook {
 				numAddresses++;
 			}
 			OlTablePhoneBookEntry pbeBusiness = new OlTablePhoneBookEntry(this, tableArray, row, indexMap_Business);
-			if (numAddresses == 0 || pbeBusiness.hasAddress()) {
+			if (numAddresses == 0 && !settings.loadOnlyFaxContacts || pbeBusiness.hasAddress()) {
 				entries.add(pbeBusiness);
 				numAddresses++;
 			}
@@ -353,10 +368,14 @@ public class OutlookPhonebook extends PhoneBook {
 //			}
 //		}
 //		System.out.println(System.currentTimeMillis()-startTime);
-		
-		_Items cl = contacts.getItems();
-		cl = cl.restrict("[MessageClass] = \"IPM.DistList\"");
-		loadOutlookItems(cl);
+
+		if (settings.accessDistributionLists) {
+			synchronized (outlookLock) {
+				_Items cl = contacts.getItems();
+				cl = cl.restrict("[MessageClass] = \"IPM.DistList\"");
+				loadOutlookItems(cl);
+			}
+		}
 	}
 	
 	private Map<PBEntryField,Integer> buildIndexMap(Map<PBEntryField,String> propertyMap, Map<String,Integer> columnMap) {
@@ -375,8 +394,10 @@ public class OutlookPhonebook extends PhoneBook {
 		log.info("Loading contacts using pre-Outlook 2007 API...");
 		entries.clear();
 		
-		_Items cl = contacts.getItems();
-		loadOutlookItems(cl);
+		synchronized (outlookLock) {
+			_Items cl = contacts.getItems();
+			loadOutlookItems(cl);
+		}
 	}
 
 
@@ -411,7 +432,7 @@ public class OutlookPhonebook extends PhoneBook {
 					numAddresses++;
 				}
 				OutlookPhoneBookEntry pbeBusiness = new OutlookPhoneBookEntry(this, ci, propertyMap_Business);
-				if (numAddresses == 0 || pbeBusiness.hasAddress()) {
+				if (numAddresses == 0 && !settings.loadOnlyFaxContacts || pbeBusiness.hasAddress()) {
 					pbeBusiness.loadFully();
 					entries.add(pbeBusiness);
 					numAddresses++;

@@ -145,13 +145,14 @@
 
 	<target name="sourcedist" depends="init" description="generate the source distribution" >
 		<zip destfile="${srczip-output}">
-			<zipfileset dir=".">
+			<zipfileset dir="." prefix="yajhfc-plugin-outlook/">
 				<exclude name="bin/"/>
 				<exclude name="build/"/>
 				<exclude name="setup/Output/"/>
 				<exclude name="**/*.jar"/>
 				<exclude name="**/*.log"/>
 				<exclude name="**/*~"/>
+				<exclude name="**/.hg/**"/>
 			</zipfileset>
 		</zip>
 	</target>
