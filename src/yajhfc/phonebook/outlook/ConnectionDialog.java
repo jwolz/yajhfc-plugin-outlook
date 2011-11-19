@@ -99,7 +99,7 @@ public class ConnectionDialog extends JDialog {
 			throw new RuntimeException("Cannot initialize COM connection: " + ule.getMessage(), ule);
 		}
 		
-		rootNode = listOutlookFolders(ns);
+		rootNode = listOutlookFolders(ns, false);
 		folderTree = new JTree(rootNode);
 		folderTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 		folderTree.addTreeSelectionListener(new TreeSelectionListener() {
@@ -224,11 +224,11 @@ public class ConnectionDialog extends JDialog {
 		return null;
 	}
 	
-	protected OutlookTreeNode listOutlookFolders(_NameSpace ns) {
+	protected OutlookTreeNode listOutlookFolders(_NameSpace ns, boolean listAllFolders) {
 		List<OutlookTreeNode> children = new ArrayList<ConnectionDialog.OutlookTreeNode>();
 		_Folders folders = ns.getFolders();
 		for (int i=1; i<=folders.getCount(); i++) {
-			OutlookTreeNode child = listOutlookFolders(folders.item(i));
+			OutlookTreeNode child = listOutlookFolders(folders.item(i), listAllFolders);
 			if (child != null)
 				children.add(child);
 		}
@@ -240,15 +240,15 @@ public class ConnectionDialog extends JDialog {
 
 	}
 	
-	protected OutlookTreeNode listOutlookFolders(MAPIFolder mf) {
+	protected OutlookTreeNode listOutlookFolders(MAPIFolder mf, boolean listAllFolders) {
 		List<OutlookTreeNode> children = new ArrayList<ConnectionDialog.OutlookTreeNode>();
 		_Folders folders = mf.getFolders();
 		for (int i=1; i<=folders.getCount(); i++) {
-			OutlookTreeNode child = listOutlookFolders(folders.item(i));
+			OutlookTreeNode child = listOutlookFolders(folders.item(i), listAllFolders);
 			if (child != null)
 				children.add(child);
 		}
-		if (children.size() > 0 || mf.getDefaultItemType() == OlItemType.olContactItem) {
+		if (listAllFolders || children.size() > 0 || mf.getDefaultItemType() == OlItemType.olContactItem) {
 			OutlookTreeNode rv = new OutlookTreeNode(mf, children);
 			for (OutlookTreeNode node : children) {
 				node.parent = rv;
