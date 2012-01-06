@@ -1,6 +1,6 @@
-<project name="yajhfc-plugin-example" default="dist" basedir=".">
+<project name="yajhfc-plugin-outlook" default="dist" basedir=".">
 	<description>
-        YajHFC Example Plugin build file
+        YajHFC Outlook Plugin build file
         </description>
 	<!-- set global properties for this build -->
 	<property name="src" location="src"/>

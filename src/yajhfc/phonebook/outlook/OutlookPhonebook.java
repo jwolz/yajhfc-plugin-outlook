@@ -192,10 +192,10 @@ public class OutlookPhonebook extends PhoneBook {
 		return "Outlook - " + folderName;
 	}
 	
-	@Override
-	public void resort() {
-		Collections.sort(entries);
-	}
+//	@Override
+//	public void resort() {
+//		Collections.sort(entries);
+//	}
 
 	@Override
 	protected void openInternal(String descriptorWithoutPrefix)
@@ -263,7 +263,7 @@ public class OutlookPhonebook extends PhoneBook {
 			}
 
 			log.fine("Successfully loaded phone book");
-			resort();
+			//resort();
 			open = true;
 		} catch (UnsatisfiedLinkError ule) {
 			throw new PhoneBookException("Cannot initialize COM connection to Outlook: " + ule.getMessage(), ule, false);
