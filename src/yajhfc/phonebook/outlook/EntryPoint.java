@@ -16,23 +16,16 @@ package yajhfc.phonebook.outlook;
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import java.util.Locale;
-import java.util.ResourceBundle;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import yajhfc.Utils;
 import yajhfc.launch.Launcher2;
 import yajhfc.phonebook.PhoneBookFactory;
 import yajhfc.phonebook.PhoneBookType;
 import yajhfc.plugin.PluginManager;
+import yajhfc.util.MsgBundle;
 
-public class EntryPoint {
-
-	private static final Logger log = Logger.getLogger(EntryPoint.class.getName());
-	
-    private static ResourceBundle msgs = null;
-    private static boolean triedMsgLoad = false;
+public class EntryPoint {	
+    public static final MsgBundle msgBundle  = new MsgBundle("yajhfc.phonebook.outlook.i18n.Messages");
     
     /**
      * Returns the translation of key. If no translation is found, the
@@ -41,7 +34,7 @@ public class EntryPoint {
      * @return
      */
     public static String _(String key) {
-        return _(key, key);
+        return msgBundle._(key, key);
     }
     
     /**
@@ -52,45 +45,8 @@ public class EntryPoint {
      * @return
      */
     public static String _(String key, String defaultValue) {
-        if (msgs == null)
-            if (triedMsgLoad)
-                return defaultValue;
-            else {
-                loadMessages();
-                return _(key, defaultValue);
-            }                
-        else
-            try {
-                return msgs.getString(key);
-            } catch (Exception e) {
-                return defaultValue;
-            }
-    }
-    
-    private static void loadMessages() {
-        triedMsgLoad = true;
-        
-        // Use special handling for english locale as we don't use
-        // a ResourceBundle for it
-        final Locale myLocale = Utils.getLocale();
-        if (myLocale.getLanguage().equals(Locale.ENGLISH.getLanguage())) {
-            if (Utils.debugMode) {
-                log.fine("Not loading messages for language " + myLocale);
-            }
-            msgs = null;
-        } else {
-            try {
-                if (Utils.debugMode) {
-                    log.fine("Trying to load messages for language " + myLocale);
-                }
-                msgs = ResourceBundle.getBundle("yajhfc.phonebook.outlook.i18n.Messages", myLocale);
-            } catch (Exception e) {
-                log.log(Level.INFO, "Error loading messages for " + myLocale, e);
-                msgs = null;
-            }
-        }
-    }
-	
+        return msgBundle._(key, defaultValue);
+    }	
 	
 //	public static File getJacobDir() {
 //		// Try to determine where the JAR file is located
