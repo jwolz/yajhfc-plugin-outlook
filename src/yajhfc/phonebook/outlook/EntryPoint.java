@@ -25,7 +25,7 @@ import yajhfc.plugin.PluginManager;
 import yajhfc.util.MsgBundle;
 
 public class EntryPoint {	
-    public static final MsgBundle msgBundle  = new MsgBundle("yajhfc.phonebook.outlook.i18n.Messages");
+    public static final MsgBundle msgBundle  = new MsgBundle("yajhfc.phonebook.outlook.i18n.Messages", EntryPoint.class.getClassLoader());
     
     /**
      * Returns the translation of key. If no translation is found, the
