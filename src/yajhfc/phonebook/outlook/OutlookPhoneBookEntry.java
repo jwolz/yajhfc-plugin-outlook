@@ -1,30 +1,12 @@
 package yajhfc.phonebook.outlook;
-/*
- * YAJHFC - Yet another Java Hylafax client
- * Copyright (C) 2011 Jonas Wolz <info@yajhfc.de>
- *
- *  This program is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-import java.util.Arrays;
 import java.util.Map;
+
+import com.jacob.com.Dispatch;
+import com.jacobgen.ms.outlook._ContactItem;
 
 import yajhfc.phonebook.PBEntryField;
 import yajhfc.phonebook.PhoneBook;
 import yajhfc.phonebook.SimplePhoneBookEntry;
-
-import com.jacob.com.Dispatch;
-import com.jacobgen.ms.outlook._ContactItem;
 
 public class OutlookPhoneBookEntry extends SimplePhoneBookEntry {
 	private static final String nullString = new String("");
@@ -40,7 +22,7 @@ public class OutlookPhoneBookEntry extends SimplePhoneBookEntry {
 		this.parent = parent;
 		this.propertyMap = propertyMap;
 		this.contactItem = contactItem;
-		Arrays.fill(this.data, nullString);
+		entryData.setAllFieldsTo(nullString);
 	}
 	
 	public String getSuffix() {
